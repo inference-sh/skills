@@ -112,7 +112,7 @@ infsh app run bytedance/omnihuman-1-5 --input '{
 ## Related Skills
 
 ```bash
-# Full platform skill (all 100+ apps)
+# Full platform skill (all 150+ apps)
 npx skills add inference-sh/skills@inference-sh
 
 # AI avatars (combine TTS with talking heads)

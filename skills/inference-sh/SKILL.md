@@ -1,62 +1,71 @@
 ---
 name: inference-sh
 description: |
-  Run 100+ AI models via inference.sh CLI - image generation, video creation, TTS, music, transcription, and more.
-  Use when running AI apps, generating images/videos/audio, or working with models like FLUX, Veo, Whisper, SDXL.
-  Triggers: inference.sh, infsh, ai model, run ai, serverless ai, ai api
+  Run 150+ AI apps via inference.sh CLI - image generation, video creation, LLMs, search, 3D, Twitter automation.
+  Models: FLUX, Veo, Gemini, Grok, Claude, Seedance, OmniHuman, Tavily, Exa, OpenRouter, and many more.
+  Use when running AI apps, generating images/videos, calling LLMs, web search, or automating Twitter.
+  Triggers: inference.sh, infsh, ai model, run ai, serverless ai, ai api, flux, veo, claude api,
+  image generation, video generation, openrouter, tavily, exa search, twitter api, grok
 allowed-tools: Bash(infsh *)
 ---
 
 # inference.sh
 
-Run AI models in the cloud with a simple CLI. No GPU required.
+Run 150+ AI apps in the cloud with a simple CLI. No GPU required.
 
-## Quick Start
+## Install CLI
 
 ```bash
-# Install CLI
 curl -fsSL https://cli.inference.sh | sh
-
-# Login
 infsh login
-
-# Run an image generation app
-infsh app run falai/flux-dev-lora --input '{"prompt": "a cat astronaut"}'
 ```
 
-## Quick Reference
+## Quick Examples
+
+```bash
+# Generate an image
+infsh app run falai/flux-dev-lora --input '{"prompt": "a cat astronaut"}'
+
+# Generate a video
+infsh app run google/veo-3-1-fast --input '{"prompt": "drone over mountains"}'
+
+# Call Claude
+infsh app run openrouter/claude-sonnet-45 --input '{"prompt": "Explain quantum computing"}'
+
+# Web search
+infsh app run tavily/search-assistant --input '{"query": "latest AI news"}'
+
+# Post to Twitter
+infsh app run x/post-tweet --input '{"text": "Hello from AI!"}'
+
+# Generate 3D model
+infsh app run infsh/rodin-3d-generator --input '{"prompt": "a wooden chair"}'
+```
+
+## Commands
 
 | Task | Command |
 |------|---------|
-| Install CLI | `curl -fsSL https://cli.inference.sh \| sh` |
-| Login | `infsh login` |
-| Check auth | `infsh me` |
 | List all apps | `infsh app list` |
 | Search apps | `infsh app list --search "flux"` |
 | Filter by category | `infsh app list --category image` |
-| Get app details | `infsh app get falai/flux-dev-lora` |
-| Generate sample input | `infsh app sample falai/flux-dev-lora --save input.json` |
-| Run app | `infsh app run falai/flux-dev-lora --input input.json` |
-| Run with inline JSON | `infsh app run falai/flux-dev-lora --input '{"prompt": "hello"}'` |
+| Get app details | `infsh app get google/veo-3-1-fast` |
+| Generate sample input | `infsh app sample google/veo-3-1-fast --save input.json` |
+| Run app | `infsh app run google/veo-3-1-fast --input input.json` |
 | Run without waiting | `infsh app run <app> --input input.json --no-wait` |
 | Check task status | `infsh task get <task-id>` |
 
-## Categories
+## What's Available
 
-| Category | Command | Examples |
-|----------|---------|----------|
-| Image | `infsh app list --category image` | FLUX, SDXL, Gemini, Grok, Seedream |
-| Video | `infsh app list --category video` | Veo, Seedance, Wan, LTX, OmniHuman |
-| Audio | `infsh app list --category audio` | TTS, Whisper, music generation |
-| Text | `infsh app list --category text` | Search, OCR, code execution |
-
-## Workflow
-
-1. **Find an app**: `infsh app list --search "your query"`
-2. **Get details**: `infsh app get user/app-name`
-3. **Generate sample**: `infsh app sample user/app-name --save input.json`
-4. **Edit input**: Modify `input.json` as needed
-5. **Run**: `infsh app run user/app-name --input input.json`
+| Category | Examples |
+|----------|----------|
+| **Image** | FLUX, Gemini 3 Pro, Grok Imagine, Seedream 4.5, Reve, Topaz Upscaler |
+| **Video** | Veo 3.1, Seedance 1.5, Wan 2.5, OmniHuman, Fabric, HunyuanVideo Foley |
+| **LLMs** | Claude Opus/Sonnet/Haiku, Gemini 3 Pro, Kimi K2, GLM-4, any OpenRouter model |
+| **Search** | Tavily Search, Tavily Extract, Exa Search, Exa Answer, Exa Extract |
+| **3D** | Rodin 3D Generator |
+| **Twitter/X** | post-tweet, post-create, dm-send, user-follow, post-like, post-retweet |
+| **Utilities** | Media merger, caption videos, image stitching, audio extraction |
 
 ## Related Skills
 

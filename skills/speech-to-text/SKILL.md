@@ -110,7 +110,7 @@ Returns JSON with:
 ## Related Skills
 
 ```bash
-# Full platform skill (all 100+ apps)
+# Full platform skill (all 150+ apps)
 npx skills add inference-sh/skills@inference-sh
 
 # Text-to-speech (reverse direction)

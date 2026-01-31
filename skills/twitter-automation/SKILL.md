@@ -135,7 +135,7 @@ infsh app run x/post-create --input '{
 ## Related Skills
 
 ```bash
-# Full platform skill (all 100+ apps)
+# Full platform skill (all 150+ apps)
 npx skills add inference-sh/skills@inference-sh
 
 # Image generation (create images to post)

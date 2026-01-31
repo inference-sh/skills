@@ -57,7 +57,7 @@ infsh app run falai/topaz-image-upscaler --input '{"image_url": "<url-from-step-
 ## Related Skills
 
 ```bash
-# Full platform skill (all 100+ apps)
+# Full platform skill (all 150+ apps)
 npx skills add inference-sh/skills@inference-sh
 
 # Image generation (generate then upscale)

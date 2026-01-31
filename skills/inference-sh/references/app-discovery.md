@@ -68,8 +68,8 @@ infsh app my -l  # detailed
 ## Get App Details
 
 ```bash
-infsh app get falai/flux-2-dev
-infsh app get falai/flux-2-dev --json
+infsh app get falai/flux-dev-lora
+infsh app get falai/flux-dev-lora --json
 ```
 
 Shows full app info including input/output schema.
@@ -77,8 +77,8 @@ Shows full app info including input/output schema.
 ## Popular Apps by Category
 
 ### Image Generation
-- `falai/flux-2-dev` - FLUX.2 Dev (high quality)
-- `infsh/flux-2-klein` - FLUX.2 Klein (fastest)
+- `falai/flux-dev-lora` - FLUX.2 Dev (high quality)
+- `falai/flux-2-klein-lora` - FLUX.2 Klein (fastest)
 - `infsh/sdxl` - Stable Diffusion XL
 - `google/gemini-3-pro-image-preview` - Gemini 3 Pro
 - `xai/grok-imagine-image` - Grok image generation

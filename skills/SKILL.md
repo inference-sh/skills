@@ -52,6 +52,8 @@ infsh app run infsh/rodin-3d-generator --input '{"prompt": "a wooden chair"}'
 | Get app details | `infsh app get google/veo-3-1-fast` |
 | Generate sample input | `infsh app sample google/veo-3-1-fast --save input.json` |
 | Run app | `infsh app run google/veo-3-1-fast --input input.json` |
+| Run without waiting | `infsh app run <app> --input input.json --no-wait` |
+| Check task status | `infsh task get <task-id>` |
 
 ## What's Available
 

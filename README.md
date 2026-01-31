@@ -79,6 +79,18 @@ infsh app run tavily/search-assistant --input '{"query": "latest AI news"}'
 infsh app run x/post-tweet --input '{"text": "Hello from AI!"}'
 ```
 
+## Task Tracking
+
+When you run an app, the CLI shows the task ID. For long-running tasks:
+
+```bash
+# Run without waiting
+infsh app run google/veo-3 --input input.json --no-wait
+
+# Check task status anytime
+infsh task get <task-id>
+```
+
 ## Available Skills
 
 | Skill | Description | Triggers |

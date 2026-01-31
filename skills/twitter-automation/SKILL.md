@@ -110,7 +110,7 @@ infsh app run x/post-delete --input '{"tweet_id": "1234567890"}'
 
 ```bash
 # 1. Generate image
-infsh app run falai/flux-2-dev --input '{"prompt": "sunset over mountains"}' > image.json
+infsh app run falai/flux-dev-lora --input '{"prompt": "sunset over mountains"}' > image.json
 
 # 2. Post to Twitter with the image URL
 infsh app run x/post-create --input '{

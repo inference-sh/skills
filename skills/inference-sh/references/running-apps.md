@@ -9,7 +9,7 @@ infsh app run user/app-name --input input.json
 ## Inline JSON
 
 ```bash
-infsh app run falai/flux-2-dev --input '{"prompt": "a sunset over mountains"}'
+infsh app run falai/flux-dev-lora --input '{"prompt": "a sunset over mountains"}'
 ```
 
 ## Version Pinning
@@ -23,19 +23,19 @@ infsh app run user/app-name@1.0.0 --input input.json
 Before running, generate a sample input file:
 
 ```bash
-infsh app sample falai/flux-2-dev
+infsh app sample falai/flux-dev-lora
 ```
 
 Save to file:
 
 ```bash
-infsh app sample falai/flux-2-dev --save input.json
+infsh app sample falai/flux-dev-lora --save input.json
 ```
 
 Then edit `input.json` and run:
 
 ```bash
-infsh app run falai/flux-2-dev --input input.json
+infsh app run falai/flux-dev-lora --input input.json
 ```
 
 ## Workflow Example
@@ -44,10 +44,10 @@ infsh app run falai/flux-2-dev --input input.json
 
 ```bash
 # 1. Get app details
-infsh app get falai/flux-2-dev
+infsh app get falai/flux-dev-lora
 
 # 2. Generate sample input
-infsh app sample falai/flux-2-dev --save input.json
+infsh app sample falai/flux-dev-lora --save input.json
 
 # 3. Edit input.json
 # {
@@ -57,7 +57,7 @@ infsh app sample falai/flux-2-dev --save input.json
 # }
 
 # 4. Run
-infsh app run falai/flux-2-dev --input input.json
+infsh app run falai/flux-dev-lora --input input.json
 ```
 
 ### Video Generation with Veo
@@ -80,6 +80,40 @@ infsh app run google/veo-3-1-fast --input input.json
 ```bash
 # Quick inline run
 infsh app run infsh/kokoro-tts --input '{"text": "Hello, this is a test."}'
+```
+
+## Task Tracking
+
+When you run an app, the CLI shows the task ID:
+
+```
+Running falai/flux-dev-lora
+Task ID: abc123def456
+```
+
+For long-running tasks, you can check status anytime:
+
+```bash
+# Check task status
+infsh task get abc123def456
+
+# Get result as JSON
+infsh task get abc123def456 --json
+
+# Save result to file
+infsh task get abc123def456 --save result.json
+```
+
+### Run Without Waiting
+
+For very long tasks, run in background:
+
+```bash
+# Submit and return immediately
+infsh app run google/veo-3 --input input.json --no-wait
+
+# Check later
+infsh task get <task-id>
 ```
 
 ## Output

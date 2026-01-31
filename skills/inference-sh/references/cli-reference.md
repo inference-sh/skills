@@ -40,8 +40,17 @@ curl -fsSL https://cli.inference.sh | sh
 |---------|-------------|
 | `infsh app run <app> --input <file>` | Run app with input file |
 | `infsh app run <app> --input '<json>'` | Run with inline JSON |
+| `infsh app run <app> --input <file> --no-wait` | Run without waiting for completion |
 | `infsh app sample <app>` | Show sample input |
 | `infsh app sample <app> --save <file>` | Save sample to file |
+
+## Task Commands
+
+| Command | Description |
+|---------|-------------|
+| `infsh task get <task-id>` | Get task status and result |
+| `infsh task get <task-id> --json` | Get task as JSON |
+| `infsh task get <task-id> --save <file>` | Save task result to file |
 
 ### Development
 
@@ -78,7 +87,7 @@ infsh completion fish > ~/.config/fish/completions/infsh.fish
 
 Apps use the format `namespace/app-name`:
 
-- `falai/flux-2-dev` - fal.ai's FLUX 2 Dev
+- `falai/flux-dev-lora` - fal.ai's FLUX 2 Dev
 - `google/veo-3` - Google's Veo 3
 - `infsh/sdxl` - inference.sh's SDXL
 - `bytedance/seedance-1-5-pro` - ByteDance's Seedance

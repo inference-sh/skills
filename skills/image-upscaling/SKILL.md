@@ -26,59 +26,24 @@ infsh app run infsh/real-esrgan --input '{"image_url": "https://your-image.jpg"}
 
 | Model | App ID | Best For |
 |-------|--------|----------|
-| Real-ESRGAN | `infsh/real-esrgan` | General upscaling, photos |
-| Thera | `infsh/thera` | Any size, flexible |
-| FLUX Upscaler | `infsh/flux-1-dev-upscaler` | AI art upscaling |
-| Topaz | `falai/topaz-image-upscaler` | Professional quality |
-
-## Search Upscaling Apps
-
-```bash
-infsh app list --search "upscal"
-infsh app list --search "esrgan"
-```
+| Topaz Image Upscaler | `falai/topaz-image-upscaler` | Professional quality, any image |
 
 ## Examples
 
-### Real-ESRGAN (General Purpose)
+### Upscale Any Image
 
 ```bash
-infsh app run infsh/real-esrgan --input '{"image_url": "https://low-res-image.jpg"}'
+infsh app run falai/topaz-image-upscaler --input '{"image_url": "https://low-res-image.jpg"}'
 ```
 
-### Thera (Flexible Upscaling)
+### Workflow: Generate and Upscale
 
 ```bash
-infsh app sample infsh/thera --save input.json
-
-# {
-#   "image_url": "https://your-image.jpg",
-#   "scale": 4
-# }
-
-infsh app run infsh/thera --input input.json
-```
-
-### FLUX Upscaler (AI Art)
-
-```bash
-infsh app run infsh/flux-1-dev-upscaler --input '{"image_url": "https://ai-generated.jpg"}'
-```
-
-### Topaz (Professional)
-
-```bash
-infsh app run falai/topaz-image-upscaler --input '{"image_url": "https://photo.jpg"}'
-```
-
-## Workflow: Generate and Upscale
-
-```bash
-# 1. Generate image with FLUX Klein (fast, lower res)
-infsh app run infsh/flux-2-klein --input '{"prompt": "landscape painting"}' > image.json
+# 1. Generate image with FLUX Klein (fast)
+infsh app run falai/flux-2-klein-lora --input '{"prompt": "landscape painting"}' > image.json
 
 # 2. Upscale the result
-infsh app run infsh/real-esrgan --input '{"image_url": "<url-from-step-1>"}'
+infsh app run falai/topaz-image-upscaler --input '{"image_url": "<url-from-step-1>"}'
 ```
 
 ## Use Cases

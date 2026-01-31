@@ -21,7 +21,7 @@ curl -fsSL https://cli.inference.sh | sh
 infsh login
 
 # Run an image generation app
-infsh app run falai/flux-2-dev --input '{"prompt": "a cat astronaut"}'
+infsh app run falai/flux-dev-lora --input '{"prompt": "a cat astronaut"}'
 ```
 
 ## Quick Reference
@@ -34,10 +34,12 @@ infsh app run falai/flux-2-dev --input '{"prompt": "a cat astronaut"}'
 | List all apps | `infsh app list` |
 | Search apps | `infsh app list --search "flux"` |
 | Filter by category | `infsh app list --category image` |
-| Get app details | `infsh app get falai/flux-2-dev` |
-| Generate sample input | `infsh app sample falai/flux-2-dev --save input.json` |
-| Run app | `infsh app run falai/flux-2-dev --input input.json` |
-| Run with inline JSON | `infsh app run falai/flux-2-dev --input '{"prompt": "hello"}'` |
+| Get app details | `infsh app get falai/flux-dev-lora` |
+| Generate sample input | `infsh app sample falai/flux-dev-lora --save input.json` |
+| Run app | `infsh app run falai/flux-dev-lora --input input.json` |
+| Run with inline JSON | `infsh app run falai/flux-dev-lora --input '{"prompt": "hello"}'` |
+| Run without waiting | `infsh app run <app> --input input.json --no-wait` |
+| Check task status | `infsh task get <task-id>` |
 
 ## Categories
 

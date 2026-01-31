@@ -22,57 +22,36 @@ curl -fsSL https://cli.inference.sh | sh && infsh login
 infsh app run infsh/birefnet --input '{"image_url": "https://your-photo.jpg"}'
 ```
 
-## Available Model
+## How To
 
-| Model | App ID | Best For |
-|-------|--------|----------|
-| BiRefNet | `infsh/birefnet` | High accuracy, any subject |
-
-## Examples
-
-### Remove Background
+Use Reve for image editing including background changes:
 
 ```bash
-infsh app run infsh/birefnet --input '{"image_url": "https://portrait.jpg"}'
+infsh app run falai/reve --input '{
+  "prompt": "remove the background, make it transparent",
+  "image_url": "https://portrait.jpg"
+}'
 ```
 
-### Product Photo
+Or change background directly:
 
 ```bash
-infsh app run infsh/birefnet --input '{"image_url": "https://product-on-table.jpg"}'
+infsh app run falai/reve --input '{
+  "prompt": "change the background to a beach",
+  "image_url": "https://product-photo.jpg"
+}'
 ```
 
-### From Local File (upload first)
-
-```bash
-# Get the app details to see upload instructions
-infsh app get infsh/birefnet
-
-# Run with the uploaded URL
-infsh app run infsh/birefnet --input '{"image_url": "https://uploaded-url.jpg"}'
-```
-
-## Workflow: Generate and Remove Background
+## Workflow: Generate and Edit
 
 ```bash
 # 1. Generate an image
-infsh app run falai/flux-2-dev --input '{"prompt": "a cute robot mascot"}' > robot.json
+infsh app run falai/flux-dev-lora --input '{"prompt": "a cute robot mascot"}' > robot.json
 
-# 2. Remove background
-infsh app run infsh/birefnet --input '{"image_url": "<url-from-step-1>"}'
-```
-
-## Workflow: Remove BG and Composite
-
-```bash
-# 1. Remove background from subject
-infsh app run infsh/birefnet --input '{"image_url": "https://person.jpg"}' > cutout.json
-
-# 2. Use FLUX inpainting to place on new background
-infsh app run infsh/flux-1-fill --input '{
-  "prompt": "person standing on a beach",
-  "image_url": "<cutout-url>",
-  "mask_url": "<mask-for-background>"
+# 2. Edit with Reve
+infsh app run falai/reve --input '{
+  "prompt": "remove background, transparent",
+  "image_url": "<url-from-step-1>"
 }'
 ```
 

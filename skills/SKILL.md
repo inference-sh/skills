@@ -97,6 +97,12 @@ npx skills add inference-sh/skills@google-veo
 # Utility skills
 npx skills add inference-sh/skills@image-upscaling
 npx skills add inference-sh/skills@background-removal
+
+# UI components (ui.inference.sh)
+npx skills add inference-sh/skills@agent-ui      # Batteries-included agent component
+npx skills add inference-sh/skills@chat-ui       # Chat building blocks
+npx skills add inference-sh/skills@widgets-ui    # Declarative JSON widgets
+npx skills add inference-sh/skills@tools-ui      # Tool lifecycle UI
 ```
 
 ## Reference

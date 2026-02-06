@@ -109,16 +109,16 @@ infsh app run infsh/diffrythm --input '{
 
 ```bash
 # Full platform skill (all 150+ apps)
-npx skills add inference-sh/agent-skills-registry@inference-sh
+npx skills add inference-sh/skills@inference-sh
 
 # Text-to-speech
-npx skills add inference-sh/agent-skills-registry@text-to-speech
+npx skills add inference-sh/skills@text-to-speech
 
 # Video generation (add music to videos)
-npx skills add inference-sh/agent-skills-registry@ai-video-generation
+npx skills add inference-sh/skills@ai-video-generation
 
 # Speech-to-text
-npx skills add inference-sh/agent-skills-registry@speech-to-text
+npx skills add inference-sh/skills@speech-to-text
 ```
 
 Browse all apps: `infsh app list`

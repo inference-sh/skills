@@ -516,16 +516,16 @@ const result = await client.run({...});
 
 ```bash
 # Python SDK
-npx skills add inference-sh/agent-skills-registry@python-sdk
+npx skills add inference-sh/skills@python-sdk
 
 # Full platform skill (all 150+ apps via CLI)
-npx skills add inference-sh/agent-skills-registry@inference-sh
+npx skills add inference-sh/skills@inference-sh
 
 # LLM models
-npx skills add inference-sh/agent-skills-registry@llm-models
+npx skills add inference-sh/skills@llm-models
 
 # Image generation
-npx skills add inference-sh/agent-skills-registry@ai-image-generation
+npx skills add inference-sh/skills@ai-image-generation
 ```
 
 ## Documentation

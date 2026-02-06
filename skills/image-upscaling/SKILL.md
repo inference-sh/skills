@@ -58,16 +58,16 @@ infsh app run falai/topaz-image-upscaler --input '{"image_url": "<url-from-step-
 
 ```bash
 # Full platform skill (all 150+ apps)
-npx skills add inference-sh/agent-skills-registry@inference-sh
+npx skills add inference-sh/skills@inference-sh
 
 # Image generation (generate then upscale)
-npx skills add inference-sh/agent-skills-registry@ai-image-generation
+npx skills add inference-sh/skills@ai-image-generation
 
 # FLUX models
-npx skills add inference-sh/agent-skills-registry@flux-image
+npx skills add inference-sh/skills@flux-image
 
 # Background removal
-npx skills add inference-sh/agent-skills-registry@background-removal
+npx skills add inference-sh/skills@background-removal
 ```
 
 Browse all image apps: `infsh app list --category image`

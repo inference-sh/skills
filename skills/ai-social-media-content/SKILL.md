@@ -235,19 +235,19 @@ done
 
 ```bash
 # Video generation
-npx skills add inference-sh/agent-skills-registry@ai-video-generation
+npx skills add inference-sh/skills@ai-video-generation
 
 # Image generation
-npx skills add inference-sh/agent-skills-registry@ai-image-generation
+npx skills add inference-sh/skills@ai-image-generation
 
 # Twitter automation
-npx skills add inference-sh/agent-skills-registry@twitter-automation
+npx skills add inference-sh/skills@twitter-automation
 
 # Text-to-speech for voiceovers
-npx skills add inference-sh/agent-skills-registry@text-to-speech
+npx skills add inference-sh/skills@text-to-speech
 
 # Full platform skill
-npx skills add inference-sh/agent-skills-registry@inference-sh
+npx skills add inference-sh/skills@inference-sh
 ```
 
 Browse all apps: `infsh app list`

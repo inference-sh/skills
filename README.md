@@ -11,36 +11,36 @@ compatible with claude code, github copilot, and other ai coding assistants. gen
 ### Option 1: Install All Skills
 
 ```bash
-npx skills add inference-sh/agent-skills-registry
+npx skills add inference-sh/skills
 ```
 
 ### Option 2: Install Specific Skills
 
 ```bash
 # Main platform skill
-npx skills add inference-sh/agent-skills-registry@inference-sh
+npx skills add inference-sh/skills@inference-sh
 
 # Image generation
-npx skills add inference-sh/agent-skills-registry@ai-image-generation
-npx skills add inference-sh/agent-skills-registry@flux-image
+npx skills add inference-sh/skills@ai-image-generation
+npx skills add inference-sh/skills@flux-image
 
 # Video generation
-npx skills add inference-sh/agent-skills-registry@ai-video-generation
-npx skills add inference-sh/agent-skills-registry@google-veo
-npx skills add inference-sh/agent-skills-registry@ai-avatar-video
+npx skills add inference-sh/skills@ai-video-generation
+npx skills add inference-sh/skills@google-veo
+npx skills add inference-sh/skills@ai-avatar-video
 
 # LLMs (Claude, Gemini, Kimi, etc.)
-npx skills add inference-sh/agent-skills-registry@llm-models
+npx skills add inference-sh/skills@llm-models
 
 # Web search (Tavily, Exa)
-npx skills add inference-sh/agent-skills-registry@web-search
+npx skills add inference-sh/skills@web-search
 
 # Utilities
-npx skills add inference-sh/agent-skills-registry@image-upscaling
-npx skills add inference-sh/agent-skills-registry@background-removal
+npx skills add inference-sh/skills@image-upscaling
+npx skills add inference-sh/skills@background-removal
 
 # Social
-npx skills add inference-sh/agent-skills-registry@twitter-automation
+npx skills add inference-sh/skills@twitter-automation
 ```
 
 ### Manual Installation
@@ -142,7 +142,7 @@ infsh app list --search "flux"
 
 ### Blog
 
-- [Agent Skills Overview](https://inference.sh/blog/skills/agent-skills-registry-overview) - The open standard for AI capabilities
+- [Agent Skills Overview](https://inference.sh/blog/skills/skills-overview) - The open standard for AI capabilities
 - [Workflows vs Agents](https://inference.sh/blog/concepts/workflows-vs-agents) - When to use each
 - [Why Agent Runtimes Matter](https://inference.sh/blog/agent-runtime/why-runtimes-matter) - Runtime benefits
 - [Building a Research Agent](https://inference.sh/blog/guides/research-agent) - LLM + search integration

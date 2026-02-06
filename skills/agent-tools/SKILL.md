@@ -71,30 +71,30 @@ infsh app run infsh/rodin-3d-generator --input '{"prompt": "a wooden chair"}'
 
 ```bash
 # Image generation (FLUX, Gemini, Grok, Seedream)
-npx skills add inference-sh/agent-skills-registry@ai-image-generation
+npx skills add inference-sh/skills@ai-image-generation
 
 # Video generation (Veo, Seedance, Wan, OmniHuman)
-npx skills add inference-sh/agent-skills-registry@ai-video-generation
+npx skills add inference-sh/skills@ai-video-generation
 
 # LLMs (Claude, Gemini, Kimi, GLM via OpenRouter)
-npx skills add inference-sh/agent-skills-registry@llm-models
+npx skills add inference-sh/skills@llm-models
 
 # Web search (Tavily, Exa)
-npx skills add inference-sh/agent-skills-registry@web-search
+npx skills add inference-sh/skills@web-search
 
 # AI avatars & lipsync (OmniHuman, Fabric, PixVerse)
-npx skills add inference-sh/agent-skills-registry@ai-avatar-video
+npx skills add inference-sh/skills@ai-avatar-video
 
 # Twitter/X automation
-npx skills add inference-sh/agent-skills-registry@twitter-automation
+npx skills add inference-sh/skills@twitter-automation
 
 # Model-specific
-npx skills add inference-sh/agent-skills-registry@flux-image
-npx skills add inference-sh/agent-skills-registry@google-veo
+npx skills add inference-sh/skills@flux-image
+npx skills add inference-sh/skills@google-veo
 
 # Utilities
-npx skills add inference-sh/agent-skills-registry@image-upscaling
-npx skills add inference-sh/agent-skills-registry@background-removal
+npx skills add inference-sh/skills@image-upscaling
+npx skills add inference-sh/skills@background-removal
 ```
 
 ## Reference Files
@@ -106,7 +106,7 @@ npx skills add inference-sh/agent-skills-registry@background-removal
 
 ## Documentation
 
-- [Agent Skills Overview](https://inference.sh/blog/skills/agent-skills-registry-overview) - The open standard for AI capabilities
+- [Agent Skills Overview](https://inference.sh/blog/skills/skills-overview) - The open standard for AI capabilities
 - [Getting Started](https://inference.sh/docs/getting-started/introduction) - Introduction to inference.sh
 - [What is inference.sh?](https://inference.sh/docs/getting-started/what-is-inference) - Platform overview
 - [Apps Overview](https://inference.sh/docs/apps/overview) - Understanding the app ecosystem

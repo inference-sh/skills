@@ -251,19 +251,19 @@ infsh app run falai/birefnet --input '{
 
 ```bash
 # Image generation models
-npx skills add inference-sh/agent-skills-registry@ai-image-generation
+npx skills add inference-sh/skills@ai-image-generation
 
 # FLUX specific
-npx skills add inference-sh/agent-skills-registry@flux-image
+npx skills add inference-sh/skills@flux-image
 
 # Image upscaling
-npx skills add inference-sh/agent-skills-registry@image-upscaling
+npx skills add inference-sh/skills@image-upscaling
 
 # Background removal
-npx skills add inference-sh/agent-skills-registry@background-removal
+npx skills add inference-sh/skills@background-removal
 
 # Full platform skill
-npx skills add inference-sh/agent-skills-registry@inference-sh
+npx skills add inference-sh/skills@inference-sh
 ```
 
 Browse all image apps: `infsh app list --category image`

@@ -465,16 +465,16 @@ response = agent.send_message(
 
 ```bash
 # JavaScript SDK
-npx skills add inference-sh/agent-skills-registry@javascript-sdk
+npx skills add inference-sh/skills@javascript-sdk
 
 # Full platform skill (all 150+ apps via CLI)
-npx skills add inference-sh/agent-skills-registry@inference-sh
+npx skills add inference-sh/skills@inference-sh
 
 # LLM models
-npx skills add inference-sh/agent-skills-registry@llm-models
+npx skills add inference-sh/skills@llm-models
 
 # Image generation
-npx skills add inference-sh/agent-skills-registry@ai-image-generation
+npx skills add inference-sh/skills@ai-image-generation
 ```
 
 ## Documentation

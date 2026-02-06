@@ -20,10 +20,10 @@ Find and install complementary skills to expand your AI agent's capabilities.
 npx skills search "inference-sh image generation"
 
 # List available skills
-npx skills list inference-sh/agent-skills-registry
+npx skills list inference-sh/skills
 
 # Install a skill
-npx skills add inference-sh/agent-skills-registry@ai-image-generation
+npx skills add inference-sh/skills@ai-image-generation
 ```
 
 ## Available Skill Categories
@@ -49,56 +49,56 @@ npx skills add inference-sh/agent-skills-registry@ai-image-generation
 
 ### Media Generation
 ```bash
-npx skills add inference-sh/agent-skills-registry@ai-image-generation
-npx skills add inference-sh/agent-skills-registry@ai-video-generation
-npx skills add inference-sh/agent-skills-registry@ai-music-generation
+npx skills add inference-sh/skills@ai-image-generation
+npx skills add inference-sh/skills@ai-video-generation
+npx skills add inference-sh/skills@ai-music-generation
 ```
 
 ### Image Processing
 ```bash
-npx skills add inference-sh/agent-skills-registry@image-upscaling
-npx skills add inference-sh/agent-skills-registry@background-removal
-npx skills add inference-sh/agent-skills-registry@flux-image
+npx skills add inference-sh/skills@image-upscaling
+npx skills add inference-sh/skills@background-removal
+npx skills add inference-sh/skills@flux-image
 ```
 
 ### Audio Processing
 ```bash
-npx skills add inference-sh/agent-skills-registry@text-to-speech
-npx skills add inference-sh/agent-skills-registry@speech-to-text
+npx skills add inference-sh/skills@text-to-speech
+npx skills add inference-sh/skills@speech-to-text
 ```
 
 ### Research & Automation
 ```bash
-npx skills add inference-sh/agent-skills-registry@web-search
-npx skills add inference-sh/agent-skills-registry@twitter-automation
+npx skills add inference-sh/skills@web-search
+npx skills add inference-sh/skills@twitter-automation
 ```
 
 ### Everything at Once
 ```bash
 # Install the full platform skill with all 150+ apps
-npx skills add inference-sh/agent-skills-registry@inference-sh
+npx skills add inference-sh/skills@inference-sh
 ```
 
 ## Skill Combinations
 
 ### Research Agent
 ```bash
-npx skills add inference-sh/agent-skills-registry@web-search
-npx skills add inference-sh/agent-skills-registry@llm-models
+npx skills add inference-sh/skills@web-search
+npx skills add inference-sh/skills@llm-models
 ```
 
 ### Content Creator
 ```bash
-npx skills add inference-sh/agent-skills-registry@ai-image-generation
-npx skills add inference-sh/agent-skills-registry@ai-video-generation
-npx skills add inference-sh/agent-skills-registry@text-to-speech
+npx skills add inference-sh/skills@ai-image-generation
+npx skills add inference-sh/skills@ai-video-generation
+npx skills add inference-sh/skills@text-to-speech
 ```
 
 ### Media Processor
 ```bash
-npx skills add inference-sh/agent-skills-registry@image-upscaling
-npx skills add inference-sh/agent-skills-registry@background-removal
-npx skills add inference-sh/agent-skills-registry@speech-to-text
+npx skills add inference-sh/skills@image-upscaling
+npx skills add inference-sh/skills@background-removal
+npx skills add inference-sh/skills@speech-to-text
 ```
 
 ## Managing Skills
@@ -111,12 +111,12 @@ npx skills list
 npx skills update
 
 # Remove a skill
-npx skills remove inference-sh/agent-skills-registry@ai-image-generation
+npx skills remove inference-sh/skills@ai-image-generation
 ```
 
 ## Documentation
 
-- [Agent Skills Overview](https://inference.sh/blog/skills/agent-skills-registry-overview) - The open standard for AI capabilities
+- [Agent Skills Overview](https://inference.sh/blog/skills/skills-overview) - The open standard for AI capabilities
 - [Getting Started](https://inference.sh/docs/getting-started/introduction) - Introduction to inference.sh
 - [Apps Overview](https://inference.sh/docs/apps/overview) - Understanding the app ecosystem
 - [CLI Setup](https://inference.sh/docs/extend/cli-setup) - Installing the CLI

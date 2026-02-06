@@ -113,16 +113,16 @@ infsh app run openrouter/claude-sonnet-45 --input input.json
 
 ```bash
 # Full platform skill (all 150+ apps)
-npx skills add inference-sh/agent-skills-registry@inference-sh
+npx skills add inference-sh/skills@inference-sh
 
 # Web search (combine with LLMs for RAG)
-npx skills add inference-sh/agent-skills-registry@web-search
+npx skills add inference-sh/skills@web-search
 
 # Image generation
-npx skills add inference-sh/agent-skills-registry@ai-image-generation
+npx skills add inference-sh/skills@ai-image-generation
 
 # Video generation
-npx skills add inference-sh/agent-skills-registry@ai-video-generation
+npx skills add inference-sh/skills@ai-video-generation
 ```
 
 Browse all apps: `infsh app list`

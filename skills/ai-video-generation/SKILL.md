@@ -13,6 +13,8 @@ allowed-tools: Bash(infsh *)
 
 # AI Video Generation
 
+![AI Video Generation](https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kg2c0egyg243mnyth4y6g51q.jpeg)
+
 Generate videos with 40+ AI models via [inference.sh](https://inference.sh) CLI.
 
 ## Quick Start

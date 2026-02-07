@@ -12,6 +12,8 @@ allowed-tools: Bash(infsh *)
 
 # Background Removal
 
+![Background Removal](https://cloud.inference.sh/u/33sqbmzt3mrg2xxphnhw5g5ear/01k8d7y07rpmnv85hz2xvhjvbb.png)
+
 Remove backgrounds from images via [inference.sh](https://inference.sh) CLI.
 
 ## Quick Start

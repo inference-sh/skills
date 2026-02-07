@@ -12,6 +12,8 @@ allowed-tools: Bash(infsh *)
 
 # Agentic Browser
 
+![Agentic Browser](https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kgjw8atdxgkrsr8a2t5peq7b.jpeg)
+
 Browser automation for AI agents via [inference.sh](https://inference.sh). Uses Playwright under the hood with a simple `@e` ref system for element interaction.
 
 ## Quick Start

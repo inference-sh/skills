@@ -13,6 +13,8 @@ allowed-tools: Bash(infsh *)
 
 # AI Image Generation
 
+![AI Image Generation](https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kg0v0nz7wv0qwqjtq1cam52z.jpeg)
+
 Generate images with 50+ AI models via [inference.sh](https://inference.sh) CLI.
 
 ## Quick Start

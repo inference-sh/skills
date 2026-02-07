@@ -13,6 +13,8 @@ allowed-tools: Bash(infsh *)
 
 # Speech-to-Text
 
+![Speech-to-Text](https://cloud.inference.sh/u/4mg21r6ta37mpaz6ktzwtt8krr/01jz025e88nkvw55at1rqtj5t8.png)
+
 Transcribe audio to text via [inference.sh](https://inference.sh) CLI.
 
 ## Quick Start

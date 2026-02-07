@@ -13,6 +13,8 @@ allowed-tools: Bash(infsh *)
 
 # AI Avatar & Talking Head Videos
 
+![AI Avatar & Talking Head Videos](https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kg0tszs96s0n8z5gy8y5mbg7.jpeg)
+
 Create AI avatars and talking head videos via [inference.sh](https://inference.sh) CLI.
 
 ## Quick Start

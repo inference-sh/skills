@@ -13,6 +13,8 @@ allowed-tools: Bash(infsh *)
 
 # AI Content Pipeline
 
+![AI Content Pipeline](https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kg06qgcg105rh6y1kvxm4wvm.png)
+
 Build multi-step content creation pipelines via [inference.sh](https://inference.sh) CLI.
 
 ## Quick Start

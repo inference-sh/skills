@@ -13,6 +13,8 @@ allowed-tools: Bash(infsh *)
 
 # Python Code Executor
 
+![Python Code Executor](https://cloud.inference.sh/u/33sqbmzt3mrg2xxphnhw5g5ear/01k8d8b4mckh6z89dhtxh72dsz.png)
+
 Execute Python code in a safe, sandboxed environment with 100+ pre-installed libraries.
 
 ## Quick Start

@@ -12,6 +12,8 @@ allowed-tools: Bash(npm *), Bash(npx *), Bash(node *), Bash(pnpm *), Bash(yarn *
 
 # JavaScript SDK
 
+![JavaScript SDK](https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kgvftjwhby36trvaj66bwzcf.jpeg)
+
 Build AI applications with the [inference.sh](https://inference.sh) JavaScript/TypeScript SDK.
 
 ## Quick Start

@@ -11,6 +11,8 @@ allowed-tools: Bash(infsh *)
 
 # [inference.sh](https://inference.sh)
 
+![[inference.sh](https://inference.sh)](https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kgjw8atdxgkrsr8a2t5peq7b.jpeg)
+
 Run 150+ AI apps in the cloud with a simple CLI. No GPU required.
 
 ## Install CLI

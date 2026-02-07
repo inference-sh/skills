@@ -1,5 +1,7 @@
 # inference.sh skills — ai agent capabilities for claude code, copilot & more
 
+![inference.sh](https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kgvqa60jjrqa47j3g5s6ce6v.jpeg)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ai agent skills for running 150+ ai models via the [inference.sh](https://inference.sh) cli — the ai agent runtime for serverless ai inference.

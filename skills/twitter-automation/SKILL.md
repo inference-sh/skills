@@ -13,6 +13,8 @@ allowed-tools: Bash(infsh *)
 
 # Twitter/X Automation
 
+![Twitter/X Automation](https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kgad3pxsh3z3hnfpjyjpx4x4.jpeg)
+
 Automate Twitter/X via [inference.sh](https://inference.sh) CLI.
 
 ## Quick Start

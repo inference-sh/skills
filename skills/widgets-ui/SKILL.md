@@ -11,6 +11,8 @@ description: |
 
 # Widget Renderer
 
+![Widget Renderer](https://cloud.inference.sh/u/33sqbmzt3mrg2xxphnhw5g5ear/01kah2rcteycyxw8ffmtpq1zec.png)
+
 Declarative UI from JSON via [ui.inference.sh](https://ui.inference.sh).
 
 ## Quick Start

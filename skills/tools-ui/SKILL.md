@@ -11,6 +11,8 @@ description: |
 
 # Tool UI Components
 
+![Tool UI Components](https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kgjw8atdxgkrsr8a2t5peq7b.jpeg)
+
 Tool lifecycle components from [ui.inference.sh](https://ui.inference.sh).
 
 ## Quick Start

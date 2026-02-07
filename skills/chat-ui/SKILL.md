@@ -11,6 +11,8 @@ description: |
 
 # Chat UI Components
 
+![Chat UI Components](https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kgvftp7hb8wby7z66fvs9asd.jpeg)
+
 Chat building blocks from [ui.inference.sh](https://ui.inference.sh).
 
 ## Quick Start

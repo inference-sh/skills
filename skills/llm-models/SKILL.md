@@ -13,6 +13,8 @@ allowed-tools: Bash(infsh *)
 
 # LLM Models via OpenRouter
 
+![LLM Models via OpenRouter](https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kgvftjwhby36trvaj66bwzcf.jpeg)
+
 Access 100+ language models via [inference.sh](https://inference.sh) CLI.
 
 ## Quick Start

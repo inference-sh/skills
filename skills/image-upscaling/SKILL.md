@@ -12,6 +12,8 @@ allowed-tools: Bash(infsh *)
 
 # Image Upscaling
 
+![Image Upscaling](https://cloud.inference.sh/u/33sqbmzt3mrg2xxphnhw5g5ear/01k8d77p126y82zfecnt46hy4h.png)
+
 Upscale and enhance images via [inference.sh](https://inference.sh) CLI.
 
 ## Quick Start

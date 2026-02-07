@@ -13,6 +13,8 @@ allowed-tools: Bash(infsh *)
 
 # AI Music Generation
 
+![AI Music Generation](https://cloud.inference.sh/u/4mg21r6ta37mpaz6ktzwtt8krr/01jz01qvx0gdcyvhvhpfjjb6s4.png)
+
 Generate music and songs via [inference.sh](https://inference.sh) CLI.
 
 ## Quick Start

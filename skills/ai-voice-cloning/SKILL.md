@@ -13,6 +13,8 @@ allowed-tools: Bash(infsh *)
 
 # AI Voice Generation
 
+![AI Voice Generation](https://cloud.inference.sh/u/4mg21r6ta37mpaz6ktzwtt8krr/01jz00krptarq4bwm89g539aea.png)
+
 Generate natural AI voices via [inference.sh](https://inference.sh) CLI.
 
 ## Quick Start

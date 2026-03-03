@@ -19,9 +19,6 @@ npx skills add inference-sh/skills
 ### Option 2: Install Specific Skills
 
 ```bash
-# Main platform skill
-npx skills add inference-sh/skills@inference-sh
-
 # Image generation
 npx skills add inference-sh/skills@ai-image-generation
 npx skills add inference-sh/skills@flux-image
@@ -51,13 +48,13 @@ Copy to your skills directory:
 
 ```bash
 # Claude Code
-cp -r skills/* ~/.claude/skills/
+cp -r tools/* ui/* sdk/* guides/* ~/.claude/skills/
 
 # GitHub Copilot
-cp -r skills/* ~/.copilot/skills/
+cp -r tools/* ui/* sdk/* guides/* ~/.copilot/skills/
 
 # Project-level
-cp -r skills/* .claude/skills/
+cp -r tools/* ui/* sdk/* guides/* .claude/skills/
 ```
 
 ## Quick Start
@@ -97,21 +94,80 @@ infsh app run google/veo-3 --input input.json --no-wait
 infsh task get <task-id>
 ```
 
+## Repository Structure
+
+```
+skills/
+├── tools/                    # App & model running skills
+│   ├── image/                # Image generation & processing
+│   ├── video/                # Video generation
+│   ├── audio/                # Audio & speech
+│   ├── llm/                  # Language models & search
+│   ├── social/               # Social media automation
+│   ├── utilities/            # Browser, executor, discovery
+│   └── agent-tools/          # Core agent capabilities
+├── sdk/                      # SDK documentation
+│   ├── javascript-sdk/
+│   └── python-sdk/
+├── ui/                       # UI components
+│   ├── agent-ui/
+│   ├── chat-ui/
+│   ├── tools-ui/
+│   └── widgets-ui/
+└── guides/                   # How-to guides & workflows
+    ├── content/              # Content pipelines
+    ├── design/               # Visual design
+    ├── photo/                # Photography
+    ├── product/              # Product marketing
+    ├── prompting/            # Prompt engineering
+    ├── social/               # Social media content
+    ├── video/                # Video production
+    └── writing/              # Written content
+```
+
 ## Available Skills
 
-| Skill | Description | Triggers |
-|-------|-------------|----------|
-| **[inference-sh](inference-sh/SKILL.md)** | Main platform skill | inference.sh, run ai |
-| **[ai-image-generation](ai-image-generation/SKILL.md)** | 50+ image models | flux, gemini image, grok, ai art |
-| **[ai-video-generation](ai-video-generation/SKILL.md)** | 40+ video models | veo, seedance, text to video |
-| **[llm-models](llm-models/SKILL.md)** | Claude, Gemini, Kimi, GLM | claude api, openrouter, llm |
-| **[web-search](web-search/SKILL.md)** | Tavily, Exa search | tavily, exa, web search, rag |
-| **[twitter-automation](twitter-automation/SKILL.md)** | X/Twitter API | tweet, twitter bot |
-| **[flux-image](flux-image/SKILL.md)** | FLUX models | flux.2, flux lora |
-| **[google-veo](google-veo/SKILL.md)** | Google Veo | veo 3, vertex ai |
-| **[ai-avatar-video](ai-avatar-video/SKILL.md)** | Talking heads | omnihuman, lipsync, heygen alt |
-| **[image-upscaling](image-upscaling/SKILL.md)** | Upscalers | upscale, topaz |
-| **[background-removal](background-removal/SKILL.md)** | BG removal | remove background |
+### Tools
+
+| Skill | Description | Path |
+|-------|-------------|------|
+| **ai-image-generation** | 50+ image models | `tools/image/` |
+| **ai-video-generation** | 40+ video models | `tools/video/` |
+| **llm-models** | Claude, Gemini, Kimi, GLM | `tools/llm/` |
+| **web-search** | Tavily, Exa search | `tools/llm/` |
+| **twitter-automation** | X/Twitter API | `tools/social/` |
+| **flux-image** | FLUX models | `tools/image/` |
+| **google-veo** | Google Veo | `tools/video/` |
+| **ai-avatar-video** | Talking heads | `tools/video/` |
+| **image-upscaling** | Upscalers | `tools/image/` |
+| **background-removal** | BG removal | `tools/image/` |
+
+### UI Components
+
+| Skill | Description |
+|-------|-------------|
+| **agent-ui** | Full agent interface |
+| **chat-ui** | Chat components |
+| **tools-ui** | Tool call/result components |
+| **widgets-ui** | Widget renderer |
+
+### SDKs
+
+| Skill | Description |
+|-------|-------------|
+| **javascript-sdk** | JS/TS SDK with streaming, tools, React |
+| **python-sdk** | Python SDK with async, streaming |
+
+### Guides
+
+| Category | Skills |
+|----------|--------|
+| **prompting** | prompt-engineering, video-prompting-guide |
+| **writing** | technical-blog, case-study, press-release, seo, newsletter |
+| **design** | landing-page, email, og-image, youtube-thumbnail, logo, etc. |
+| **video** | storyboard, explainer, video-ads, talking-head |
+| **social** | linkedin, twitter-thread, carousel, social-content |
+| **product** | competitor-teardown, customer-persona, changelog, launch |
 
 ## 150+ AI Apps
 

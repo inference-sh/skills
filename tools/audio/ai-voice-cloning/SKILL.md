@@ -19,7 +19,7 @@ infsh login
 
 # Generate speech
 infsh app run infsh/kokoro-tts --input '{
-  "text": "Hello! This is an AI-generated voice that sounds natural and engaging.",
+  "prompt": "Hello! This is an AI-generated voice that sounds natural and engaging.",
   "voice": "af_sarah"
 }'
 ```
@@ -63,7 +63,7 @@ infsh app run infsh/kokoro-tts --input '{
 
 ```bash
 infsh app run infsh/kokoro-tts --input '{
-  "text": "Welcome to our quarterly earnings call. Today we will discuss the financial performance and strategic initiatives for the past quarter.",
+  "prompt": "Welcome to our quarterly earnings call. Today we will discuss the financial performance and strategic initiatives for the past quarter.",
   "voice": "am_michael",
   "speed": 1.0
 }'
@@ -82,7 +82,7 @@ infsh app run infsh/dia-tts --input '{
 
 ```bash
 infsh app run infsh/kokoro-tts --input '{
-  "text": "Chapter One. The morning mist hung low over the valley as Sarah made her way down the winding path. She had been walking for hours.",
+  "prompt": "Chapter One. The morning mist hung low over the valley as Sarah made her way down the winding path. She had been walking for hours.",
   "voice": "bf_emma",
   "speed": 0.9
 }'
@@ -92,7 +92,7 @@ infsh app run infsh/kokoro-tts --input '{
 
 ```bash
 infsh app run infsh/kokoro-tts --input '{
-  "text": "Introducing the next generation of productivity. Work smarter, not harder.",
+  "prompt": "Introducing the next generation of productivity. Work smarter, not harder.",
   "voice": "af_nicole",
   "speed": 1.1
 }'
@@ -102,7 +102,7 @@ infsh app run infsh/kokoro-tts --input '{
 
 ```bash
 infsh app run infsh/kokoro-tts --input '{
-  "text": "Welcome back to Tech Talk! Im your host, and today we are diving deep into the world of artificial intelligence.",
+  "prompt": "Welcome back to Tech Talk! Im your host, and today we are diving deep into the world of artificial intelligence.",
   "voice": "am_adam"
 }'
 ```
@@ -113,13 +113,13 @@ infsh app run infsh/kokoro-tts --input '{
 # Generate dialogue between two speakers
 # Speaker 1
 infsh app run infsh/kokoro-tts --input '{
-  "text": "Have you seen the latest AI developments? Its incredible how fast things are moving.",
+  "prompt": "Have you seen the latest AI developments? Its incredible how fast things are moving.",
   "voice": "am_michael"
 }' > speaker1.json
 
 # Speaker 2
 infsh app run infsh/kokoro-tts --input '{
-  "text": "I know, right? Just last week I tried that new image generator and was blown away.",
+  "prompt": "I know, right? Just last week I tried that new image generator and was blown away.",
   "voice": "af_sarah"
 }' > speaker2.json
 
@@ -143,13 +143,13 @@ TEXT="Your very long text here..."
 # Split and generate
 # Chunk 1
 infsh app run infsh/kokoro-tts --input '{
-  "text": "<chunk-1>",
+  "prompt": "<chunk-1>",
   "voice": "bf_emma"
 }' > chunk1.json
 
 # Chunk 2
 infsh app run infsh/kokoro-tts --input '{
-  "text": "<chunk-2>",
+  "prompt": "<chunk-2>",
   "voice": "bf_emma"
 }' > chunk2.json
 
@@ -167,7 +167,7 @@ infsh app run infsh/media-merger --input '{
 ```bash
 # 1. Generate voiceover
 infsh app run infsh/kokoro-tts --input '{
-  "text": "This stunning footage shows the beauty of nature in its purest form.",
+  "prompt": "This stunning footage shows the beauty of nature in its purest form.",
   "voice": "am_michael"
 }' > voiceover.json
 
@@ -183,7 +183,7 @@ infsh app run infsh/media-merger --input '{
 ```bash
 # 1. Generate speech
 infsh app run infsh/kokoro-tts --input '{
-  "text": "Hi, Im excited to share some updates with you today.",
+  "prompt": "Hi, Im excited to share some updates with you today.",
   "voice": "af_sarah"
 }' > speech.json
 
@@ -207,7 +207,7 @@ infsh app run bytedance/omnihuman-1-5 --input '{
 ```bash
 # Slow narration
 infsh app run infsh/kokoro-tts --input '{
-  "text": "Take a deep breath. Let yourself relax.",
+  "prompt": "Take a deep breath. Let yourself relax.",
   "voice": "bf_emma",
   "speed": 0.8
 }'
@@ -228,7 +228,7 @@ Use punctuation to control speech rhythm:
 
 ```bash
 infsh app run infsh/kokoro-tts --input '{
-  "text": "Wait... Did you hear that? Something is coming. Something big!",
+  "prompt": "Wait... Did you hear that? Something is coming. Something big!",
   "voice": "am_adam"
 }'
 ```

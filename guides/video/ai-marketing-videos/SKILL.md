@@ -113,7 +113,7 @@ infsh app run google/veo-3-1-fast --input '{
 
 # 6. Generate voiceover
 infsh app run infsh/kokoro-tts --input '{
-  "text": "Tired of [problem]? Introducing [Product]. [Key benefit 1]. [Key benefit 2]. [Key benefit 3]. Get yours today.",
+  "prompt": "Tired of [problem]? Introducing [Product]. [Key benefit 1]. [Key benefit 2]. [Key benefit 3]. Get yours today.",
   "voice": "af_nicole"
 }' > voiceover.json
 
@@ -159,7 +159,7 @@ done
 
 # 3. Generate professional voiceover
 infsh app run infsh/kokoro-tts --input '{
-  "text": "<full-script>",
+  "prompt": "<full-script>",
   "voice": "am_michael"
 }' > voiceover.json
 

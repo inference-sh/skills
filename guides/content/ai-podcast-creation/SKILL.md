@@ -19,7 +19,7 @@ infsh login
 
 # Generate podcast segment
 infsh app run infsh/kokoro-tts --input '{
-  "text": "Welcome to the AI Frontiers podcast. Today we explore the latest developments in generative AI.",
+  "prompt": "Welcome to the AI Frontiers podcast. Today we explore the latest developments in generative AI.",
   "voice": "am_michael"
 }'
 ```
@@ -57,7 +57,7 @@ infsh app run infsh/kokoro-tts --input '{
 ```bash
 # Single voice podcast segment
 infsh app run infsh/kokoro-tts --input '{
-  "text": "Your podcast script here. Make it conversational and engaging. Add natural pauses with punctuation.",
+  "prompt": "Your podcast script here. Make it conversational and engaging. Add natural pauses with punctuation.",
   "voice": "am_michael"
 }'
 ```
@@ -67,13 +67,13 @@ infsh app run infsh/kokoro-tts --input '{
 ```bash
 # Host introduction
 infsh app run infsh/kokoro-tts --input '{
-  "text": "Welcome back to Tech Talk. Today I have a special guest to discuss AI developments.",
+  "prompt": "Welcome back to Tech Talk. Today I have a special guest to discuss AI developments.",
   "voice": "am_michael"
 }' > host_intro.json
 
 # Guest response
 infsh app run infsh/kokoro-tts --input '{
-  "text": "Thanks for having me. I am excited to share what we have been working on.",
+  "prompt": "Thanks for having me. I am excited to share what we have been working on.",
   "voice": "af_sarah"
 }' > guest_response.json
 
@@ -99,13 +99,13 @@ infsh app run infsh/ai-music --input '{
 
 # 3. Generate host segments
 infsh app run infsh/kokoro-tts --input '{
-  "text": "<host-lines>",
+  "prompt": "<host-lines>",
   "voice": "am_michael"
 }' > host.json
 
 # 4. Generate guest segments
 infsh app run infsh/kokoro-tts --input '{
-  "text": "<guest-lines>",
+  "prompt": "<guest-lines>",
   "voice": "af_sarah"
 }' > guest.json
 
@@ -138,13 +138,13 @@ infsh app run openrouter/claude-sonnet-45 --input '{
 
 # 2. Generate Host A
 infsh app run infsh/kokoro-tts --input '{
-  "text": "<host-a-lines>",
+  "prompt": "<host-a-lines>",
   "voice": "am_michael"
 }' > host_a.json
 
 # 3. Generate Host B
 infsh app run infsh/kokoro-tts --input '{
-  "text": "<host-b-lines>",
+  "prompt": "<host-b-lines>",
   "voice": "af_sarah"
 }' > host_b.json
 
@@ -160,7 +160,7 @@ infsh app run infsh/media-merger --input '{
 ```bash
 # Long-form narration
 infsh app run infsh/kokoro-tts --input '{
-  "text": "Chapter One. It was a dark and stormy night when the first AI achieved consciousness...",
+  "prompt": "Chapter One. It was a dark and stormy night when the first AI achieved consciousness...",
   "voice": "bf_emma",
   "speed": 0.9
 }'
@@ -173,7 +173,7 @@ infsh app run infsh/kokoro-tts --input '{
 ```bash
 # 1. Generate podcast audio
 infsh app run infsh/kokoro-tts --input '{
-  "text": "<podcast-script>",
+  "prompt": "<podcast-script>",
   "voice": "am_michael"
 }' > podcast.json
 

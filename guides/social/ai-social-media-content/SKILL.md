@@ -91,7 +91,7 @@ infsh app run openrouter/claude-sonnet-45 --input '{
 
 # 2. Generate voiceover
 infsh app run infsh/kokoro-tts --input '{
-  "text": "<script>",
+  "prompt": "<script>",
   "voice": "af_sarah"
 }' > voice.json
 

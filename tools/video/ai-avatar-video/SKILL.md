@@ -80,7 +80,7 @@ Generates highly realistic lipsync from any audio.
 ```bash
 # 1. Generate speech from text
 infsh app run infsh/kokoro-tts --input '{
-  "text": "Welcome to our product demo. Today I will show you..."
+  "prompt": "Welcome to our product demo. Today I will show you..."
 }' > speech.json
 
 # 2. Create avatar video with the speech

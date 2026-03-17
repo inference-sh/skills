@@ -1,6 +1,6 @@
 ---
 name: dialogue-audio
-description: "Multi-speaker dialogue audio creation with Dia TTS. Covers speaker tags, emotion control, pacing, conversation flow, and post-production. Use for: podcasts, audiobooks, explainers, character dialogue, conversational content. Triggers: dialogue audio, multi speaker, conversation audio, dia tts, two speakers, podcast audio, character voices, voice acting, dialogue generation, conversation tts, multi voice, speaker tags, dialogue recording"
+description: "Multi-speaker dialogue audio creation with ElevenLabs and Dia TTS. Covers speaker tags, emotion control, pacing, conversation flow, and post-production. Use for: podcasts, audiobooks, explainers, character dialogue, conversational content. Triggers: dialogue audio, multi speaker, conversation audio, dia tts, two speakers, podcast audio, character voices, voice acting, dialogue generation, conversation tts, multi voice, speaker tags, dialogue recording, elevenlabs dialogue, eleven labs conversation"
 allowed-tools: Bash(infsh *)
 ---
 
@@ -214,6 +214,9 @@ infsh app run infsh/media-merger --input '{
 ## Related Skills
 
 ```bash
+# ElevenLabs dialogue (22+ voices, voice direction)
+npx skills add inference-sh/skills@elevenlabs-dialogue
+
 npx skills add inference-sh/skills@text-to-speech
 npx skills add inference-sh/skills@ai-podcast-creation
 npx skills add inference-sh/skills@ai-avatar-video

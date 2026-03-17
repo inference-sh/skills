@@ -1,6 +1,6 @@
 ---
 name: ai-music-generation
-description: "Generate AI music and songs with Diffrythm, Tencent Song Generation via inference.sh CLI. Models: Diffrythm (fast song generation), Tencent Song Generation (full songs with vocals). Capabilities: text-to-music, song generation, instrumental, lyrics to song, soundtrack creation. Use for: background music, social media content, game soundtracks, podcasts, royalty-free music. Triggers: music generation, ai music, generate song, ai composer, text to music, song generator, create music with ai, suno alternative, udio alternative, ai song, ai soundtrack, generate soundtrack, ai jingle, music ai, beat generator"
+description: "Generate AI music and songs with ElevenLabs, Diffrythm, Tencent Song Generation via inference.sh CLI. Models: ElevenLabs Music (up to 10 min, commercial license), Diffrythm (fast song generation), Tencent Song Generation (full songs with vocals). Capabilities: text-to-music, song generation, instrumental, lyrics to song, soundtrack creation. Use for: background music, social media content, game soundtracks, podcasts, royalty-free music. Triggers: music generation, ai music, generate song, ai composer, text to music, song generator, create music with ai, suno alternative, udio alternative, ai song, ai soundtrack, generate soundtrack, ai jingle, music ai, beat generator, elevenlabs music, eleven labs music"
 allowed-tools: Bash(infsh *)
 ---
 
@@ -26,6 +26,7 @@ infsh app run infsh/diffrythm --input '{"prompt": "upbeat electronic dance track
 
 | Model | App ID | Best For |
 |-------|--------|----------|
+| ElevenLabs Music | `elevenlabs/music` | Up to 10 min, commercial license |
 | Diffrythm | `infsh/diffrythm` | Fast song generation |
 | Tencent Song | `infsh/tencent-song-generation` | Full songs with vocals |
 
@@ -105,6 +106,12 @@ infsh app run infsh/diffrythm --input '{
 ## Related Skills
 
 ```bash
+# ElevenLabs music (up to 10 min, commercial license)
+npx skills add inference-sh/skills@elevenlabs-music
+
+# ElevenLabs sound effects (combine with music)
+npx skills add inference-sh/skills@elevenlabs-sound-effects
+
 # Full platform skill (all 150+ apps)
 npx skills add inference-sh/skills@infsh-cli
 

@@ -1,6 +1,6 @@
 ---
 name: speech-to-text
-description: "Transcribe audio to text with Whisper models via inference.sh CLI. Models: Fast Whisper Large V3, Whisper V3 Large. Capabilities: transcription, translation, multi-language, timestamps. Use for: meeting transcription, subtitles, podcast transcripts, voice notes. Triggers: speech to text, transcription, whisper, audio to text, transcribe audio, voice to text, stt, automatic transcription, subtitles generation, transcribe meeting, audio transcription, whisper ai"
+description: "Transcribe audio to text with ElevenLabs Scribe and Whisper models via inference.sh CLI. Models: ElevenLabs Scribe v2 (98%+ accuracy, diarization), Fast Whisper Large V3, Whisper V3 Large. Capabilities: transcription, translation, multi-language, timestamps, speaker diarization, audio event tagging. Use for: meeting transcription, subtitles, podcast transcripts, voice notes. Triggers: speech to text, transcription, whisper, audio to text, transcribe audio, voice to text, stt, automatic transcription, subtitles generation, transcribe meeting, audio transcription, whisper ai, elevenlabs stt, scribe, eleven labs transcribe"
 allowed-tools: Bash(infsh *)
 ---
 
@@ -25,6 +25,7 @@ infsh app run infsh/fast-whisper-large-v3 --input '{"audio_url": "https://audio.
 
 | Model | App ID | Best For |
 |-------|--------|----------|
+| ElevenLabs Scribe v2 | `elevenlabs/stt` | 98%+ accuracy, diarization, 90+ languages |
 | Fast Whisper V3 | `infsh/fast-whisper-large-v3` | Fast transcription |
 | Whisper V3 Large | `infsh/whisper-v3-large` | Highest accuracy |
 
@@ -108,6 +109,12 @@ Returns JSON with:
 ## Related Skills
 
 ```bash
+# ElevenLabs STT (98%+ accuracy, diarization)
+npx skills add inference-sh/skills@elevenlabs-stt
+
+# ElevenLabs TTS (reverse direction)
+npx skills add inference-sh/skills@elevenlabs-tts
+
 # Full platform skill (all 150+ apps)
 npx skills add inference-sh/skills@infsh-cli
 

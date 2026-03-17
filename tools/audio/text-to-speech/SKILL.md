@@ -1,6 +1,6 @@
 ---
 name: text-to-speech
-description: "Convert text to natural speech with DIA TTS, Kokoro, Chatterbox, and more via inference.sh CLI. Models: DIA TTS (conversational), Kokoro TTS, Chatterbox, Higgs Audio, VibeVoice (podcasts). Capabilities: text-to-speech, voice cloning, multi-speaker dialogue, podcast generation, expressive speech. Use for: voiceovers, audiobooks, podcasts, accessibility, video narration, IVR, voice assistants. Triggers: text to speech, tts, voice generation, ai voice, speech synthesis, voice over, generate speech, ai narrator, voice cloning, text to audio, elevenlabs alternative, voice ai, ai voiceover, speech generator, natural voice"
+description: "Convert text to natural speech with ElevenLabs, DIA TTS, Kokoro, Chatterbox, and more via inference.sh CLI. Models: ElevenLabs (premium, 22+ voices, 32 languages), DIA TTS (conversational), Kokoro TTS, Chatterbox, Higgs Audio, VibeVoice (podcasts). Capabilities: text-to-speech, voice cloning, multi-speaker dialogue, podcast generation, expressive speech. Use for: voiceovers, audiobooks, podcasts, accessibility, video narration, IVR, voice assistants. Triggers: text to speech, tts, voice generation, ai voice, speech synthesis, voice over, generate speech, ai narrator, voice cloning, text to audio, elevenlabs, eleven labs, voice ai, ai voiceover, speech generator, natural voice"
 allowed-tools: Bash(infsh *)
 ---
 
@@ -26,6 +26,7 @@ infsh app run infsh/kokoro-tts --input '{"text": "Hello, welcome to our product 
 
 | Model | App ID | Best For |
 |-------|--------|----------|
+| ElevenLabs TTS | `elevenlabs/tts` | Premium quality, 22+ voices, 32 languages |
 | DIA TTS | `infsh/dia-tts` | Conversational, expressive |
 | Kokoro TTS | `infsh/kokoro-tts` | Fast, natural |
 | Chatterbox | `infsh/chatterbox` | General purpose |
@@ -109,6 +110,12 @@ infsh app run bytedance/omnihuman-1-5 --input '{
 ## Related Skills
 
 ```bash
+# ElevenLabs TTS (premium, 22+ voices)
+npx skills add inference-sh/skills@elevenlabs-tts
+
+# ElevenLabs dialogue (multi-speaker)
+npx skills add inference-sh/skills@elevenlabs-dialogue
+
 # Full platform skill (all 150+ apps)
 npx skills add inference-sh/skills@infsh-cli
 

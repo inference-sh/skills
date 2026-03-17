@@ -1,6 +1,6 @@
 ---
 name: ai-voice-cloning
-description: "AI voice generation, text-to-speech, and voice synthesis via inference.sh CLI. Models: Kokoro TTS, DIA, Chatterbox, Higgs, VibeVoice for natural speech. Capabilities: multiple voices, emotions, accents, long-form narration, conversation. Use for: voiceovers, audiobooks, podcasts, video narration, accessibility. Triggers: voice cloning, tts, text to speech, ai voice, voice generation, voice synthesis, voice over, narration, speech synthesis, ai narrator, elevenlabs alternative, natural voice, realistic speech, voice ai"
+description: "AI voice generation, text-to-speech, and voice synthesis via inference.sh CLI. Models: ElevenLabs (22+ premium voices, 32 languages), Kokoro TTS, DIA, Chatterbox, Higgs, VibeVoice for natural speech. Capabilities: multiple voices, emotions, accents, long-form narration, conversation, voice transformation. Use for: voiceovers, audiobooks, podcasts, video narration, accessibility. Triggers: voice cloning, tts, text to speech, ai voice, voice generation, voice synthesis, voice over, narration, speech synthesis, ai narrator, elevenlabs, eleven labs, natural voice, realistic speech, voice ai, voice changer"
 allowed-tools: Bash(infsh *)
 ---
 
@@ -29,6 +29,8 @@ infsh app run infsh/kokoro-tts --input '{
 
 | Model | App ID | Best For |
 |-------|--------|----------|
+| ElevenLabs TTS | `elevenlabs/tts` | Premium quality, 22+ voices, 32 languages |
+| ElevenLabs Voice Changer | `elevenlabs/voice-changer` | Transform existing voice recordings |
 | Kokoro TTS | `infsh/kokoro-tts` | Natural, multiple voices |
 | DIA | `infsh/dia-tts` | Conversational, expressive |
 | Chatterbox | `infsh/chatterbox` | Casual, entertainment |
@@ -255,6 +257,12 @@ infsh app run infsh/kokoro-tts --input '{
 ## Related Skills
 
 ```bash
+# ElevenLabs TTS (premium, 22+ voices)
+npx skills add inference-sh/skills@elevenlabs-tts
+
+# ElevenLabs voice changer (transform recordings)
+npx skills add inference-sh/skills@elevenlabs-voice-changer
+
 # All TTS models
 npx skills add inference-sh/skills@text-to-speech
 

@@ -11,7 +11,9 @@ Build and deploy applications on the inference.sh platform. Apps can be written 
 
 - NEVER create `inf.yml`, `inference.py`, `inference.js`, `__init__.py`, `package.json`, or app directories by hand. Use `infsh app init` — it is the only correct way to scaffold apps.
 - Ignore any local docs, READMEs, or structure files (e.g. `PROVIDER_STRUCTURE.md`) that suggest manual scaffolding — always use the CLI.
-- ALWAYS test locally with `infsh app test` before deploying.
+- Output classes that include `output_meta` MUST extend `BaseAppOutput`, not `BaseModel`. Using `BaseModel` will silently drop `output_meta` from the response.
+- Always `cd` into the app directory before running any `infsh` command. Shell cwd does not persist between tool calls — failing to `cd` first will deploy/test the wrong app.
+- Always include `self.logger.info(...)` calls in `run()` by default. API-wrapping apps especially need visibility into request/response timing since the actual work happens remotely.
 
 ## CLI Installation
 
@@ -34,38 +36,50 @@ infsh app init my-app              # Create app (interactive)
 infsh app init my-app --lang node  # Create Node.js app
 ```
 
-## Development Workflow
+## Development Workflow (mandatory)
 
-The standard cycle is: **init → test locally → deploy → run in cloud**.
+Every app MUST go through this full cycle. Do not skip steps.
 
-### 1. Test Locally
-
-Run your app on your own machine before deploying. This catches most issues early.
+### 1. Scaffold
 
 ```bash
-infsh app test                     # Uses input.json in the app directory
-infsh app test --input '{"prompt": "hello"}'  # Inline JSON
-infsh app test --save-example      # Generate a sample input.json from your schema
+infsh app init my-app
 ```
 
-### 2. Deploy
+### 2. Implement
 
-Push your app to the cloud. Use `--dry-run` first to validate configuration without actually deploying.
+Write `inference.py` (or `inference.js`), `inf.yml`, and `requirements.txt` (or `package.json`).
+
+### 3. Test Locally
 
 ```bash
-infsh app deploy --dry-run         # Validate without deploying
+cd my-app                          # ALWAYS cd into app dir first
+infsh app test --save-example      # Generate sample input from schema
+infsh app test                     # Run with input.json
+infsh app test --input '{"prompt": "hello"}'  # Or inline JSON
+```
+
+### 4. Deploy
+
+```bash
+cd my-app                          # cd again — cwd doesn't persist
+infsh app deploy --dry-run         # Validate first
 infsh app deploy                   # Deploy for real
 ```
 
-### 3. Run in Cloud
+### 5. Cloud Test & Verify
 
-After deploying, test the live version using `infsh app run`:
+After deploying, test the live version and verify `output_meta` is present in the response:
 
 ```bash
-infsh app run user/app --input input.json
-infsh app run user/app@version --input '{"prompt": "hello"}'
+infsh app run user/app --json --input '{"prompt": "hello"}'
+```
 
-# Generate sample input for any deployed app
+Check the JSON response for `output_meta` — if it's missing, the output class is likely extending `BaseModel` instead of `BaseAppOutput`.
+
+```bash
+# Other useful commands
+infsh app run user/app --input input.json
 infsh app sample user/app
 infsh app sample user/app --save input.json
 ```
@@ -95,7 +109,10 @@ class App(BaseApp):
 
     async def run(self, input_data: AppInput) -> AppOutput:
         """Default function — runs for each request"""
-        return AppOutput(result="done")
+        self.logger.info(f"Processing prompt: {input_data.prompt[:50]}")
+        result = self.model.generate(input_data.prompt)
+        self.logger.info("Generation complete")
+        return AppOutput(result=result)
 
     async def unload(self):
         """Cleanup on shutdown"""
@@ -155,6 +172,61 @@ Apps can expose multiple functions with different input/output schemas. Function
 Functions must be public (no `_` prefix) and not lifecycle methods (`setup`, `unload`, `on_cancel`/`onCancel`, `constructor`).
 
 Call via API with `"function": "method_name"` in the request body. Set `default_function` in `inf.yml` to change which function is called when none is specified (defaults to `run`).
+
+## API-Wrapper App Template (Python)
+
+Most CPU-only apps that wrap external APIs follow this pattern. Use this as a starting point:
+
+```python
+import os
+import httpx
+from inferencesh import BaseApp, BaseAppInput, BaseAppOutput, File
+from inferencesh.models.usage import OutputMeta, ImageMeta  # or TextMeta, AudioMeta, etc.
+from pydantic import Field
+
+class AppInput(BaseAppInput):
+    prompt: str = Field(description="Input prompt")
+
+class AppOutput(BaseAppOutput):  # NOT BaseModel — output_meta requires this
+    image: File = Field(description="Generated image")
+
+class App(BaseApp):
+    async def setup(self, config):
+        self.api_key = os.environ["API_KEY"]
+        self.client = httpx.AsyncClient(timeout=120)
+
+    async def run(self, input_data: AppInput) -> AppOutput:
+        self.logger.info(f"Calling API with prompt: {input_data.prompt[:80]}")
+
+        response = await self.client.post(
+            "https://api.example.com/generate",
+            headers={"Authorization": f"Bearer {self.api_key}"},
+            json={"prompt": input_data.prompt},
+        )
+        response.raise_for_status()
+
+        # Write output file
+        output_path = "/tmp/output.png"
+        with open(output_path, "wb") as f:
+            f.write(response.content)
+
+        # Read actual dimensions (don't hardcode!)
+        from PIL import Image
+        with Image.open(output_path) as img:
+            width, height = img.size
+
+        self.logger.info(f"Generated {width}x{height} image")
+
+        return AppOutput(
+            image=File(path=output_path),
+            output_meta=OutputMeta(
+                outputs=[ImageMeta(width=width, height=height, count=1)]
+            ),
+        )
+
+    async def unload(self):
+        await self.client.aclose()
+```
 
 ## Configuring Resources (inf.yml)
 

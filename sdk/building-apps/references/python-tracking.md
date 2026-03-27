@@ -2,15 +2,28 @@
 
 Enable usage-based pricing by reporting what your app processes.
 
+> **CRITICAL:** Output classes that include `output_meta` MUST extend `BaseAppOutput`, not `BaseModel`. Using `BaseModel` will silently drop `output_meta` from the response — everything else works, but usage tracking is lost.
+
 ## Basic Structure
 
 ```python
 from inferencesh import BaseAppOutput, OutputMeta, TextMeta, ImageMeta, VideoMeta, AudioMeta
 
-class AppOutput(BaseAppOutput):
+class AppOutput(BaseAppOutput):  # NOT BaseModel!
     result: File = Field(description="Generated output")
     # output_meta is inherited from BaseAppOutput
 ```
+
+## OutputMeta — Required Fields by Category
+
+Always populate all required fields for the category. Read actual values from output files — don't hardcode.
+
+| Category | Required Fields | Notes |
+|----------|----------------|-------|
+| **image** | `width`, `height`, `count` | Read dimensions from actual output file |
+| **video** | `width`, `height`, `seconds` | Read from output file metadata |
+| **audio** | `seconds` | Read from output file metadata |
+| **text** | `tokens` | Use actual tokenizer counts |
 
 ## MetaItem Types
 

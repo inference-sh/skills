@@ -70,24 +70,27 @@ return AppOutput(image=File(path="/tmp/output.png"))
 
 ## Multi-Function Apps
 
-Apps can expose multiple functions with different input/output types:
+Apps can expose multiple functions with different input/output types.
+
+> **IMPORTANT:** If any output class needs `output_meta`, it MUST extend `BaseAppOutput`, not `BaseModel`. Using `BaseModel` will silently drop `output_meta` from the response.
 
 ```python
-from pydantic import BaseModel
+from inferencesh import BaseApp, BaseAppInput, BaseAppOutput
+from pydantic import Field
 
-class GreetInput(BaseModel):
-    name: str = "World"
+class GreetInput(BaseAppInput):
+    name: str = Field(default="World", description="Name to greet")
 
-class GreetOutput(BaseModel):
-    message: str
+class GreetOutput(BaseAppOutput):
+    message: str = Field(description="Greeting message")
 
-class ReverseInput(BaseModel):
-    text: str
+class ReverseInput(BaseAppInput):
+    text: str = Field(description="Text to reverse")
 
-class ReverseOutput(BaseModel):
-    reversed_text: str
+class ReverseOutput(BaseAppOutput):
+    reversed_text: str = Field(description="Reversed text")
 
-class App:
+class App(BaseApp):
     async def run(self, input_data: GreetInput) -> GreetOutput:
         """Default function."""
         return GreetOutput(message=f"Hello, {input_data.name}!")

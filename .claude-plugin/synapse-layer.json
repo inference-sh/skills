@@ -1,12 +1,60 @@
 {
   "name": "synapse-layer",
-  "description": "Persistent zero-knowledge memory for AI agents",
+  "description": "Persistent zero-knowledge memory for AI agents. Store, recall and transfer encrypted context across models via MCP.",
+  "version": "1.0.0",
+  "homepage": "https://synapselayer.org",
+  "repository": "https://github.com/SynapseLayer/essencial",
+  "license": "Apache-2.0",
+  "mcp_server": {
+    "url": "https://rbeycxzizrrdmxpilepc.supabase.co/functions/v1/mcp-server",
+    "protocol": "json-rpc"
+  },
   "commands": {
-    "remember": "synapse remember",
-    "recall": "synapse recall",
-    "handover": "synapse handover",
-    "import": "synapse import",
-    "status": "synapse status",
-    "forget": "synapse forget"
-  }
+    "remember": {
+      "command": "synapse remember",
+      "description": "Store a memory with AES-256-GCM zero-knowledge encryption",
+      "args": "--user <uuid> --text <text> --category <category> --importance <0-1>"
+    },
+    "recall": {
+      "command": "synapse recall",
+      "description": "Semantic recall via pgvector HNSW cosine similarity",
+      "args": "--user <uuid> --query <text> --limit <n>"
+    },
+    "handover": {
+      "command": "synapse handover",
+      "description": "Neural Handover™ — transfer context between AI models",
+      "args": "--user <uuid> --from <model> --to <model>"
+    },
+    "resolve": {
+      "command": "synapse resolve",
+      "description": "Consensus Engine™ — detect & resolve conflicts via Trust Quotient",
+      "args": "--user <uuid>"
+    },
+    "list": {
+      "command": "synapse list",
+      "description": "List active encrypted memories ordered by importance",
+      "args": "--user <uuid> --limit <n>"
+    },
+    "forget": {
+      "command": "synapse forget",
+      "description": "Soft-delete a memory (LGPD/GDPR compliant)",
+      "args": "--user <uuid> --memory <memory-id>"
+    }
+  },
+  "keywords": [
+    "agent persistent memory",
+    "remember across sessions",
+    "cross-model context transfer",
+    "zero-knowledge memory store",
+    "semantic memory search",
+    "neural handover agent",
+    "conflict resolution memory",
+    "MCP memory tool",
+    "mcp",
+    "langchain",
+    "ai-agents",
+    "zero-knowledge",
+    "supabase",
+    "pgvector"
+  ]
 }

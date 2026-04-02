@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "name": "Synapse Layer Memory Agent",
+  "id": "org.synapselayer.memory",
+  "version": "1.0.2",
+  "description": "Universal Neural Memory Layer for AI Agents. Persistent, Private, and Model-Agnostic.",
+  "author": {
+    "name": "Ismael Marchi",
+    "email": "founder.synapselayer@proton.me",
+    "organization": "Synapse Layer"
+  },
+  "homepage": "https://synapselayer.org",
+  "repository": "https://github.com/SynapseLayer/essencial",
+  "license": "Apache-2.0",
+  "protocol": "a2a-v1",
+  "transport": "json-rpc-2.0",
+  "endpoint": "https://rbeycxzizrrdmxpilepc.supabase.co/functions/v1/mcp-server",
+  "authentication": {
+    "type": "bearer",
+    "header": "Authorization",
+    "scheme": "Bearer"
+  },
+  "skills": [
+    {
+      "id": "store_memory",
+      "name": "Store Memory",
+      "description": "Saves agent context with Zero-Knowledge AES-256-GCM encryption.",
+      "tags": ["memory", "storage", "zero-knowledge", "encryption"],
+      "input_modes": ["text", "json"],
+      "output_modes": ["json"],
+      "parameters": {
+        "required": ["user_id", "content"],
+        "optional": ["source_type", "confidence", "metadata"]
+      }
+    },
+    {
+      "id": "recall_context",
+      "name": "Recall Context",
+      "description": "Semantic search over persistent memories using pgvector HNSW. Supports Neural Handover(TM).",
+      "tags": ["memory", "recall", "semantic-search", "neural-handover"],
+      "input_modes": ["text", "json"],
+      "output_modes": ["json"],
+      "parameters": {
+        "required": ["user_id", "query"],
+        "optional": ["limit", "min_tq_score", "source_type"]
+      }
+    },
+    {
+      "id": "resolve_conflict",
+      "name": "Resolve Conflict",
+      "description": "Calculates Trust Quotient (TQ) for conflicting memories and promotes the canonical version.",
+      "tags": ["conflict-resolution", "trust-quotient", "tq"],
+      "input_modes": ["json"],
+      "output_modes": ["json"],
+      "parameters": {
+        "required": ["conflict_group_id"],
+        "optional": []
+      }
+    },
+    {
+      "id": "neural_handover",
+      "name": "Neural Handover(TM)",
+      "description": "HMAC-SHA256 signed context transfer between different AI models. Zero context loss.",
+      "tags": ["handover", "context-transfer", "multi-model", "hmac"],
+      "input_modes": ["json"],
+      "output_modes": ["json"],
+      "parameters": {
+        "required": ["user_id", "target_model"],
+        "optional": ["summary", "include_memories", "ttl_hours"]
+      }
+    },
+    {
+      "id": "forget_memory",
+      "name": "Forget Memory",
+      "description": "GDPR/LGPD compliant soft-delete with audit trail.",
+      "tags": ["gdpr", "lgpd", "privacy", "delete"],
+      "input_modes": ["json"],
+      "output_modes": ["json"],
+      "parameters": {
+        "required": ["memory_id", "user_id"],
+        "optional": []
+      }
+    }
+  ],
+  "capabilities": {
+    "streaming": false,
+    "push_notifications": false,
+    "state_transition_history": true,
+    "multi_turn": true,
+    "persistent_memory": true,
+    "zero_knowledge": true,
+    "neural_handover": true,
+    "conflict_resolution": true,
+    "plugin_system": true
+  },
+  "compliance": ["GDPR", "LGPD", "Apache-2.0"],
+  "region": "sa-east-1",
+  "encryption": "AES-256-GCM",
+  "tq_formula": "TQ = (confidence_score * 0.4) + (recency_score * 0.3) + (usage_normalized * 0.3)"
+}

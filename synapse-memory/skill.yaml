@@ -1,0 +1,40 @@
+# skill.yaml - Synapse Memory Skill v1.0.2
+name: synapse-memory
+version: 1.0.2
+description: Universal Zero-Knowledge Neural Memory Layer for AI Agents
+author: Ismael Marchi / Synapse Layer
+license: Apache-2.0
+
+tags:
+  - memory
+  - zero-knowledge
+  - neural-handover
+  - trust-quotient
+  - mcp
+  - agent-memory
+  - a2a
+
+badges:
+  - "Zero-Knowledge (AES-256-GCM)"
+  - "Neural Handover™"
+  - "Trust Quotient™ Scoring"
+  - "MCP Native"
+
+homepage: https://www.synapselayer.org
+repository: https://github.com/SynapseLayer/synapse-layer
+documentation: https://www.synapselayer.org/docs
+
+slogan: "Giving Agents a Past. Giving Models a Soul."
+
+capabilities:
+  - store_encrypted_memory
+  - semantic_recall_with_tq
+  - resolve_conflict_with_tq
+  - neural_handover_between_models
+  - gdpr_lgpd_compliant_soft_delete
+
+requirements:
+  - python: ">=3.9"
+  - mcp: ">=1.0"
+
+mcp_endpoint: "https://rbeycxzirrdmxpilepc.supabase.co/functions/v1/mcp-server"

@@ -4,28 +4,39 @@ End-to-end **prospect research** for B2B sellers: from a single URL (site, Linke
 
 ---
 
-## Baixar esta skill — ordem dos comandos (leia isto primeiro)
+## Install — read this first
 
-Esta skill está publicada no repositório **`rafaelgrasa/skills`** (não use só `inference-sh/skills` se quiser **esta** skill antes do merge oficial).
+This skill is published in **[rafaelgrasa/skills](https://github.com/rafaelgrasa/skills)** (a fork of `inference-sh/skills`). Until it is merged upstream, use **`rafaelgrasa/skills`** in the commands below when you want **this** skill.
 
-No terminal (Claude Code, Antigravity, Cursor, etc.), execute **nesta ordem**:
+### Option A — Full inference.sh catalog + Prospect 360 (one command)
 
-| Ordem | O quê | Comando |
-|-------|--------|---------|
-| **1º** | Instalar **Prospect 360** a partir **do repositório do autor** | `npx skills add rafaelgrasa/skills@prospect-360-b2b -g -y` |
-| **2º** | Instalar a dependência **obrigatória** `web-search` (vem do catálogo inference-sh) | `npx skills add inference-sh/skills@web-search -g -y` |
-| **3º** *(opcional)* | Análise de concorrentes mais profunda — ver `SKILL.md` Tier 3 | `npx skills add roi-ops/skills@competitor-teardown -g -y` |
+Installs **every** skill from the fork (same catalog as upstream **plus** Prospect 360):
 
-**Por que o 2º comando ainda diz `inference-sh`?**  
-O pacote `web-search` é mantido no repo oficial `inference-sh/skills`. Isso **não** substitui o 1º comando: o 1º é que traz **a tua** skill do **`rafaelgrasa/skills`**.
+```bash
+npx skills add rafaelgrasa/skills -g -y
+```
 
-**Depois do merge no upstream** (quando existir no repo oficial), o 1º passo poderá ser também:
+### Option B — Prospect 360 only (minimal)
+
+Run **in this order**:
+
+| Step | What | Command |
+|------|------|---------|
+| **1** | Install **Prospect 360** from this fork | `npx skills add rafaelgrasa/skills@prospect-360-b2b -g -y` |
+| **2** | Install required **web-search** (official package) | `npx skills add inference-sh/skills@web-search -g -y` |
+| **3** *(optional)* | Deeper competitor analysis — see `SKILL.md` Tier 3 | `npx skills add roi-ops/skills@competitor-teardown -g -y` |
+
+**Why does step 2 use `inference-sh`?** The **web-search** skill is maintained in the official repo. That does **not** replace step 1: step 1 is what pulls **Prospect 360** from **`rafaelgrasa/skills`**.
+
+### After upstream merge
+
+When **prospect-360-b2b** exists on `inference-sh/skills`, step 1 may also be:
 
 ```bash
 npx skills add inference-sh/skills@prospect-360-b2b -g -y
 ```
 
-*(Enquanto o PR não for aceite, use sempre `rafaelgrasa/skills@prospect-360-b2b` no passo 1.)*
+Until the PR is merged, keep using **`rafaelgrasa/skills@prospect-360-b2b`** for step 1 in Option B.
 
 ---
 
@@ -39,7 +50,7 @@ npx skills add inference-sh/skills@prospect-360-b2b -g -y
 | Requirement | Why |
 |-------------|-----|
 | **Claude Code** (or compatible agent runtime) | Skill is authored for agent execution with tools. |
-| **`web-search` skill** | Open-web research (required) — install with command **2º** above. |
+| **`web-search` skill** | Open-web research (required) — included in Option A, or install via Option B step 2. |
 | **`npx` / Node** | To run `npx skills add`. |
 | **Optional: context-mode MCP** (`ctx_batch_execute`) | Parallel research batches when available. |
 | **Optional: `competitor-teardown` skill** | Richer competitive analysis in research round 4 — see `SKILL.md` Tier 3. |
@@ -59,7 +70,7 @@ No API keys are required **by this skill itself**; `web-search` may use your inf
 Run prospect-360-b2b for https://www.example.com — they are a mid-market logistics company in Brazil.
 ```
 
-**Urgent-style keywords** (*urgente*, *hoje*, *tomorrow*, etc. — see `SKILL.md`)
+**Urgent-style keywords** (*urgent*, *today*, *tomorrow*, etc. — see `SKILL.md`)
 
 ```text
 Urgent: meeting tomorrow with Acme Corp, LinkedIn https://linkedin.com/company/acme
@@ -78,7 +89,7 @@ After install, invoke via natural language (e.g. *prospect 360*, *sales prep*). 
 ## Limitations & good practices
 
 - **Confidence**: each section is High/Medium/Low; refresh after ~30 days for live markets.
-- **Compliance**: public information and ethical outreach only; respect LGPD/GDPR and platform terms.
+- **Compliance**: public information and ethical outreach only; respect GDPR/LGPD and platform terms.
 
 ## Related skills
 
@@ -91,4 +102,4 @@ npx skills add inference-sh/skills@llm-models
 
 Same as the parent [inference-sh/skills](https://github.com/inference-sh/skills) repository (MIT).
 
-**Repo desta skill (fork público):** https://github.com/rafaelgrasa/skills
+**Public fork (author):** https://github.com/rafaelgrasa/skills

@@ -6,26 +6,29 @@ AI agent skills for 250+ models via [inference.sh](https://inference.sh) CLI. Ge
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Esta fork — **Prospect 360 B2B** (instalar a partir daqui)
+## This fork: Prospect 360 B2B and the full inference.sh catalog
 
-Este repositório (**[rafaelgrasa/skills](https://github.com/rafaelgrasa/skills)**) é um fork público de `inference-sh/skills` e inclui a skill extra **[prospect-360-b2b](tools/llm/prospect-360-b2b/)** (pesquisa de prospect e preparação de reuniões B2B).
+This repo (**[rafaelgrasa/skills](https://github.com/rafaelgrasa/skills)**) is a public fork of [`inference-sh/skills`](https://github.com/inference-sh/skills). It contains **the same skill catalog as upstream** plus the extra skill **[prospect-360-b2b](tools/llm/prospect-360-b2b/)** (deep B2B prospect research and sales meeting prep).
 
-**Quem entra nesta página e quer só esta skill:** no terminal, rode **nesta ordem**:
+Pick **one** of the install paths below:
 
-| Ordem | Comando |
-|-------|---------|
-| **1º** | `npx skills add rafaelgrasa/skills@prospect-360-b2b -g -y` |
-| **2º** | `npx skills add inference-sh/skills@web-search -g -y` |
+| Option | What you get | Command(s) |
+|--------|----------------|------------|
+| **A — Recommended** | **All inference.sh skills + Prospect 360** (everything in this fork) | `npx skills add rafaelgrasa/skills -g -y` |
+| **B — Minimal** | **Only Prospect 360** + its required web-search dependency | `npx skills add rafaelgrasa/skills@prospect-360-b2b -g -y`<br>`npx skills add inference-sh/skills@web-search -g -y` |
+| **C — Upstream only** | Official catalog **without** Prospect 360 (until it lands in `inference-sh/skills`) | `npx skills add inference-sh/skills -g -y` |
 
-*(O 1º baixa **deste** GitHub; o 2º instala a dependência obrigatória `web-search`, que continua no repo oficial.)*
+- **Option A** clones this fork once and installs **every** bundled skill (same coverage as `inference-sh/skills`, plus **prospect-360-b2b**).
+- **Option B** is best if you only want Prospect 360; the second line installs **web-search** from the official repo (required by Prospect 360).
+- **Option C** is the standard upstream install; use **A** or **B** if you need Prospect 360 today.
 
-Documentação detalhada: **[tools/llm/prospect-360-b2b/README.md](tools/llm/prospect-360-b2b/README.md)**.
+More detail: **[tools/llm/prospect-360-b2b/README.md](tools/llm/prospect-360-b2b/README.md)**.
 
 ---
 
 ## Contents
 
-- [Esta fork — Prospect 360 B2B](#esta-fork--prospect-360-b2b-instalar-a-partir-daqui)
+- [This fork: Prospect 360 B2B and the full inference.sh catalog](#this-fork-prospect-360-b2b-and-the-full-inferencesh-catalog)
 - [Install as Claude Code Plugin](#claude-code-plugin)
 - [Install as Skills](#install-as-skills)
 - [CLI Setup](#cli-setup)
@@ -55,22 +58,30 @@ After install, skills are available as `/inference-sh:flux-image`, `/inference-s
 
 ## Install as Skills
 
-### All Skills
+### All skills
+
+**From this fork (inference.sh catalog + Prospect 360):**
 
 ```bash
-npx skills add inference-sh/skills
+npx skills add rafaelgrasa/skills -g -y
 ```
 
-### Specific Skills
+**From upstream only (no Prospect 360 until merged):**
 
-**Prospect 360** a partir **deste fork** (use `rafaelgrasa/skills`, não `inference-sh`, até o PR ser merged no upstream):
+```bash
+npx skills add inference-sh/skills -g -y
+```
+
+### Specific skills
+
+**Prospect 360 only** (use this fork’s skill id until it exists on `inference-sh/skills`):
 
 ```bash
 npx skills add rafaelgrasa/skills@prospect-360-b2b -g -y
 npx skills add inference-sh/skills@web-search -g -y
 ```
 
-Outras skills (catálogo oficial):
+**Other examples** (official repo):
 
 ```bash
 npx skills add inference-sh/skills@flux-image
@@ -79,7 +90,11 @@ npx skills add inference-sh/skills@llm-models
 npx skills add inference-sh/skills@web-search
 ```
 
-Depois de **prospect-360-b2b** existir no `inference-sh/skills`, o 1º comando poderá ser também `npx skills add inference-sh/skills@prospect-360-b2b -g -y`.
+After **prospect-360-b2b** is merged into `inference-sh/skills`, you may also use:
+
+```bash
+npx skills add inference-sh/skills@prospect-360-b2b -g -y
+```
 
 ### Manual
 

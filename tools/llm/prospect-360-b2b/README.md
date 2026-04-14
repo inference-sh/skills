@@ -15,89 +15,73 @@ End-to-end **prospect research** for B2B sellers: from a single URL (site, Linke
 | **`web-search` skill** | Open-web research (required). |
 | **`npx` / Node** | To install skills from this repository. |
 | **Optional: context-mode MCP** (`ctx_batch_execute`) | Parallel research batches when available. |
-| **Optional: `competitor-teardown` skill** | Richer competitive analysis in research round 4. |
-| **Optional: Superpowers + Superpowers Chrome** | Browser automation for gated or complex pages; use `/superpowers:using-superpowers` per plugin docs. |
+| **Optional: `competitor-teardown` skill** | Richer competitive analysis in research round 4 (`roi-ops/skills` or `inference-sh/skills` — see `SKILL.md`). |
 
 No API keys are required **by this skill itself**; `web-search` may use your inference.sh / Tavily / Exa setup as documented in that skill.
 
 ## Install
 
+**A partir deste repositório (fork público):**
+
+```bash
+npx skills add rafaelgrasa/skills@prospect-360-b2b -g -y
+```
+
+**Quando existir no upstream `inference-sh/skills` (após merge do PR):**
+
 ```bash
 npx skills add inference-sh/skills@prospect-360-b2b -g -y
 ```
 
-Install dependencies:
+Dependências:
 
 ```bash
 npx skills add inference-sh/skills@web-search -g -y
-# optional
-npx skills add inference-sh/skills@competitor-teardown -g -y
-```
-
-Full plugin (all skills):
-
-```bash
-npx skills add inference-sh/skills
+# opcional — ver comando exato no SKILL.md (Tier 3)
+npx skills add roi-ops/skills@competitor-teardown -g -y
 ```
 
 ## Configure
 
-- **WebSearch**: Must be available in the session. If missing, the skill stops with install instructions.
-- **Superpowers**: Install the plugin and Chrome extension; complete any login in the browser when the agent requests it. Do not put passwords into the chat.
-- **context-mode**: Add the MCP server in Claude Code settings if you want parallel `ctx_batch_execute` batches.
+- **WebSearch**: deve estar disponível na sessão; caso contrário a skill pede a instalação do `web-search`.
+- **context-mode**: configure o MCP no Claude Code se quiser batches paralelos.
 
 ## Usage examples
 
-**Full dossier (default flow)**
+**Dossiê completo**
 
 ```text
 Run prospect-360-b2b for https://www.example.com — they are a mid-market logistics company in Brazil.
 ```
 
-**With urgency keywords** (skill may auto-detect urgent mode)
+**Modo urgente** (palavras-chave como *urgente*, *hoje*, *tomorrow* podem ser detetadas — ver `SKILL.md`)
 
 ```text
-Urgent: meeting tomorrow with Acme Corp, LinkedIn company page https://linkedin.com/company/acme
+Urgent: meeting tomorrow with Acme Corp, LinkedIn https://linkedin.com/company/acme
 ```
 
-**After install in Claude Code**, invoke the skill the way your client loads skills (e.g. natural language with triggers like *prospect 360*, *sales prep*, *analyze this company*).
-
-The skill will ask for:
-
-1. Output language  
-2. What you sell and the outcome for clients  
-3. Your name and company (for templates)  
-4. Mode: Full / Lite / Urgent  
-
-Then it runs research rounds and writes `PROSPECT_[COMPANY]_[YYYYMMDD].md` and a matching `.html` in the working directory.
+Depois de instalar, invoca pela linguagem natural (ex.: *prospect 360*, *sales prep*). A skill pergunta idioma, o que vendes, nome/empresa e modo Full / Lite / Urgent.
 
 ## Output modes
 
 | Mode | Research | Sections |
 |------|----------|----------|
-| **Full** | Up to 6 rounds | Full template including call script and action plan |
-| **Lite** | Subset of rounds | Priority brief + core sections |
-| **Urgent** | Fast path | Minimal sections for same-day meetings |
+| **Full** | Até 6 rondas | Relatório completo + script de chamada e plano de ação |
+| **Lite** | Subconjunto | Priority brief + secções centrais |
+| **Urgent** | Rápido | Secções mínimas para reunião no mesmo dia |
 
 ## Limitations & good practices
 
-- **Confidence**: Sections are labeled High/Medium/Low; prefer refreshing the file after ~30 days for live markets.
-- **Compliance**: Use only public information and ethical outreach; respect GDPR/LGPD and platform terms.
-- **Gated sites**: If WebSearch is not enough, enable Superpowers and follow `/superpowers:using-superpowers` — never share credentials in prompts.
-- **Competitors**: For deep teardowns, install `competitor-teardown`; otherwise the skill falls back to manual search queries.
+- **Confiança**: cada secção tem High/Medium/Low; mercados mudam — atualizar após ~30 dias.
+- **Compliance**: só informação pública e abordagem ética; respeitar LGPD/GDPR e termos das plataformas.
 
 ## Related skills
 
 ```bash
 npx skills add inference-sh/skills@web-search
-npx skills add inference-sh/skills@competitor-teardown
 npx skills add inference-sh/skills@llm-models
 ```
 
 ## License
 
 Same as the parent [inference-sh/skills](https://github.com/inference-sh/skills) repository (MIT).
-
-## Authoring note
-
-Contributions should keep `SKILL.md` self-contained and update this README when behavior or prerequisites change.

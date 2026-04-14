@@ -1,6 +1,6 @@
 ---
 name: prospect-360-b2b
-description: "Deep B2B prospect intelligence for sales meetings. Given any URL (Instagram, LinkedIn, website), performs comprehensive research and generates a complete sales-ready document. Output modes: Full (14 sections, 6 research rounds), Lite (Priority Brief + 5 core sections), or Urgent (4 sections, 3 rounds — auto-detected from deadline keywords). Captures seller name/company to auto-fill all message templates. Per-section confidence scoring (High/Medium/Low). Optional Superpowers plugin: use /superpowers:using-superpowers for gated or browser-heavy pages when WebSearch is insufficient. Sections: Priority Brief, company profile, digital presence audit, leadership & decision-makers, products & services, competitor analysis, business health, pain points, opportunity mapping with ROI estimate, contact intelligence, 4 ready-to-send messages (Email, Instagram DM, WhatsApp, LinkedIn), 20-min call script, action plan, executive summary. Supports Update mode (Section 14 — delta since last report). Parallel research via ctx_batch_execute when available. Triggers: client research, prospect research, sales meeting prep, market research, customer intelligence, analyze prospect, prepare meeting, contact research, customer analysis, prospect 360, superpowers, using-superpowers"
+description: "Deep B2B prospect intelligence for sales meetings. Given any URL (Instagram, LinkedIn, website), performs comprehensive research and generates a complete sales-ready document. Output modes: Full (14 sections, 6 research rounds), Lite (Priority Brief + 5 core sections), or Urgent (4 sections, 3 rounds — auto-detected from deadline keywords). Captures seller name/company to auto-fill all message templates. Per-section confidence scoring (High/Medium/Low). Sections: Priority Brief, company profile, digital presence audit, leadership & decision-makers, products & services, competitor analysis, business health, pain points, opportunity mapping with ROI estimate, contact intelligence, 4 ready-to-send messages (Email, Instagram DM, WhatsApp, LinkedIn), 20-min call script, action plan, executive summary. Supports Update mode (Section 14 — delta since last report). Parallel research via ctx_batch_execute when available. Triggers: client research, prospect research, sales meeting prep, market research, customer intelligence, analyze prospect, prepare meeting, contact research, customer analysis, prospect 360"
 ---
 
 # Prospect 360 — Deep Client Intelligence
@@ -27,16 +27,9 @@ npx skills add inference-sh/skills@web-search -g -y
 ### Tier 3 — Optional Superpowers
 ```bash
 # Deeper competitor intelligence (auto-invoked in Round 4 if installed)
-npx skills add inference-sh/skills@competitor-teardown -g -y
+npx skills add roi-ops/skills@competitor-teardown -g -y
 ```
 - [ ] **competitor-teardown** skill — if installed, Round 4 automatically invokes it for richer competitive analysis
-
-### Tier 3b — Superpowers (optional — browser automation)
-Install the **Superpowers** Claude Code plugin and **Superpowers Chrome** per the plugin vendor documentation (marketplace / official install steps). Authorize the browser extension when prompted.
-
-- Use **`/superpowers:using-superpowers`** when research needs **live browser control**: gated or login-walled pages, heavy client-rendered sites, multi-step flows, or screenshots/DOM evidence that raw WebSearch cannot retrieve.
-- **Do not** use Superpowers as a substitute for **WebSearch** on the open web — prefer WebSearch first for speed and citations.
-- **Never** embed or request secrets in this skill; authentication happens in the user-approved Chrome session only.
 
 ### Tier 4 — Native Claude (no install needed)
 - Extended thinking — available in claude-opus-4+ models for deeper inference
@@ -123,7 +116,7 @@ Check which tools and skills are currently available in this session. Do NOT ask
 - Check if `competitor-teardown` skill appears in the available skills list.
 - **If NOT installed:** Ask the user (in `{{LANGUAGE}}`):
   > "The `competitor-teardown` skill is not installed. It enables deeper competitor analysis (auto-runs in Round 4). Install it now?
-  > Run: `npx skills add inference-sh/skills@competitor-teardown -g -y`
+  > Run: `npx skills add roi-ops/skills@competitor-teardown -g -y`
   > Type YES to pause and install, or SKIP to continue without it."
 - Set `{{COMPETITOR_TEARDOWN}}` = `enabled` or `disabled` based on outcome.
 

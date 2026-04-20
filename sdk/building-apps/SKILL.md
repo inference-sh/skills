@@ -343,6 +343,26 @@ libgl1-mesa-glx
 | GPU | `docker.inference.sh/gpu:latest-cuda` |
 | CPU | `docker.inference.sh/cpu:latest` |
 
+## GPU Apps
+
+**Always use `accelerate` for device detection** — `torch.cuda.is_available()` doesn't reliably detect GPUs in grid containers:
+
+```python
+from accelerate import Accelerator
+
+accelerator = Accelerator()
+self.device = accelerator.device
+```
+
+**Always `.to(device)` explicitly** — don't rely on `device_map` kwargs, they silently fall back to CPU if the library doesn't support them:
+
+```python
+self.model = SomeModel.from_pretrained("org/model")
+self.model = self.model.to(device=self.device, dtype=torch.float16)
+```
+
+Remember to add `accelerate` to `requirements.txt`.
+
 ## Reference Files
 
 Load the appropriate reference file based on the language and topic:

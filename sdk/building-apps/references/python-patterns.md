@@ -108,20 +108,42 @@ async def setup(self, config):
     logging.info("Starting model load...")
 ```
 
-## Optimizing Performance
+## GPU Apps — Tips
 
 ### Device Detection
 
-**Never hardcode "cuda"** — use accelerate for automatic device detection:
+**Never use `torch.cuda.is_available()`** — it doesn't reliably detect GPUs in grid containers. Always use accelerate:
 
 ```python
 from accelerate import Accelerator
 
 class App(BaseApp):
     async def setup(self, config):
-        self.accelerator = Accelerator()
-        self.device = self.accelerator.device
+        accelerator = Accelerator()
+        self.device = accelerator.device
 ```
+
+### Moving Models to GPU
+
+**Never rely on `device_map` kwargs** — not all libraries support it, and it silently falls back to CPU. Always load then `.to()` explicitly:
+
+```python
+# WRONG — may silently stay on CPU
+self.model = SomeModel.from_pretrained("org/model", device_map=device)
+
+# RIGHT — guaranteed to move to device
+self.model = SomeModel.from_pretrained("org/model")
+self.model = self.model.to(device=self.device, dtype=torch.float16)
+```
+
+### Checklist for GPU Apps
+
+- `accelerate` in `requirements.txt`
+- `Accelerator().device` for device detection
+- Explicit `.to(device, dtype)` after model load
+- `inf.yml` has `resources.gpu.count: 1` and appropriate `vram`
+
+## Optimizing Performance
 
 ### Model Loading
 

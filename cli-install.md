@@ -1,7 +1,20 @@
 # Install CLI
 
 ```sh
-curl -fsSL https://cli.inference.sh | sh
+curl -fsSL cli.inference.sh | sh
+```
+
+Or via package managers:
+
+```sh
+brew install inference-sh/tap/belt       # macOS / Linux
+npx @inferencesh/belt                    # run without installing
+scoop bucket add inference https://github.com/inference-sh/scoop-bucket && scoop install belt  # Windows
+```
+
+Then authenticate:
+
+```sh
 belt login
 ```
 

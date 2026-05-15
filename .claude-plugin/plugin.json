@@ -100,6 +100,7 @@
     "./tools/image/p-image/SKILL.md",
     "./tools/llm/ai-rag-pipeline/SKILL.md",
     "./tools/llm/llm-models/SKILL.md",
+    "./tools/llm/prospect-360-b2b/SKILL.md",
     "./tools/llm/web-search/SKILL.md",
     "./tools/social/twitter-automation/SKILL.md",
     "./tools/utilities/agent-browser/SKILL.md",

@@ -6,8 +6,29 @@ AI agent skills for 250+ models via [inference.sh](https://inference.sh) CLI. Ge
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+## This fork: Prospect 360 B2B and the full inference.sh catalog
+
+This repo (**[rafaelgrasa/skills](https://github.com/rafaelgrasa/skills)**) is a public fork of [`inference-sh/skills`](https://github.com/inference-sh/skills). It contains **the same skill catalog as upstream** plus the extra skill **[prospect-360-b2b](tools/llm/prospect-360-b2b/)** (deep B2B prospect research and sales meeting prep).
+
+Pick **one** of the install paths below:
+
+| Option | What you get | Command(s) |
+|--------|----------------|------------|
+| **A — Recommended** | **All inference.sh skills + Prospect 360** (everything in this fork) | `npx skills add rafaelgrasa/skills -g -y` |
+| **B — Minimal** | **Only Prospect 360** + its required web-search dependency | `npx skills add rafaelgrasa/skills@prospect-360-b2b -g -y`<br>`npx skills add inference-sh/skills@web-search -g -y` |
+| **C — Upstream only** | Official catalog **without** Prospect 360 (until it lands in `inference-sh/skills`) | `npx skills add inference-sh/skills -g -y` |
+
+- **Option A** clones this fork once and installs **every** bundled skill (same coverage as `inference-sh/skills`, plus **prospect-360-b2b**).
+- **Option B** is best if you only want Prospect 360; the second line installs **web-search** from the official repo (required by Prospect 360).
+- **Option C** is the standard upstream install; use **A** or **B** if you need Prospect 360 today.
+
+More detail: **[tools/llm/prospect-360-b2b/README.md](tools/llm/prospect-360-b2b/README.md)**.
+
+---
+
 ## Contents
 
+- [This fork: Prospect 360 B2B and the full inference.sh catalog](#this-fork-prospect-360-b2b-and-the-full-inferencesh-catalog)
 - [Install as Claude Code Plugin](#claude-code-plugin)
 - [Install as Skills](#install-as-skills)
 - [CLI Setup](#cli-setup)
@@ -37,19 +58,42 @@ After install, skills are available as `/inference-sh:flux-image`, `/inference-s
 
 ## Install as Skills
 
-### All Skills
+### All skills
+
+**From this fork (inference.sh catalog + Prospect 360):**
 
 ```bash
-npx skills add inference-sh/skills
+npx skills add rafaelgrasa/skills -g -y
 ```
 
-### Specific Skills
+**From upstream only (no Prospect 360 until merged):**
+
+```bash
+npx skills add inference-sh/skills -g -y
+```
+
+### Specific skills
+
+**Prospect 360 only** (use this fork’s skill id until it exists on `inference-sh/skills`):
+
+```bash
+npx skills add rafaelgrasa/skills@prospect-360-b2b -g -y
+npx skills add inference-sh/skills@web-search -g -y
+```
+
+**Other examples** (official repo):
 
 ```bash
 npx skills add inference-sh/skills@flux-image
 npx skills add inference-sh/skills@google-veo
 npx skills add inference-sh/skills@llm-models
 npx skills add inference-sh/skills@web-search
+```
+
+After **prospect-360-b2b** is merged into `inference-sh/skills`, you may also use:
+
+```bash
+npx skills add inference-sh/skills@prospect-360-b2b -g -y
 ```
 
 ### Manual
@@ -81,6 +125,7 @@ Browse apps: `belt app list`
 | [ai-image-generation](tools/image/) | 50+ image models (FLUX, Gemini, Reve, etc.) |
 | [ai-video-generation](tools/video/) | 40+ video models (Veo, Seedance, Wan, etc.) |
 | [llm-models](tools/llm/) | Claude, Gemini, Kimi, GLM |
+| [prospect-360-b2b](tools/llm/prospect-360-b2b/) | B2B prospect research & sales meeting prep |
 | [web-search](tools/llm/) | Tavily, Exa search |
 | [twitter-automation](tools/social/) | X/Twitter API |
 

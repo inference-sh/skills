@@ -123,10 +123,10 @@ belt app run elevenlabs/stt --input '{
   "diarize": true
 }' > transcript.json
 
-# 2. Use transcript for captions
+# 2. Build caption segments (start, end, text) from the word timestamps in step 1
 belt app run infsh/caption-videos --input '{
-  "video_url": "https://video.mp4",
-  "captions": "<transcript-from-step-1>"
+  "video_file": "https://video.mp4",
+  "segments": [{"start": 0.0, "end": 2.5, "text": "<text-from-step-1>"}]
 }'
 ```
 

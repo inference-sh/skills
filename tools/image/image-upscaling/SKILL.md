@@ -19,7 +19,7 @@ Upscale and enhance images via [inference.sh](https://inference.sh) CLI.
 ```bash
 belt login
 
-belt app run infsh/real-esrgan --input '{"image_url": "https://your-image.jpg"}'
+belt app run infsh/real-esrgan --input '{"input_file": "https://your-image.jpg"}'
 ```
 
 
@@ -34,7 +34,7 @@ belt app run infsh/real-esrgan --input '{"image_url": "https://your-image.jpg"}'
 ### Upscale Any Image
 
 ```bash
-belt app run falai/topaz-image-upscaler --input '{"image_url": "https://low-res-image.jpg"}'
+belt app run falai/topaz-image-upscaler --input '{"image": "https://low-res-image.jpg"}'
 ```
 
 ### Workflow: Generate and Upscale
@@ -44,7 +44,7 @@ belt app run falai/topaz-image-upscaler --input '{"image_url": "https://low-res-
 belt app run falai/flux-2-klein-lora --input '{"prompt": "landscape painting"}' > image.json
 
 # 2. Upscale the result
-belt app run falai/topaz-image-upscaler --input '{"image_url": "<url-from-step-1>"}'
+belt app run falai/topaz-image-upscaler --input '{"image": "<url-from-step-1>"}'
 ```
 
 ## Use Cases

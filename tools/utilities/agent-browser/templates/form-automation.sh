@@ -20,14 +20,14 @@ echo "Form automation: $FORM_URL"
 # Cleanup handler
 cleanup() {
   if [ -n "${SESSION_ID:-}" ]; then
-    infsh app run agent-browser --function close --session $SESSION_ID --input '{}' 2>/dev/null || true
+    belt app run agent-browser --function close --session $SESSION_ID --input '{}' 2>/dev/null || true
   fi
 }
 trap cleanup EXIT
 
 # Step 1: Navigate to form
 echo "Opening form..."
-RESULT=$(infsh app run agent-browser --function open --session new --input '{
+RESULT=$(belt app run agent-browser --function open --session new --input '{
   "url": "'"$FORM_URL"'"
 }')
 SESSION_ID=$(echo $RESULT | jq -r '.session_id')
@@ -61,45 +61,45 @@ exit 0
 # echo "Filling form..."
 #
 # # Text input
-# infsh app run agent-browser --function interact --session $SESSION_ID --input '{
+# belt app run agent-browser --function interact --session $SESSION_ID --input '{
 #   "action": "fill", "ref": "@e1", "text": "'"${FORM_NAME:-John Doe}"'"
 # }'
 #
 # # Email input
-# infsh app run agent-browser --function interact --session $SESSION_ID --input '{
+# belt app run agent-browser --function interact --session $SESSION_ID --input '{
 #   "action": "fill", "ref": "@e2", "text": "'"${FORM_EMAIL:-john@example.com}"'"
 # }'
 #
 # # Dropdown/select
-# infsh app run agent-browser --function interact --session $SESSION_ID --input '{
+# belt app run agent-browser --function interact --session $SESSION_ID --input '{
 #   "action": "select", "ref": "@e3", "text": "Option 1"
 # }'
 #
 # # Checkbox
-# infsh app run agent-browser --function interact --session $SESSION_ID --input '{
+# belt app run agent-browser --function interact --session $SESSION_ID --input '{
 #   "action": "check", "ref": "@e4"
 # }'
 #
 # # Textarea
-# infsh app run agent-browser --function interact --session $SESSION_ID --input '{
+# belt app run agent-browser --function interact --session $SESSION_ID --input '{
 #   "action": "fill", "ref": "@e5", "text": "'"${FORM_MESSAGE:-Hello, this is a test message.}"'"
 # }'
 #
 # # Submit button
 # echo "Submitting form..."
-# infsh app run agent-browser --function interact --session $SESSION_ID --input '{
+# belt app run agent-browser --function interact --session $SESSION_ID --input '{
 #   "action": "click", "ref": "@e6"
 # }'
 #
 # # Wait for submission
-# infsh app run agent-browser --function interact --session $SESSION_ID --input '{
+# belt app run agent-browser --function interact --session $SESSION_ID --input '{
 #   "action": "wait", "wait_ms": 2000
 # }'
 #
 # # Step 3: Verify result
 # echo ""
 # echo "Verifying submission..."
-# RESULT=$(infsh app run agent-browser --function snapshot --session $SESSION_ID --input '{}')
+# RESULT=$(belt app run agent-browser --function snapshot --session $SESSION_ID --input '{}')
 #
 # URL=$(echo $RESULT | jq -r '.url')
 # TITLE=$(echo $RESULT | jq -r '.title')
@@ -118,7 +118,7 @@ exit 0
 # fi
 #
 # # Optional: Capture evidence
-# infsh app run agent-browser --function screenshot --session $SESSION_ID --input '{
+# belt app run agent-browser --function screenshot --session $SESSION_ID --input '{
 #   "full_page": true
 # }' > form-result-screenshot.json
 # echo "Screenshot saved to form-result-screenshot.json"

@@ -19,6 +19,9 @@ curl -fsSL https://cli.inference.sh | sh
 belt login
 ```
 
+Agents / non-interactive shells: `belt login --key <api-key>`, or set `INFSH_API_KEY` (read on every command, no login needed).
+Without a TTY, `belt login` prints a URL; the browser then shows a claim code. Run `belt login --code <code>` on the same machine within 5 minutes.
+
 > **What does the installer do?** The [install script](https://cli.inference.sh) detects your OS and architecture, downloads the correct binary from `dist.inference.sh`, verifies its SHA-256 checksum, and places it in your PATH. That's it — no elevated permissions, no background processes, no telemetry. If you have [cosign](https://docs.sigstore.dev/cosign/system_config/installation/) installed, the installer also verifies the Sigstore signature automatically.
 >
 > **Manual install** (if you prefer not to pipe to sh):
@@ -92,7 +95,7 @@ belt app run x/post-create --input '{"text": "Check this out!", "media": "./scre
 | Category | Examples |
 |----------|----------|
 | **Image** | FLUX, Gemini 3 Pro, Grok Imagine, Seedream 4.5, Reve, Topaz Upscaler |
-| **Video** | Veo 3.1, Seedance 2.0, Wan 2.5, OmniHuman, Fabric, HunyuanVideo Foley |
+| **Video** | Veo 3.1, Seedance 2.0, Wan 2.5, OmniHuman, Fabric, MMAudio |
 | **LLMs** | Claude Opus/Sonnet/Haiku, Gemini 3 Pro, Kimi K2, GLM-4, any OpenRouter model |
 | **Search** | Tavily Search, Tavily Extract, Exa Search, Exa Answer, Exa Extract |
 | **3D** | Rodin 3D Generator |

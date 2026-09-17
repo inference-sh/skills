@@ -27,7 +27,7 @@ echo "Authentication workflow: $LOGIN_URL"
 cleanup() {
   if [ -n "${SESSION_ID:-}" ]; then
     echo "Closing session..."
-    infsh app run agent-browser --function close --session $SESSION_ID --input '{}' 2>/dev/null || true
+    belt app run agent-browser --function close --session $SESSION_ID --input '{}' 2>/dev/null || true
   fi
 }
 trap cleanup EXIT
@@ -37,7 +37,7 @@ trap cleanup EXIT
 # Delete this section after setup
 # ================================================================
 echo "Opening login page..."
-RESULT=$(infsh app run agent-browser --function open --session new --input '{
+RESULT=$(belt app run agent-browser --function open --session new --input '{
   "url": "'"$LOGIN_URL"'"
 }')
 SESSION_ID=$(echo $RESULT | jq -r '.session_id')
@@ -67,7 +67,7 @@ exit 0
 # : "${APP_PASSWORD:?Set APP_PASSWORD environment variable}"
 #
 # echo "Opening login page..."
-# RESULT=$(infsh app run agent-browser --function open --session new --input '{
+# RESULT=$(belt app run agent-browser --function open --session new --input '{
 #   "url": "'"$LOGIN_URL"'",
 #   "record_video": false
 # }')
@@ -75,32 +75,32 @@ exit 0
 #
 # echo "Filling credentials..."
 # # Update @e1, @e2, @e3 to match your form
-# infsh app run agent-browser --function interact --session $SESSION_ID --input '{
+# belt app run agent-browser --function interact --session $SESSION_ID --input '{
 #   "action": "fill", "ref": "@e1", "text": "'"$APP_USERNAME"'"
 # }'
 #
-# infsh app run agent-browser --function interact --session $SESSION_ID --input '{
+# belt app run agent-browser --function interact --session $SESSION_ID --input '{
 #   "action": "fill", "ref": "@e2", "text": "'"$APP_PASSWORD"'"
 # }'
 #
 # echo "Submitting..."
-# infsh app run agent-browser --function interact --session $SESSION_ID --input '{
+# belt app run agent-browser --function interact --session $SESSION_ID --input '{
 #   "action": "click", "ref": "@e3"
 # }'
 #
 # # Wait for redirect
-# infsh app run agent-browser --function interact --session $SESSION_ID --input '{
+# belt app run agent-browser --function interact --session $SESSION_ID --input '{
 #   "action": "wait", "wait_ms": 3000
 # }'
 #
 # # Verify login succeeded
-# RESULT=$(infsh app run agent-browser --function snapshot --session $SESSION_ID --input '{}')
+# RESULT=$(belt app run agent-browser --function snapshot --session $SESSION_ID --input '{}')
 # URL=$(echo $RESULT | jq -r '.url')
 #
 # if [[ "$URL" == *"/login"* ]] || [[ "$URL" == *"/signin"* ]]; then
 #   echo "ERROR: Login failed - still on login page"
 #   echo "URL: $URL"
-#   infsh app run agent-browser --function screenshot --session $SESSION_ID --input '{}' > login-failed.json
+#   belt app run agent-browser --function screenshot --session $SESSION_ID --input '{}' > login-failed.json
 #   exit 1
 # fi
 #
@@ -114,23 +114,23 @@ exit 0
 # echo "Performing authenticated actions..."
 #
 # # Example: Navigate to dashboard
-# # infsh app run agent-browser --function interact --session $SESSION_ID --input '{
+# # belt app run agent-browser --function interact --session $SESSION_ID --input '{
 # #   "action": "goto", "url": "https://app.example.com/dashboard"
 # # }'
 #
 # # Example: Click a menu item
-# # infsh app run agent-browser --function interact --session $SESSION_ID --input '{
+# # belt app run agent-browser --function interact --session $SESSION_ID --input '{
 # #   "action": "click", "ref": "@e5"
 # # }'
 #
 # # Example: Extract data
-# # RESULT=$(infsh app run agent-browser --function execute --session $SESSION_ID --input '{
+# # RESULT=$(belt app run agent-browser --function execute --session $SESSION_ID --input '{
 # #   "code": "document.querySelector(\".user-data\").textContent"
 # # }')
 # # echo "Data: $(echo $RESULT | jq -r '.result')"
 #
 # # Example: Take screenshot of authenticated page
-# # infsh app run agent-browser --function screenshot --session $SESSION_ID --input '{
+# # belt app run agent-browser --function screenshot --session $SESSION_ID --input '{
 # #   "full_page": true
 # # }' > authenticated-page.json
 #

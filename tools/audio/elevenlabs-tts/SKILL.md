@@ -162,8 +162,8 @@ belt app run elevenlabs/tts --input '{
 
 # 2. Create talking head video
 belt app run bytedance/omnihuman-1-5 --input '{
-  "image_url": "https://portrait.jpg",
-  "audio_url": "<audio-url-from-step-1>"
+  "image": "https://portrait.jpg",
+  "audio": "<audio-url-from-step-1>"
 }'
 ```
 

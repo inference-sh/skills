@@ -54,7 +54,7 @@ belt app sample x/post-create --save input.json
 # Edit input.json:
 # {
 #   "text": "Check out this AI-generated image!",
-#   "media_url": "https://your-image-url.jpg"
+#   "media": ["https://your-image-url.jpg"]
 # }
 
 belt app run x/post-create --input input.json
@@ -114,7 +114,7 @@ belt app run falai/flux-dev-lora --input '{"prompt": "sunset over mountains"}' >
 # 2. Post to Twitter with the image URL
 belt app run x/post-create --input '{
   "text": "AI-generated art of a sunset 🌅",
-  "media_url": "<image-url-from-step-1>"
+  "media": ["<image-url-from-step-1>"]
 }'
 ```
 
@@ -127,7 +127,7 @@ belt app run google/veo-3-1-fast --input '{"prompt": "waves on a beach"}' > vide
 # 2. Post to Twitter
 belt app run x/post-create --input '{
   "text": "AI-generated video 🎬",
-  "media_url": "<video-url-from-step-1>"
+  "media": ["<video-url-from-step-1>"]
 }'
 ```
 

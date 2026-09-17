@@ -74,7 +74,7 @@ belt app run google/veo-3-1-fast --input '{"prompt": "drone shot flying over a f
 
 | Tool | App ID | Description |
 |------|--------|-------------|
-| HunyuanVideo Foley | `infsh/hunyuanvideo-foley` | Add sound effects to video |
+| MMAudio | `infsh/mmaudio` | Add sound effects to video |
 | Topaz Upscaler | `falai/topaz-video-upscaler` | Upscale video quality |
 | Media Merger | `infsh/media-merger` | Merge videos with transitions |
 
@@ -106,8 +106,9 @@ belt app run xai/grok-imagine-video --input '{
 ### Image-to-Video with Wan 2.5
 
 ```bash
-belt app run falai/wan-2-5 --input '{
-  "image_url": "https://your-image.jpg"
+belt app run falai/wan-2-5-i2v --input '{
+  "image": "https://your-image.jpg",
+  "prompt": "slow camera push-in"
 }'
 ```
 
@@ -115,8 +116,8 @@ belt app run falai/wan-2-5 --input '{
 
 ```bash
 belt app run bytedance/omnihuman-1-5 --input '{
-  "image_url": "https://portrait.jpg",
-  "audio_url": "https://speech.mp3"
+  "image": "https://portrait.jpg",
+  "audio": "https://speech.mp3"
 }'
 ```
 
@@ -124,8 +125,8 @@ belt app run bytedance/omnihuman-1-5 --input '{
 
 ```bash
 belt app run falai/fabric-1-0 --input '{
-  "image_url": "https://face.jpg",
-  "audio_url": "https://audio.mp3"
+  "image": "https://face.jpg",
+  "audio": "https://audio.mp3"
 }'
 ```
 
@@ -182,22 +183,24 @@ belt app run alibaba/happyhorse-1-0-video-edit --input '{
 
 ```bash
 belt app run falai/pixverse-lipsync --input '{
-  "image_url": "https://portrait.jpg",
-  "audio_url": "https://speech.mp3"
+  "video": "https://talking-head.mp4",
+  "audio": "https://speech.mp3"
 }'
 ```
+
+Takes a video, not a still image. Omit `audio` and pass `text` (plus optional `voice_id`) to use the built-in TTS.
 
 ### Video Upscaling
 
 ```bash
-belt app run falai/topaz-video-upscaler --input '{"video_url": "https://..."}'
+belt app run falai/topaz-video-upscaler --input '{"video": "https://..."}'
 ```
 
 ### Add Sound Effects (Foley)
 
 ```bash
-belt app run infsh/hunyuanvideo-foley --input '{
-  "video_url": "https://silent-video.mp4",
+belt app run infsh/mmaudio --input '{
+  "video_input": "https://silent-video.mp4",
   "prompt": "footsteps on gravel, birds chirping"
 }'
 ```
@@ -206,8 +209,10 @@ belt app run infsh/hunyuanvideo-foley --input '{
 
 ```bash
 belt app run infsh/media-merger --input '{
-  "videos": ["https://clip1.mp4", "https://clip2.mp4"],
-  "transition": "fade"
+  "media_files": [
+    {"file": "https://clip1.mp4", "transition_type": "crossfade"},
+    {"file": "https://clip2.mp4"}
+  ]
 }'
 ```
 

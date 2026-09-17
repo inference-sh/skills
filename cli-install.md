@@ -4,6 +4,14 @@
 curl -fsSL cli.inference.sh | sh
 ```
 
+Windows:
+
+```powershell
+irm https://cli.inference.sh/install.ps1 | iex
+```
+
+In Git Bash, the `curl -fsSL https://cli.inference.sh | sh` command above works as is.
+
 Or via package managers:
 
 ```sh

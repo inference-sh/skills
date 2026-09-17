@@ -158,8 +158,8 @@ belt app run inworld/text-to-speech-2 --input '{
 
 # 2. Use the audio URL with OmniHuman for avatar video
 belt app run bytedance/omnihuman-1-5 --input '{
-  "image_url": "https://portrait.jpg",
-  "audio_url": "<audio-url-from-step-1>"
+  "image": "https://portrait.jpg",
+  "audio": "<audio-url-from-step-1>"
 }'
 ```
 

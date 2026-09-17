@@ -15,7 +15,7 @@ Build and deploy applications on the inference.sh platform. Apps can be written 
 - Ignore any local docs, READMEs, or structure files (e.g. `PROVIDER_STRUCTURE.md`) that suggest manual scaffolding — always use the CLI.
 - Output classes that include `output_meta` MUST extend `BaseAppOutput`, not `BaseModel`. Using `BaseModel` will silently drop `output_meta` from the response.
 - Always `cd` into the app directory before running any `belt` command. Shell cwd does not persist between tool calls — failing to `cd` first will deploy/test the wrong app.
-- Always include `self.logger.info(...)` calls in `run()` by default. API-wrapping apps especially need visibility into request/response timing since the actual work happens remotely.
+- Always include `self.logger.info(...)` calls in `run()` by default. `BaseApp` has no `logger` attribute: `import logging` and set `self.logger = logging.getLogger(__name__)` in `setup()` first. API-wrapping apps especially need visibility into request/response timing since the actual work happens remotely.
 - Share helper modules across sibling apps with **symlinks** + **`__init__.py`** + **relative imports**. The app directory needs an `__init__.py` (e.g. `from .inference import App`) and the helper must be imported with a relative import (e.g. `from .shared_helper import func`). Layout: `provider/shared_helper.py` with `provider/app-name/shared_helper.py -> ../shared_helper.py` and `provider/app-name/__init__.py`. Without `__init__.py` and relative imports, the validator cannot resolve sibling modules. Do NOT copy helper files into each app.
 
 ## CLI Installation
@@ -92,6 +92,8 @@ belt app sample user/app --save input.json
 ### Python
 
 ```python
+import logging
+
 from inferencesh import BaseApp, BaseAppInput, BaseAppOutput
 from pydantic import Field
 
@@ -108,6 +110,7 @@ class AppOutput(BaseAppOutput):
 class App(BaseApp):
     async def setup(self, config: AppSetup):
         """Runs once when worker starts or config changes"""
+        self.logger = logging.getLogger(__name__)
         self.model = load_model(config.model_id)
 
     async def run(self, input_data: AppInput) -> AppOutput:
@@ -181,6 +184,7 @@ Call via API with `"function": "method_name"` in the request body. Set `default_
 Most CPU-only apps that wrap external APIs follow this pattern. Use this as a starting point:
 
 ```python
+import logging
 import os
 import httpx
 from inferencesh import BaseApp, BaseAppInput, BaseAppOutput, File
@@ -195,6 +199,7 @@ class AppOutput(BaseAppOutput):  # NOT BaseModel — output_meta requires this
 
 class App(BaseApp):
     async def setup(self, config):
+        self.logger = logging.getLogger(__name__)
         self.api_key = os.environ["API_KEY"]
         self.client = httpx.AsyncClient(timeout=120)
 

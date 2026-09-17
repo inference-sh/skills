@@ -183,7 +183,7 @@ belt app run bytedance/seededit-3-0-i2i --input '{
 # 3. Upscale for print quality
 belt app run falai/topaz-image-upscaler --input '{
   "image": "path/to/final-cover.png",
-  "scale": 4
+  "upscale_factor": 4
 }'
 ```
 

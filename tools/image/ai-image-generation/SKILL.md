@@ -123,7 +123,7 @@ belt app run bytedance/seedream-4-5 --input '{
 ### Image Upscaling
 
 ```bash
-belt app run falai/topaz-image-upscaler --input '{"image_url": "https://..."}'
+belt app run falai/topaz-image-upscaler --input '{"image": "https://..."}'
 ```
 
 ### Stitch Multiple Images

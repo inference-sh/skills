@@ -70,7 +70,7 @@ belt app run pruna/p-image --input '{
 | OmniHuman 1.5 | `bytedance/omnihuman-1-5` | No | Multi-character, gestures |
 | OmniHuman 1.0 | `bytedance/omnihuman-1-0` | No | Single character |
 | Fabric 1.0 | `falai/fabric-1-0` | Yes | Image talks with lipsync |
-| PixVerse Lipsync | `falai/pixverse-lipsync` | No | Realistic lipsync |
+| PixVerse Lipsync | `falai/pixverse-lipsync` | Yes | Lipsync an existing video |
 
 ### Cost & Speed Comparison
 
@@ -122,8 +122,8 @@ belt app run pruna/p-video-avatar --input '{
 
 # OmniHuman with custom audio
 belt app run bytedance/omnihuman-1-5 --input '{
-  "image_url": "https://portrait.jpg",
-  "audio_url": "https://speech.mp3"
+  "image": "https://portrait.jpg",
+  "audio": "https://speech.mp3"
 }'
 ```
 
@@ -154,8 +154,8 @@ belt app run falai/dia-tts --input '{
 
 # 2. Create talking head
 belt app run bytedance/omnihuman-1-5 --input '{
-  "image_url": "https://portrait.jpg",
-  "audio_url": "<audio-url-from-step-1>"
+  "image": "https://portrait.jpg",
+  "audio": "<audio-url-from-step-1>"
 }'
 ```
 
@@ -171,8 +171,8 @@ belt app run falai/dia-tts --input '{
 
 # 2. Create video with two characters
 belt app run bytedance/omnihuman-1-5 --input '{
-  "image_url": "https://two-person-portrait.png",
-  "audio_url": "<audio-url>"
+  "image": "https://two-person-portrait.png",
+  "audio": "<audio-url>"
 }'
 ```
 
@@ -218,7 +218,7 @@ belt app run pruna/p-video-avatar --input '{
 
 ```bash
 # 1. Transcribe original video
-belt app run infsh/fast-whisper-large-v3 --input '{"audio_url": "https://video.mp4"}'
+belt app run infsh/fast-whisper-large-v3 --input '{"audio": "https://video.mp4"}'
 
 # 2. Translate text (manually or with LLM)
 
@@ -227,8 +227,8 @@ belt app run infsh/kokoro-tts --input '{"text": "<translated-text>"}'
 
 # 4. Lipsync original video with new audio
 belt app run infsh/latentsync-1-6 --input '{
-  "video_url": "https://original-video.mp4",
-  "audio_url": "<new-audio-url>"
+  "video_path": "https://original-video.mp4",
+  "audio_path": "<new-audio-url>"
 }'
 ```
 

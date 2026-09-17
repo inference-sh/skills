@@ -54,7 +54,7 @@ belt app run falai/flux-2-klein-lora --input '{"prompt": "abstract art, colorful
 ```bash
 belt app sample falai/flux-dev-lora --save input.json
 
-# Edit to add lora_url for custom style
+# Edit to add "loras": [{"path": "<lora-url>", "scale": 1.0}] for custom style
 belt app run falai/flux-dev-lora --input input.json
 ```
 
@@ -63,7 +63,7 @@ belt app run falai/flux-dev-lora --input input.json
 ```bash
 belt app run falai/flux-dev-lora --input '{
   "prompt": "transform to watercolor style",
-  "image_url": "https://your-image.jpg"
+  "image": "https://your-image.jpg"
 }'
 ```
 
@@ -74,7 +74,7 @@ belt app run falai/flux-dev-lora --input '{
 belt app run falai/reve --input '{"prompt": "change background to beach"}'
 
 # Upscaling
-belt app run falai/topaz-image-upscaler --input '{"image_url": "https://..."}'
+belt app run falai/topaz-image-upscaler --input '{"image": "https://..."}'
 ```
 
 ## Related Skills

@@ -36,7 +36,7 @@ belt app run pruna/p-video-avatar --input '{
 | **P-Video-Avatar** | `pruna/p-video-avatar` | **Best overall: speed, cost, quality, control** | **Yes (30 voices, 10 languages)** |
 | OmniHuman 1.5 | `bytedance/omnihuman-1-5` | Multi-character, audio-driven | No |
 | Fabric 1.0 | `falai/fabric-1-0` | Image talks with lipsync | Yes |
-| PixVerse Lipsync | `falai/pixverse-lipsync` | Highly realistic lipsync | No |
+| PixVerse Lipsync | `falai/pixverse-lipsync` | Lipsync an existing video | Yes |
 
 ### Cost & Speed Comparison
 
@@ -107,8 +107,8 @@ belt app run pruna/p-video-avatar --input '{
 
 ```bash
 belt app run bytedance/omnihuman-1-5 --input '{
-  "image_url": "https://portrait.jpg",
-  "audio_url": "https://speech.mp3"
+  "image": "https://portrait.jpg",
+  "audio": "https://speech.mp3"
 }'
 ```
 
@@ -118,8 +118,8 @@ Supports specifying which character to drive in multi-person images.
 
 ```bash
 belt app run falai/fabric-1-0 --input '{
-  "image_url": "https://face.jpg",
-  "audio_url": "https://audio.mp3"
+  "image": "https://face.jpg",
+  "audio": "https://audio.mp3"
 }'
 ```
 
@@ -127,14 +127,16 @@ belt app run falai/fabric-1-0 --input '{
 
 ```bash
 belt app run falai/pixverse-lipsync --input '{
-  "image_url": "https://portrait.jpg",
-  "audio_url": "https://speech.mp3"
+  "video": "https://talking-head.mp4",
+  "audio": "https://speech.mp3"
 }'
 ```
 
+Takes a video, not a still image. Omit `audio` and pass `text` (plus optional `voice_id`) to use the built-in TTS.
+
 ## Full Workflow: TTS + Avatar (Non-TTS Models)
 
-For models without built-in TTS (OmniHuman, PixVerse), generate speech first:
+For models without built-in TTS (OmniHuman), generate speech first:
 
 ```bash
 # 1. Generate speech — Inworld TTS-2 for expressive character voices
@@ -146,8 +148,8 @@ belt app run inworld/text-to-speech-2 --input '{
 
 # 2. Create avatar video with the speech
 belt app run bytedance/omnihuman-1-5 --input '{
-  "image_url": "https://presenter-photo.jpg",
-  "audio_url": "<audio-url-from-step-1>"
+  "image": "https://presenter-photo.jpg",
+  "audio": "<audio-url-from-step-1>"
 }'
 ```
 
@@ -157,7 +159,7 @@ belt app run bytedance/omnihuman-1-5 --input '{
 
 ```bash
 # 1. Transcribe original video
-belt app run infsh/fast-whisper-large-v3 --input '{"audio_url": "https://video.mp4"}' > transcript.json
+belt app run infsh/fast-whisper-large-v3 --input '{"audio": "https://video.mp4"}' > transcript.json
 
 # 2. Translate text (manually or with an LLM)
 
@@ -166,8 +168,8 @@ belt app run infsh/kokoro-tts --input '{"text": "<translated-text>"}' > new_spee
 
 # 4. Lipsync the original video with new audio
 belt app run infsh/latentsync-1-6 --input '{
-  "video_url": "https://original-video.mp4",
-  "audio_url": "<new-audio-url>"
+  "video_path": "https://original-video.mp4",
+  "audio_path": "<new-audio-url>"
 }'
 ```
 

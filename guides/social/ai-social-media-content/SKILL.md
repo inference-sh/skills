@@ -99,8 +99,8 @@ belt app run infsh/kokoro-tts --input '{
 
 # 3. Create AI avatar
 belt app run bytedance/omnihuman-1-5 --input '{
-  "image_url": "https://your-avatar.jpg",
-  "audio_url": "<voice-url>"
+  "image": "https://your-avatar.jpg",
+  "audio": "<voice-url>"
 }'
 ```
 

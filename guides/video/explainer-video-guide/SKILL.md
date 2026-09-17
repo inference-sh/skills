@@ -182,8 +182,8 @@ belt app run infsh/media-merger --input '{
 
 # 4. Add voiceover to video
 belt app run infsh/video-audio-merger --input '{
-  "video": "merged-scenes.mp4",
-  "audio": "voiceover.mp3"
+  "video_file": "merged-scenes.mp4",
+  "audio_file": "voiceover.mp3"
 }'
 
 # 5. Add captions

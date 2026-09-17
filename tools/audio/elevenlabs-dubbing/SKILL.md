@@ -120,8 +120,8 @@ belt app run elevenlabs/stt --input '{
 
 # 4. Caption the dubbed video
 belt app run infsh/caption-videos --input '{
-  "video_url": "<dubbed-video-url>",
-  "captions": "<transcript>"
+  "video_file": "<dubbed-video-url>",
+  "segments": [{"start": 0.0, "end": 2.5, "text": "<text-from-transcript>"}]
 }'
 ```
 

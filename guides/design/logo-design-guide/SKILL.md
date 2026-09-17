@@ -153,7 +153,7 @@ belt app run bytedance/seedream-4-5 --input '{
 # Step 4: Upscale for production use
 belt app run falai/topaz-image-upscaler --input '{
   "image": "path/to/best-logo.png",
-  "scale": 4
+  "upscale_factor": 4
 }'
 ```
 

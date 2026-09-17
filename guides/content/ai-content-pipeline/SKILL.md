@@ -21,7 +21,7 @@ belt login
 
 # Simple pipeline: Generate image -> Animate to video
 belt app run falai/flux-dev --input '{"prompt": "portrait of a woman smiling"}' > image.json
-belt app run falai/wan-2-5 --input '{"image_url": "<url-from-previous>"}'
+belt app run falai/wan-2-5-i2v --input '{"image": "<url-from-previous>", "prompt": "slow camera push-in"}'
 ```
 
 
@@ -69,17 +69,17 @@ belt app run falai/flux-dev --input '{
 }' > background.json
 
 # 4. Animate image to video with Wan
-belt app run falai/wan-2-5 --input '{
-  "image_url": "<background-url>",
+belt app run falai/wan-2-5-i2v --input '{
+  "image": "<background-url>",
   "prompt": "slow camera pan across cityscape, subtle movement"
 }' > video.json
 
 # 5. Add captions (manually or with another tool)
 
 # 6. Merge video with audio
-belt app run infsh/media-merger --input '{
-  "video_url": "<video-url>",
-  "audio_url": "<voice-url>"
+belt app run infsh/video-audio-merger --input '{
+  "video_file": "<video-url>",
+  "audio_file": "<voice-url>"
 }'
 ```
 
@@ -106,8 +106,8 @@ belt app run falai/flux-dev --input '{
 
 # 4. Create talking head video
 belt app run bytedance/omnihuman-1-5 --input '{
-  "image_url": "<portrait-url>",
-  "audio_url": "<speech-url>"
+  "image": "<portrait-url>",
+  "audio": "<speech-url>"
 }' > talking_head.json
 ```
 
@@ -122,21 +122,20 @@ belt app run falai/flux-dev --input '{
 }' > product.json
 
 # 2. Animate product reveal
-belt app run falai/wan-2-5 --input '{
-  "image_url": "<product-url>",
+belt app run falai/wan-2-5-i2v --input '{
+  "image": "<product-url>",
   "prompt": "slow 360 rotation, smooth motion"
 }' > product_video.json
 
 # 3. Upscale video quality
 belt app run falai/topaz-video-upscaler --input '{
-  "video_url": "<product-video-url>"
+  "video": "<product-video-url>"
 }' > upscaled.json
 
 # 4. Add background music
-belt app run infsh/media-merger --input '{
-  "video_url": "<upscaled-url>",
-  "audio_url": "https://your-music.mp3",
-  "audio_volume": 0.3
+belt app run infsh/video-audio-merger --input '{
+  "video_file": "<upscaled-url>",
+  "audio_file": "https://your-music.mp3"
 }'
 ```
 
@@ -159,8 +158,9 @@ done
 
 # 3. Animate each image
 for i in 1 2 3 4 5; do
-  belt app run falai/wan-2-5 --input "{
-    \"image_url\": \"<image-$i-url>\"
+  belt app run falai/wan-2-5-i2v --input "{
+    \"image\": \"<image-$i-url>\",
+    \"prompt\": \"subtle camera motion\"
   }" > "video_$i.json"
 done
 
@@ -172,9 +172,18 @@ belt app run infsh/kokoro-tts --input '{
 
 # 5. Merge all clips
 belt app run infsh/media-merger --input '{
-  "videos": ["<video1>", "<video2>", "<video3>", "<video4>", "<video5>"],
-  "audio_url": "<narration-url>",
-  "transition": "crossfade"
+  "media_files": [
+    {"file": "<video1>", "transition_type": "crossfade"},
+    {"file": "<video2>", "transition_type": "crossfade"},
+    {"file": "<video3>", "transition_type": "crossfade"},
+    {"file": "<video4>", "transition_type": "crossfade"},
+    {"file": "<video5>", "transition_type": "crossfade"}
+  ]
+}' > merged.json
+
+belt app run infsh/video-audio-merger --input '{
+  "video_file": "<merged-url>",
+  "audio_file": "<narration-url>"
 }'
 ```
 
@@ -200,7 +209,7 @@ belt app run infsh/media-merger --input '{
 
 | Step | App | Purpose |
 |------|-----|---------|
-| I2V | `falai/wan-2-5` | Animate images |
+| I2V | `falai/wan-2-5-i2v` | Animate images |
 | T2V | `google/veo-3-1-fast` | Generate from text |
 | Avatar | `bytedance/omnihuman-1-5` | Talking heads |
 
@@ -210,7 +219,7 @@ belt app run infsh/media-merger --input '{
 |------|-----|---------|
 | TTS | `infsh/kokoro-tts` | Voice narration |
 | Music | `infsh/ai-music` | Background music |
-| Foley | `infsh/hunyuanvideo-foley` | Sound effects |
+| Foley | `infsh/mmaudio` | Sound effects |
 
 ### Post-Production
 

@@ -192,15 +192,15 @@ belt app run falai/topaz-video-upscaler --input '{
 }'
 
 # 4. Add ambient audio
-belt app run infsh/hunyuanvideo-foley --input '{
-  "video": "animated-landscape.mp4",
+belt app run infsh/mmaudio --input '{
+  "video_input": "animated-landscape.mp4",
   "prompt": "gentle nature ambience, distant birds, soft wind, water lapping"
 }'
 
 # 5. Merge video with audio
 belt app run infsh/video-audio-merger --input '{
-  "video": "upscaled-landscape.mp4",
-  "audio": "ambient-audio.mp3"
+  "video_file": "upscaled-landscape.mp4",
+  "audio_file": "ambient-audio.flac"
 }'
 ```
 

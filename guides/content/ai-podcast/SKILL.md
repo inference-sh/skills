@@ -34,7 +34,7 @@ Choose the right tool per character type:
 If you need a real human character with consistent identity across multiple angles and shots, train a Phota profile first:
 
 ```bash
-infsh app run phota/train --input '{
+belt app run phota/train --input '{
   "images": ["url1.jpg", "url2.jpg", ...],
   "wait": true
 }' --save profile.json
@@ -106,7 +106,7 @@ Fix issues before generating video — re-rendering video is the most expensive 
 Use `inworld/text-to-speech-2` for each turn.
 
 ```bash
-infsh app run inworld/text-to-speech-2 --input '{
+belt app run inworld/text-to-speech-2 --input '{
   "text": "...",
   "voice_id": "...",
   "speaking_rate": 1.05,
@@ -133,7 +133,7 @@ All TTS turns can run in parallel (cheap, fast ~2-8s each).
 Use `pruna/p-video-avatar` for each turn.
 
 ```bash
-infsh app run pruna/p-video-avatar --input '{
+belt app run pruna/p-video-avatar --input '{
   "image": "<character_frame_url>",
   "audio": "<tts_audio_url>",
   "resolution": "720p",
@@ -170,7 +170,7 @@ Use `infsh/media-merger` to stitch all clips into the final video.
   "output_format": "mp4"
 }
 
-infsh app run infsh/media-merger --input merger_input.json --save final.json
+belt app run infsh/media-merger --input merger_input.json --save final.json
 ```
 
 Merger is free and takes 2-6 minutes depending on total duration.

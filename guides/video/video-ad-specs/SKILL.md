@@ -137,8 +137,8 @@ belt app run falai/dia-tts --input '{
 
 # Merge video + audio
 belt app run infsh/video-audio-merger --input '{
-  "video": "solution-reveal.mp4",
-  "audio": "voiceover.mp3"
+  "video_file": "solution-reveal.mp4",
+  "audio_file": "voiceover.mp3"
 }'
 
 # Add captions (critical for silent autoplay)

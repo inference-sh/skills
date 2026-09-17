@@ -19,7 +19,7 @@ Transcribe audio to text via [inference.sh](https://inference.sh) CLI.
 ```bash
 belt login
 
-belt app run infsh/fast-whisper-large-v3 --input '{"audio_url": "https://audio.mp3"}'
+belt app run infsh/fast-whisper-large-v3 --input '{"audio": "https://audio.mp3"}'
 ```
 
 
@@ -36,7 +36,7 @@ belt app run infsh/fast-whisper-large-v3 --input '{"audio_url": "https://audio.m
 ### Basic Transcription
 
 ```bash
-belt app run infsh/fast-whisper-large-v3 --input '{"audio_url": "https://meeting.mp3"}'
+belt app run infsh/fast-whisper-large-v3 --input '{"audio": "https://meeting.mp3"}'
 ```
 
 ### With Timestamps
@@ -45,8 +45,8 @@ belt app run infsh/fast-whisper-large-v3 --input '{"audio_url": "https://meeting
 belt app sample infsh/fast-whisper-large-v3 --save input.json
 
 # {
-#   "audio_url": "https://podcast.mp3",
-#   "timestamps": true
+#   "audio": "https://podcast.mp3",
+#   "return_timestamps": "sentence"
 # }
 
 belt app run infsh/fast-whisper-large-v3 --input input.json
@@ -56,7 +56,7 @@ belt app run infsh/fast-whisper-large-v3 --input input.json
 
 ```bash
 belt app run infsh/whisper-v3-large --input '{
-  "audio_url": "https://french-audio.mp3",
+  "audio": "https://french-audio.mp3",
   "task": "translate"
 }'
 ```
@@ -65,10 +65,10 @@ belt app run infsh/whisper-v3-large --input '{
 
 ```bash
 # Extract audio from video first
-belt app run infsh/video-audio-extractor --input '{"video_url": "https://video.mp4"}' > audio.json
+belt app run infsh/video-audio-extractor --input '{"video_file": "https://video.mp4"}' > audio.json
 
 # Transcribe the extracted audio
-belt app run infsh/fast-whisper-large-v3 --input '{"audio_url": "<audio-url>"}'
+belt app run infsh/fast-whisper-large-v3 --input '{"audio": "<audio-url>"}'
 ```
 
 ## Workflow: Video Subtitles
@@ -76,14 +76,14 @@ belt app run infsh/fast-whisper-large-v3 --input '{"audio_url": "<audio-url>"}'
 ```bash
 # 1. Transcribe video audio
 belt app run infsh/fast-whisper-large-v3 --input '{
-  "audio_url": "https://video.mp4",
-  "timestamps": true
+  "audio": "https://video.mp4",
+  "return_timestamps": "sentence"
 }' > transcript.json
 
-# 2. Use transcript for captions
+# 2. Pass the transcript segments as captions
 belt app run infsh/caption-videos --input '{
-  "video_url": "https://video.mp4",
-  "captions": "<transcript-from-step-1>"
+  "video_file": "https://video.mp4",
+  "segments": [{"start": 0.0, "end": 2.5, "text": "<segments-from-step-1>"}]
 }'
 ```
 

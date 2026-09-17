@@ -212,8 +212,8 @@ belt app run falai/flux-dev --input '{
 
 # 2. Upscale for high resolution
 belt app run falai/topaz-image-upscaler --input '{
-  "image_url": "<product-url>",
-  "scale": 2
+  "image": "<product-url>",
+  "upscale_factor": 2
 }' > upscaled.json
 
 # 3. Remove background if needed

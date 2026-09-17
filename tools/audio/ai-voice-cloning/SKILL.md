@@ -216,9 +216,9 @@ belt app run infsh/kokoro-tts --input '{
 }' > voiceover.json
 
 # 2. Merge with video
-belt app run infsh/media-merger --input '{
-  "video_url": "https://your-video.mp4",
-  "audio_url": "<voiceover-url>"
+belt app run infsh/video-audio-merger --input '{
+  "video_file": "https://your-video.mp4",
+  "audio_file": "<voiceover-url>"
 }'
 ```
 
@@ -233,8 +233,8 @@ belt app run infsh/kokoro-tts --input '{
 
 # 2. Animate with avatar
 belt app run bytedance/omnihuman-1-5 --input '{
-  "image_url": "https://portrait.jpg",
-  "audio_url": "<speech-url>"
+  "image": "https://portrait.jpg",
+  "audio": "<speech-url>"
 }'
 ```
 

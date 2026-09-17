@@ -25,7 +25,7 @@ mkdir -p "$OUTPUT_DIR"
 cleanup() {
   if [ -n "${SESSION_ID:-}" ]; then
     echo "Closing session..."
-    CLOSE_RESULT=$(infsh app run agent-browser --function close --session $SESSION_ID --input '{}' 2>/dev/null || echo '{}')
+    CLOSE_RESULT=$(belt app run agent-browser --function close --session $SESSION_ID --input '{}' 2>/dev/null || echo '{}')
 
     # Save video if available
     VIDEO=$(echo $CLOSE_RESULT | jq -r '.video // empty')
@@ -51,7 +51,7 @@ SCROLL_PAGES=0      # Number of scroll actions for infinite scroll pages
 
 # Start session
 echo "Opening page..."
-RESULT=$(infsh app run agent-browser --function open --session new --input '{
+RESULT=$(belt app run agent-browser --function open --session new --input '{
   "url": "'"$TARGET_URL"'",
   "record_video": '$RECORD_VIDEO',
   "width": 1920,
@@ -73,28 +73,28 @@ echo "Elements saved to: $OUTPUT_DIR/page-elements.txt"
 if [ $SCROLL_PAGES -gt 0 ]; then
   echo "Scrolling through $SCROLL_PAGES pages..."
   for ((i=1; i<=SCROLL_PAGES; i++)); do
-    infsh app run agent-browser --function interact --session $SESSION_ID --input '{
+    belt app run agent-browser --function interact --session $SESSION_ID --input '{
       "action": "scroll", "direction": "down", "scroll_amount": 800
     }' > /dev/null
-    infsh app run agent-browser --function interact --session $SESSION_ID --input '{
+    belt app run agent-browser --function interact --session $SESSION_ID --input '{
       "action": "wait", "wait_ms": 1000
     }' > /dev/null
     echo "  Scrolled page $i/$SCROLL_PAGES"
   done
 
   # Re-snapshot after scrolling
-  RESULT=$(infsh app run agent-browser --function snapshot --session $SESSION_ID --input '{}')
+  RESULT=$(belt app run agent-browser --function snapshot --session $SESSION_ID --input '{}')
 fi
 
 # Take viewport screenshot
 echo "Taking viewport screenshot..."
-infsh app run agent-browser --function screenshot --session $SESSION_ID --input '{}' > "$OUTPUT_DIR/page-screenshot.json"
+belt app run agent-browser --function screenshot --session $SESSION_ID --input '{}' > "$OUTPUT_DIR/page-screenshot.json"
 echo "Screenshot saved to: $OUTPUT_DIR/page-screenshot.json"
 
 # Take full page screenshot (if configured)
 if [ "$FULL_PAGE" = true ]; then
   echo "Taking full page screenshot..."
-  infsh app run agent-browser --function screenshot --session $SESSION_ID --input '{
+  belt app run agent-browser --function screenshot --session $SESSION_ID --input '{
     "full_page": true
   }' > "$OUTPUT_DIR/page-full-screenshot.json"
   echo "Full screenshot saved to: $OUTPUT_DIR/page-full-screenshot.json"
@@ -102,7 +102,7 @@ fi
 
 # Extract all text content
 echo "Extracting text content..."
-RESULT=$(infsh app run agent-browser --function execute --session $SESSION_ID --input '{
+RESULT=$(belt app run agent-browser --function execute --session $SESSION_ID --input '{
   "code": "document.body.innerText"
 }')
 echo $RESULT | jq -r '.result' > "$OUTPUT_DIR/page-text.txt"
@@ -111,7 +111,7 @@ echo "Text saved to: $OUTPUT_DIR/page-text.txt"
 # Extract all links (if configured)
 if [ "$EXTRACT_LINKS" = true ]; then
   echo "Extracting links..."
-  RESULT=$(infsh app run agent-browser --function execute --session $SESSION_ID --input '{
+  RESULT=$(belt app run agent-browser --function execute --session $SESSION_ID --input '{
     "code": "Array.from(document.querySelectorAll(\"a[href]\")).map(a => a.href + \" | \" + (a.textContent || \"\").trim().slice(0,50)).join(\"\\n\")"
   }')
   echo $RESULT | jq -r '.result' > "$OUTPUT_DIR/page-links.txt"
@@ -123,19 +123,19 @@ fi
 # ================================================================
 
 # Example: Extract specific elements by selector
-# RESULT=$(infsh app run agent-browser --function execute --session $SESSION_ID --input '{
+# RESULT=$(belt app run agent-browser --function execute --session $SESSION_ID --input '{
 #   "code": "Array.from(document.querySelectorAll(\"h2\")).map(h => h.textContent).join(\"\\n\")"
 # }')
 # echo $RESULT | jq -r '.result' > "$OUTPUT_DIR/headings.txt"
 
 # Example: Extract JSON data from script tag
-# RESULT=$(infsh app run agent-browser --function execute --session $SESSION_ID --input '{
+# RESULT=$(belt app run agent-browser --function execute --session $SESSION_ID --input '{
 #   "code": "JSON.parse(document.querySelector(\"script[type=application/json]\").textContent)"
 # }')
 # echo $RESULT | jq '.result' > "$OUTPUT_DIR/json-data.json"
 
 # Example: Extract table data
-# RESULT=$(infsh app run agent-browser --function execute --session $SESSION_ID --input '{
+# RESULT=$(belt app run agent-browser --function execute --session $SESSION_ID --input '{
 #   "code": "Array.from(document.querySelectorAll(\"table tr\")).map(tr => Array.from(tr.cells).map(td => td.textContent.trim()).join(\",\")).join(\"\\n\")"
 # }')
 # echo $RESULT | jq -r '.result' > "$OUTPUT_DIR/table-data.csv"

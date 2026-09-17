@@ -122,9 +122,18 @@ belt app run infsh/kokoro-tts --input '{
 
 # 7. Merge all clips with voiceover
 belt app run infsh/media-merger --input '{
-  "videos": ["<hook>", "<problem>", "<solution>", "<benefits>", "<cta>"],
-  "audio_url": "<voiceover>",
-  "transition": "crossfade"
+  "media_files": [
+    {"file": "<hook>", "transition_type": "crossfade"},
+    {"file": "<problem>", "transition_type": "crossfade"},
+    {"file": "<solution>", "transition_type": "crossfade"},
+    {"file": "<benefits>", "transition_type": "crossfade"},
+    {"file": "<cta>", "transition_type": "crossfade"}
+  ]
+}' > merged.json
+
+belt app run infsh/video-audio-merger --input '{
+  "video_file": "<merged-url>",
+  "audio_file": "<voiceover>"
 }'
 ```
 
@@ -137,9 +146,9 @@ belt app run google/veo-3-1-fast --input '{
 }'
 
 # Add trendy music
-belt app run infsh/media-merger --input '{
-  "video_url": "<video>",
-  "audio_url": "https://trending-music.mp3"
+belt app run infsh/video-audio-merger --input '{
+  "video_file": "<video>",
+  "audio_file": "https://trending-music.mp3"
 }'
 ```
 
@@ -168,9 +177,16 @@ belt app run infsh/kokoro-tts --input '{
 
 # 4. Assemble final video
 belt app run infsh/media-merger --input '{
-  "videos": ["<hook>", "<problem>", "<solution>", ...],
-  "audio_url": "<voiceover>",
-  "transition": "fade"
+  "media_files": [
+    {"file": "<hook>", "transition_type": "crossfade"},
+    {"file": "<problem>", "transition_type": "crossfade"},
+    {"file": "<solution>", "transition_type": "crossfade"}
+  ]
+}' > merged.json
+
+belt app run infsh/video-audio-merger --input '{
+  "video_file": "<merged-url>",
+  "audio_file": "<voiceover>"
 }'
 ```
 
@@ -238,10 +254,9 @@ belt app run infsh/ai-music --input '{
   "prompt": "Upbeat commercial background music, modern, energetic, 30 seconds"
 }' > music.json
 
-belt app run infsh/media-merger --input '{
-  "video_url": "<ad-video>",
-  "audio_url": "<music>",
-  "audio_volume": 0.5
+belt app run infsh/video-audio-merger --input '{
+  "video_file": "<ad-video>",
+  "audio_file": "<music>"
 }'
 ```
 

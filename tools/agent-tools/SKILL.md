@@ -91,7 +91,7 @@ belt app run x/post-create --input '{"text": "Check this out!", "media": "./scre
 | Category | Examples |
 |----------|----------|
 | **Image** | FLUX, Gemini 3 Pro, Grok Imagine, Seedream 4.5, Reve, Topaz Upscaler |
-| **Video** | Veo 3.1, Seedance 1.5, Wan 2.5, OmniHuman, Fabric, HunyuanVideo Foley |
+| **Video** | Veo 3.1, Seedance 1.5, Wan 2.5, OmniHuman, Fabric, MMAudio |
 | **LLMs** | Claude Opus/Sonnet/Haiku, Gemini 3 Pro, Kimi K2, GLM-4, any OpenRouter model |
 | **Search** | Tavily Search, Tavily Extract, Exa Search, Exa Answer, Exa Extract |
 | **3D** | Rodin 3D Generator |

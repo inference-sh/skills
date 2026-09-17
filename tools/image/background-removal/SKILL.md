@@ -19,7 +19,7 @@ Remove backgrounds from images via [inference.sh](https://inference.sh) CLI.
 ```bash
 belt login
 
-belt app run infsh/birefnet --input '{"image_url": "https://your-photo.jpg"}'
+belt app run infsh/birefnet --input '{"image": "https://your-photo.jpg"}'
 ```
 
 
@@ -30,7 +30,7 @@ Use Reve for image editing including background changes:
 ```bash
 belt app run falai/reve --input '{
   "prompt": "remove the background, make it transparent",
-  "image_url": "https://portrait.jpg"
+  "image": "https://portrait.jpg"
 }'
 ```
 
@@ -39,7 +39,7 @@ Or change background directly:
 ```bash
 belt app run falai/reve --input '{
   "prompt": "change the background to a beach",
-  "image_url": "https://product-photo.jpg"
+  "image": "https://product-photo.jpg"
 }'
 ```
 
@@ -52,7 +52,7 @@ belt app run falai/flux-dev-lora --input '{"prompt": "a cute robot mascot"}' > r
 # 2. Edit with Reve
 belt app run falai/reve --input '{
   "prompt": "remove background, transparent",
-  "image_url": "<url-from-step-1>"
+  "image": "<url-from-step-1>"
 }'
 ```
 

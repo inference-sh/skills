@@ -14,6 +14,14 @@ belt login
 
 This opens a browser for authentication. After login, credentials are stored locally.
 
+### Non-interactive login
+
+```bash
+belt login --key <api-key>
+```
+
+Without a TTY, `belt login` prints a URL; the browser then shows a claim code. Run `belt login --code <code>` on the same machine within 5 minutes.
+
 ## Check Authentication
 
 ```bash
@@ -24,7 +32,7 @@ Shows your user info if authenticated.
 
 ## Environment Variable
 
-For CI/CD or scripts, set your API key:
+For CI/CD, scripts or agents, set your API key (read on every command, no login needed):
 
 ```bash
 export INFSH_API_KEY=your-api-key

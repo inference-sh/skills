@@ -149,9 +149,8 @@ Both speakers should be at consistent volume. If one is louder:
 ```bash
 # Merge with balanced audio
 belt app run infsh/video-audio-merger --input '{
-  "video": "talking-head.mp4",
-  "audio": "dialogue.mp3",
-  "audio_volume": 1.0
+  "video_file": "talking-head.mp4",
+  "audio_file": "dialogue.mp3"
 }'
 ```
 

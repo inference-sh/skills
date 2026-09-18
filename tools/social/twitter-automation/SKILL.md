@@ -1,6 +1,6 @@
 ---
 name: twitter-automation
-description: "Automate Twitter/X with posting, engagement, and user management via inference.sh CLI. Apps: x/post-tweet, x/post-create (with media), x/post-like, x/post-retweet, x/dm-send, x/user-follow. Capabilities: post tweets, schedule content, like posts, retweet, send DMs, follow users, get profiles. Use for: social media automation, content scheduling, engagement bots, audience growth, X API. Triggers: twitter api, x api, tweet automation, post to twitter, twitter bot, social media automation, x automation, tweet scheduler, twitter integration, post tweet, twitter post, x post, send tweet"
+description: "Automate Twitter/X with posting, engagement, and user management via inference.sh CLI. Apps: x/post-create (text and media), x/post-like, x/post-retweet, x/dm-send, x/user-follow. Capabilities: post tweets, schedule content, like posts, retweet, send DMs, follow users, get profiles. Use for: social media automation, content scheduling, engagement bots, audience growth, X API. Triggers: twitter api, x api, tweet automation, post to twitter, twitter bot, social media automation, x automation, tweet scheduler, twitter integration, post tweet, twitter post, x post, send tweet"
 allowed-tools: Bash(belt *)
 ---
 
@@ -20,7 +20,7 @@ Automate Twitter/X via [inference.sh](https://inference.sh) CLI.
 belt login
 
 # Post a tweet
-belt app run x/post-tweet --input '{"text": "Hello from inference.sh!"}'
+belt app run x/post-create --input '{"text": "Hello from inference.sh!"}'
 ```
 
 
@@ -28,8 +28,7 @@ belt app run x/post-tweet --input '{"text": "Hello from inference.sh!"}'
 
 | App | App ID | Description |
 |-----|--------|-------------|
-| Post Tweet | `x/post-tweet` | Post text tweets |
-| Create Post | `x/post-create` | Post with media |
+| Create Post | `x/post-create` | Post text, optionally with media |
 | Like Post | `x/post-like` | Like a tweet |
 | Retweet | `x/post-retweet` | Retweet a post |
 | Delete Post | `x/post-delete` | Delete a tweet |
@@ -43,7 +42,7 @@ belt app run x/post-tweet --input '{"text": "Hello from inference.sh!"}'
 ### Post a Tweet
 
 ```bash
-belt app run x/post-tweet --input '{"text": "Just shipped a new feature! 🚀"}'
+belt app run x/post-create --input '{"text": "Just shipped a new feature! 🚀"}'
 ```
 
 ### Post with Media

@@ -220,7 +220,7 @@ belt app run openrouter/claude-haiku-45 --input '{
 }' > "$OUTPUT_DIR/daily_tip.json"
 
 # Post to social (optional)
-# belt app run twitter/post-tweet --input "{...}"
+# belt app run x/post-create --input "{...}"
 
 echo "Daily content generated: $DATE"
 ```

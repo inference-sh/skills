@@ -1,6 +1,6 @@
 ---
 name: ai-podcast-creation
-description: "Create AI-powered podcasts with text-to-speech, music, and audio editing. Tools: Kokoro TTS, DIA TTS, Chatterbox, AI music generation, media merger. Capabilities: multi-voice conversations, background music, intro/outro, full episodes. Use for: podcast production, audiobooks, voice content, audio newsletters. Triggers: podcast, ai podcast, text to speech podcast, audio content, voice over, ai audiobook, multi voice, conversation ai, notebooklm alternative, audio generation, podcast automation, ai narrator, voice content, audio newsletter, podcast maker"
+description: "Create AI-powered podcasts with text-to-speech, music, and audio editing. Tools: Kokoro TTS, DIA TTS, Chatterbox, AI music generation, ffmpeg for audio assembly. Capabilities: multi-voice conversations, background music, intro/outro, full episodes. Use for: podcast production, audiobooks, voice content, audio newsletters. Triggers: podcast, ai podcast, text to speech podcast, audio content, voice over, ai audiobook, multi voice, conversation ai, notebooklm alternative, audio generation, podcast automation, ai narrator, voice content, audio newsletter, podcast maker"
 allowed-tools: Bash(belt *)
 ---
 
@@ -20,7 +20,7 @@ Create AI-powered podcasts and audio content via [inference.sh](https://inferenc
 belt login
 
 # Generate podcast segment
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "Welcome to the AI Frontiers podcast. Today we explore the latest developments in generative AI.",
   "voice": "am_michael"
 }'
@@ -58,7 +58,7 @@ belt app run infsh/kokoro-tts --input '{
 
 ```bash
 # Single voice podcast segment
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "Your podcast script here. Make it conversational and engaging. Add natural pauses with punctuation.",
   "voice": "am_michael"
 }'
@@ -68,22 +68,21 @@ belt app run infsh/kokoro-tts --input '{
 
 ```bash
 # Host introduction
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "Welcome back to Tech Talk. Today I have a special guest to discuss AI developments.",
   "voice": "am_michael"
 }' > host_intro.json
 
 # Guest response
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "Thanks for having me. I am excited to share what we have been working on.",
   "voice": "af_sarah"
 }' > guest_response.json
 
-# Merge into conversation
-belt app run infsh/media-merger --input '{
-  "audio_files": ["<host-url>", "<guest-url>"],
-  "crossfade_ms": 500
-}'
+# Merge into conversation (no inference.sh app concatenates audio; use ffmpeg locally)
+curl -L -o host.mp3 "<host-url>"
+curl -L -o guest.mp3 "<guest-url>"
+ffmpeg -i host.mp3 -i guest.mp3 -filter_complex "acrossfade=d=0.5" conversation.mp3
 ```
 
 ### Full Episode Pipeline
@@ -100,13 +99,13 @@ belt app run infsh/ai-music --input '{
 }' > intro_music.json
 
 # 3. Generate host segments
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "<host-lines>",
   "voice": "am_michael"
 }' > host.json
 
 # 4. Generate guest segments
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "<guest-lines>",
   "voice": "af_sarah"
 }' > guest.json
@@ -116,16 +115,13 @@ belt app run infsh/ai-music --input '{
   "prompt": "Podcast outro music, matching intro style, fade out, 10 seconds"
 }' > outro_music.json
 
-# 6. Merge everything
-belt app run infsh/media-merger --input '{
-  "audio_files": [
-    "<intro-music>",
-    "<host>",
-    "<guest>",
-    "<outro-music>"
-  ],
-  "crossfade_ms": 1000
-}'
+# 6. Merge everything (no inference.sh app concatenates audio; use ffmpeg locally)
+curl -L -o intro.mp3 "<intro-music>"
+curl -L -o host.mp3 "<host>"
+curl -L -o guest.mp3 "<guest>"
+curl -L -o outro.mp3 "<outro-music>"
+ffmpeg -i intro.mp3 -i host.mp3 -i guest.mp3 -i outro.mp3 -filter_complex \
+  "[0][1]acrossfade=d=1[a];[a][2]acrossfade=d=1[b];[b][3]acrossfade=d=1" episode.mp3
 ```
 
 ### NotebookLM-Style Content
@@ -139,31 +135,32 @@ belt app run openrouter/claude-sonnet-45 --input '{
 }' > discussion_script.json
 
 # 2. Generate Host A
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "<host-a-lines>",
   "voice": "am_michael"
 }' > host_a.json
 
 # 3. Generate Host B
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "<host-b-lines>",
   "voice": "af_sarah"
 }' > host_b.json
 
-# 4. Interleave and merge
-belt app run infsh/media-merger --input '{
-  "audio_files": ["<host-a-1>", "<host-b-1>", "<host-a-2>", "<host-b-2>"],
-  "crossfade_ms": 300
-}'
+# 4. Interleave and merge (no inference.sh app concatenates audio; use ffmpeg locally)
+curl -L -o a1.mp3 "<host-a-1>"; curl -L -o b1.mp3 "<host-b-1>"
+curl -L -o a2.mp3 "<host-a-2>"; curl -L -o b2.mp3 "<host-b-2>"
+ffmpeg -i a1.mp3 -i b1.mp3 -i a2.mp3 -i b2.mp3 -filter_complex \
+  "[0][1]acrossfade=d=0.3[a];[a][2]acrossfade=d=0.3[b];[b][3]acrossfade=d=0.3" conversation.mp3
 ```
 
 ### Audiobook Chapter
 
 ```bash
 # Long-form narration
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "Chapter One. It was a dark and stormy night when the first AI achieved consciousness...",
   "voice": "bf_emma",
+  "language": "british-english",
   "speed": 0.9
 }'
 ```
@@ -174,7 +171,7 @@ belt app run infsh/kokoro-tts --input '{
 
 ```bash
 # 1. Generate podcast audio
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "<podcast-script>",
   "voice": "am_michael"
 }' > podcast.json
@@ -184,12 +181,11 @@ belt app run infsh/ai-music --input '{
   "prompt": "Soft ambient background music for podcast, subtle, non-distracting, loopable"
 }' > background.json
 
-# 3. Mix with lower background volume
-belt app run infsh/media-merger --input '{
-  "audio_files": ["<podcast-url>"],
-  "background_audio": "<background-url>",
-  "background_volume": 0.15
-}'
+# 3. Mix with lower background volume (no inference.sh app mixes audio; use ffmpeg locally)
+curl -L -o podcast.mp3 "<podcast-url>"
+curl -L -o background.mp3 "<background-url>"
+ffmpeg -i podcast.mp3 -stream_loop -1 -i background.mp3 -filter_complex \
+  "[1]volume=0.15[bg];[0][bg]amix=inputs=2:duration=first" mixed.mp3
 ```
 
 ### Add Sound Effects

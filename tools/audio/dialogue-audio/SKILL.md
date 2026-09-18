@@ -157,10 +157,9 @@ belt app run infsh/video-audio-merger --input '{
 ### Adding Background/Music
 
 ```bash
-# Merge dialogue with background music
-belt app run infsh/media-merger --input '{
-  "media": ["dialogue.mp3", "background-music.mp3"]
-}'
+# Merge dialogue with background music (no inference.sh app mixes audio; use ffmpeg locally)
+ffmpeg -i dialogue.mp3 -stream_loop -1 -i background-music.mp3 -filter_complex \
+  "[1]volume=0.15[bg];[0][bg]amix=inputs=2:duration=first" mixed.mp3
 ```
 
 ### Segmenting Long Conversations
@@ -183,10 +182,9 @@ belt app run falai/dia-tts --input '{
   "prompt": "[S1] Great conversation today..."
 }'
 
-# Merge all segments
-belt app run infsh/media-merger --input '{
-  "media": ["segment1.mp3", "segment2.mp3", "segment3.mp3"]
-}'
+# Merge all segments (no inference.sh app concatenates audio; use ffmpeg locally)
+ffmpeg -i segment1.mp3 -i segment2.mp3 -i segment3.mp3 -filter_complex \
+  "[0][1][2]concat=n=3:v=0:a=1" conversation.mp3
 ```
 
 ## Script Writing Tips

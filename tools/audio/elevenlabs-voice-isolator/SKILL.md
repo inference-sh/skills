@@ -106,8 +106,9 @@ belt app run elevenlabs/voice-isolator --input '{
 }' > cleaned.json
 
 # 2. Merge with video
-belt app run infsh/media-merger --input '{
-  "media": ["video.mp4", "<cleaned-audio-url>"]
+belt app run infsh/video-audio-merger --input '{
+  "video_file": "video.mp4",
+  "audio_file": "<cleaned-audio-url>"
 }'
 ```
 

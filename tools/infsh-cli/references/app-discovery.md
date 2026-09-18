@@ -89,12 +89,12 @@ Shows full app info including input/output schema.
 - `falai/flux-dev-lora` - FLUX.2 Dev (high quality)
 - `falai/flux-2-klein-lora` - FLUX.2 Klein (fastest)
 - `infsh/sdxl` - Stable Diffusion XL
-- `google/gemini-3-pro-image-preview` - Gemini 3 Pro
+- `google/gemini-3-pro-image` - Gemini 3 Pro
 - `xai/grok-imagine-image` - Grok image generation
 
 ### Video Generation
 - `google/veo-3-1-fast` - Veo 3.1 Fast
-- `google/veo-3` - Veo 3
+- `google/veo-3-1` - Veo 3
 - `bytedance/seedance-2-0` - Seedance 2.0
 - `bytedance/seedance-2-0-fast` - Seedance 2.0 Fast
 - `infsh/ltx-video-2` - LTX Video 2 (with audio)
@@ -102,7 +102,7 @@ Shows full app info including input/output schema.
 
 ### Audio
 - `infsh/dia-tts` - Conversational TTS
-- `infsh/kokoro-tts` - Kokoro TTS
+- `falai/kokoro-tts` - Kokoro TTS
 - `infsh/fast-whisper-large-v3` - Fast transcription
 - `infsh/diffrythm` - Music generation
 

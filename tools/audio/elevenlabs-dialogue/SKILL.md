@@ -179,10 +179,11 @@ belt app run elevenlabs/music --input '{
   "duration_seconds": 30
 }' > music.json
 
-# 3. Merge
-belt app run infsh/media-merger --input '{
-  "media": ["<dialogue-url>", "<music-url>"]
-}'
+# 3. Mix (no inference.sh app mixes audio; use ffmpeg locally)
+curl -L -o dialogue.mp3 "<dialogue-url>"
+curl -L -o music.mp3 "<music-url>"
+ffmpeg -i dialogue.mp3 -stream_loop -1 -i music.mp3 -filter_complex \
+  "[1]volume=0.15[bg];[0][bg]amix=inputs=2:duration=first" mixed.mp3
 ```
 
 ## Use Cases

@@ -42,7 +42,7 @@ belt app run google/veo-3-1-fast --input '{
 
 ```bash
 # Dramatic product reveal
-belt app run google/veo-3 --input '{
+belt app run google/veo-3-1 --input '{
   "prompt": "Cinematic product launch video, premium tech device floating in space, dramatic lighting, particles and light effects, Apple-style reveal, commercial quality"
 }'
 ```
@@ -115,7 +115,7 @@ belt app run google/veo-3-1-fast --input '{
 }' > cta.json
 
 # 6. Generate voiceover
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "Tired of [problem]? Introducing [Product]. [Key benefit 1]. [Key benefit 2]. [Key benefit 3]. Get yours today.",
   "voice": "af_nicole"
 }' > voiceover.json
@@ -170,7 +170,7 @@ for section in "${SECTIONS[@]}"; do
 done
 
 # 3. Generate professional voiceover
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "<full-script>",
   "voice": "am_michael"
 }' > voiceover.json

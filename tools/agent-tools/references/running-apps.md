@@ -33,7 +33,7 @@ belt app run falai/wan-2-5-i2v --input '{"image": "./my-image.png", "prompt": "m
 belt app run bytedance/omnihuman-1-5 --input '{"audio": "/path/to/speech.mp3", "image": "/path/to/face.jpg"}'
 
 # Post tweet with local media
-belt app run x/post-create --input '{"text": "Check this out!", "media": "./screenshot.png"}'
+belt app run x/post-create --input '{"text": "Check this out!", "media": ["./screenshot.png"]}'
 ```
 
 Supported paths:
@@ -102,7 +102,7 @@ belt app run google/veo-3-1-fast --input input.json
 
 ```bash
 # Quick inline run
-belt app run infsh/kokoro-tts --input '{"text": "Hello, this is a test."}'
+belt app run falai/kokoro-tts --input '{"prompt": "Hello, this is a test."}'
 ```
 
 ## Task Tracking
@@ -133,7 +133,7 @@ For very long tasks, run in background:
 
 ```bash
 # Submit and return immediately
-belt app run google/veo-3 --input input.json --no-wait
+belt app run google/veo-3-1 --input input.json --no-wait
 
 # Check later
 belt task get <task-id>

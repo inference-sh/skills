@@ -1,6 +1,6 @@
 ---
 name: ai-video-generation
-description: "Generate AI videos with Google Veo, Seedance 2.0, HappyHorse, Wan, Grok and 40+ models via inference.sh CLI. Models: Veo 3.1, Veo 3, Seedance 2.0, HappyHorse 1.0, Wan 2.5, Grok Imagine Video, OmniHuman, Fabric, HunyuanVideo. Capabilities: text-to-video, image-to-video, reference-to-video, video editing, lipsync, avatar animation, video upscaling, foley sound. Use for: social media videos, marketing content, explainer videos, product demos, AI avatars. Triggers: video generation, ai video, text to video, image to video, veo, animate image, video from image, ai animation, video generator, generate video, t2v, i2v, ai video maker, create video with ai, runway alternative, pika alternative, sora alternative, kling alternative, seedance, happyhorse"
+description: "Generate AI videos with Google Veo, Seedance 2.0, HappyHorse, Wan, Grok and 40+ models via inference.sh CLI. Models: Veo 3.1, Seedance 2.0, HappyHorse 1.0, Wan 2.5, Grok Imagine Video, OmniHuman, Fabric, HunyuanVideo. Capabilities: text-to-video, image-to-video, reference-to-video, video editing, lipsync, avatar animation, video upscaling, foley sound. Use for: social media videos, marketing content, explainer videos, product demos, AI avatars. Triggers: video generation, ai video, text to video, image to video, veo, animate image, video from image, ai animation, video generator, generate video, t2v, i2v, ai video maker, create video with ai, runway alternative, pika alternative, sora alternative, kling alternative, seedance, happyhorse"
 allowed-tools: Bash(belt *)
 ---
 
@@ -32,9 +32,6 @@ belt app run google/veo-3-1-fast --input '{"prompt": "drone shot flying over a f
 |-------|--------|----------|
 | Veo 3.1 Fast | `google/veo-3-1-fast` | Fast, with optional audio |
 | Veo 3.1 | `google/veo-3-1` | Best quality, frame interpolation |
-| Veo 3 | `google/veo-3` | High quality with audio |
-| Veo 3 Fast | `google/veo-3-fast` | Fast with audio |
-| Veo 2 | `google/veo-2` | Realistic videos |
 | **P-Video** | `pruna/p-video` | Fast, economical, with audio support |
 | **WAN-T2V** | `pruna/wan-t2v` | Economical 480p/720p |
 | Grok Video | `xai/grok-imagine-video` | xAI, configurable duration |

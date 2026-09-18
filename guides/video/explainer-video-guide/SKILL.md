@@ -177,7 +177,11 @@ belt app run google/veo-3-1-fast --input '{"prompt": "scene 3 description"}' --n
 
 # 3. Merge scenes into sequence
 belt app run infsh/media-merger --input '{
-  "media": ["scene1.mp4", "scene2.mp4", "scene3.mp4"]
+  "media_files": [
+    {"file": "scene1.mp4", "transition_type": "crossfade"},
+    {"file": "scene2.mp4", "transition_type": "crossfade"},
+    {"file": "scene3.mp4"}
+  ]
 }'
 
 # 4. Add voiceover to video
@@ -186,10 +190,13 @@ belt app run infsh/video-audio-merger --input '{
   "audio_file": "voiceover.mp3"
 }'
 
-# 5. Add captions
+# 5. Add captions (segments are timed text, not an SRT file)
 belt app run infsh/caption-videos --input '{
-  "video": "final-with-audio.mp4",
-  "caption_file": "captions.srt"
+  "video_file": "final-with-audio.mp4",
+  "segments": [
+    {"start": 0.0, "end": 2.5, "text": "First caption line"},
+    {"start": 2.5, "end": 5.0, "text": "Second caption line"}
+  ]
 }'
 ```
 

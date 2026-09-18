@@ -164,7 +164,7 @@ belt app run infsh/fast-whisper-large-v3 --input '{"audio": "https://video.mp4"}
 # 2. Translate text (manually or with an LLM)
 
 # 3. Generate speech in new language
-belt app run infsh/kokoro-tts --input '{"text": "<translated-text>"}' > new_speech.json
+belt app run falai/kokoro-tts --input '{"prompt": "<translated-text>"}' > new_speech.json
 
 # 4. Lipsync the original video with new audio
 belt app run infsh/latentsync-1-6 --input '{

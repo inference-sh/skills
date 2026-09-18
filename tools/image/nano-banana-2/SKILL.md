@@ -17,7 +17,7 @@ Generate images with Google Gemini 3.1 Flash Image Preview via [inference.sh](ht
 ```bash
 belt login
 
-belt app run google/gemini-3-1-flash-image-preview --input '{"prompt": "a banana in space, photorealistic"}'
+belt app run google/gemini-3-1-flash-image --input '{"prompt": "a banana in space, photorealistic"}'
 ```
 
 
@@ -26,7 +26,7 @@ belt app run google/gemini-3-1-flash-image-preview --input '{"prompt": "a banana
 ### Basic Text-to-Image
 
 ```bash
-belt app run google/gemini-3-1-flash-image-preview --input '{
+belt app run google/gemini-3-1-flash-image --input '{
   "prompt": "A futuristic cityscape at sunset with flying cars"
 }'
 ```
@@ -34,7 +34,7 @@ belt app run google/gemini-3-1-flash-image-preview --input '{
 ### Multiple Images
 
 ```bash
-belt app run google/gemini-3-1-flash-image-preview --input '{
+belt app run google/gemini-3-1-flash-image --input '{
   "prompt": "Minimalist logo design for a coffee shop",
   "num_images": 4
 }'
@@ -43,7 +43,7 @@ belt app run google/gemini-3-1-flash-image-preview --input '{
 ### Custom Aspect Ratio
 
 ```bash
-belt app run google/gemini-3-1-flash-image-preview --input '{
+belt app run google/gemini-3-1-flash-image --input '{
   "prompt": "Panoramic mountain landscape with northern lights",
   "aspect_ratio": "16:9"
 }'
@@ -52,7 +52,7 @@ belt app run google/gemini-3-1-flash-image-preview --input '{
 ### Image Editing (with input images)
 
 ```bash
-belt app run google/gemini-3-1-flash-image-preview --input '{
+belt app run google/gemini-3-1-flash-image --input '{
   "prompt": "Add a rainbow in the sky",
   "images": ["https://example.com/landscape.jpg"]
 }'
@@ -61,7 +61,7 @@ belt app run google/gemini-3-1-flash-image-preview --input '{
 ### High Resolution (4K)
 
 ```bash
-belt app run google/gemini-3-1-flash-image-preview --input '{
+belt app run google/gemini-3-1-flash-image --input '{
   "prompt": "Detailed illustration of a medieval castle",
   "resolution": "4K"
 }'
@@ -70,7 +70,7 @@ belt app run google/gemini-3-1-flash-image-preview --input '{
 ### With Google Search Grounding
 
 ```bash
-belt app run google/gemini-3-1-flash-image-preview --input '{
+belt app run google/gemini-3-1-flash-image --input '{
   "prompt": "Current weather in Tokyo visualized as an artistic scene",
   "enable_google_search": true
 }'
@@ -110,11 +110,11 @@ belt app run google/gemini-3-1-flash-image-preview --input '{
 
 ```bash
 # 1. Generate sample input to see all options
-belt app sample google/gemini-3-1-flash-image-preview --save input.json
+belt app sample google/gemini-3-1-flash-image --save input.json
 
 # 2. Edit the prompt
 # 3. Run
-belt app run google/gemini-3-1-flash-image-preview --input input.json
+belt app run google/gemini-3-1-flash-image --input input.json
 ```
 
 ## Python SDK
@@ -126,7 +126,7 @@ client = inference()
 
 # Basic generation
 result = client.run({
-    "app": "google/gemini-3-1-flash-image-preview@0c7ma1ex",
+    "app": "google/gemini-3-1-flash-image@0c7ma1ex",
     "input": {
         "prompt": "A banana in space, photorealistic"
     }
@@ -135,7 +135,7 @@ print(result["output"])
 
 # Stream live updates
 for update in client.run({
-    "app": "google/gemini-3-1-flash-image-preview@0c7ma1ex",
+    "app": "google/gemini-3-1-flash-image@0c7ma1ex",
     "input": {
         "prompt": "A futuristic cityscape at sunset"
     }

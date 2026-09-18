@@ -36,7 +36,7 @@ belt app run falai/flux-dev-lora --input '{"prompt": "a cat astronaut in space"}
 | **P-Image** | `pruna/p-image` | Fast, economical, multiple aspects |
 | **P-Image-LoRA** | `pruna/p-image-lora` | Fast with preset LoRA styles |
 | **P-Image-Edit** | `pruna/p-image-edit` | Fast image editing |
-| Gemini 3 Pro | `google/gemini-3-pro-image-preview` | Google's latest |
+| Gemini 3 Pro | `google/gemini-3-pro-image` | Google's latest |
 | Gemini 2.5 Flash | `google/gemini-2-5-flash-image` | Fast Google model |
 | Grok Imagine | `xai/grok-imagine-image` | xAI's model, multiple aspects |
 | Seedream 4.5 | `bytedance/seedream-4-5` | 2K-4K cinematic quality |
@@ -44,7 +44,7 @@ belt app run falai/flux-dev-lora --input '{"prompt": "a cat astronaut in space"}
 | Seedream 3.0 | `bytedance/seedream-3-0-t2i` | Accurate text rendering |
 | Reve | `falai/reve` | Natural language editing, text rendering |
 | ImagineArt 1.5 Pro | `falai/imagine-art-1-5-pro-preview` | Ultra-high-fidelity 4K |
-| FLUX Klein 4B | `pruna/flux-klein-4b` | Ultra-cheap ($0.0001/image) |
+| FLUX Klein 4B | `pruna/flux-2-klein-4b` | Ultra-cheap ($0.0001/image) |
 | Topaz Upscaler | `falai/topaz-image-upscaler` | Professional upscaling |
 
 ## Browse All Image Apps
@@ -90,7 +90,7 @@ belt app run falai/flux-2-klein-lora --input '{"prompt": "sunset over mountains"
 ### Google Gemini 3 Pro
 
 ```bash
-belt app run google/gemini-3-pro-image-preview --input '{
+belt app run google/gemini-3-pro-image --input '{
   "prompt": "photorealistic landscape with mountains and lake"
 }'
 ```

@@ -161,8 +161,10 @@ belt app run elevenlabs/sound-effects --input '{
 }' > sfx.json
 
 # 2. Merge with video
-belt app run infsh/media-merger --input '{
-  "media": ["video.mp4", "<sfx-url>"]
+belt app run infsh/video-audio-merger --input '{
+  "video_file": "video.mp4",
+  "audio_file": "<sfx-url>",
+  "preserve_original_audio": true
 }'
 ```
 

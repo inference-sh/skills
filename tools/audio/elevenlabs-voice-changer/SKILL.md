@@ -96,8 +96,9 @@ belt app run elevenlabs/voice-changer --input '{
 }' > professional.json
 
 # 3. Add to video
-belt app run infsh/media-merger --input '{
-  "media": ["video.mp4", "<professional-audio-url>"]
+belt app run infsh/video-audio-merger --input '{
+  "video_file": "video.mp4",
+  "audio_file": "<professional-audio-url>"
 }'
 ```
 

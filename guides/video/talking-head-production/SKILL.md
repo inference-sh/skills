@@ -188,7 +188,11 @@ belt app run pruna/p-video-avatar --input '{"image": "https://portrait.jpg", "vo
 
 # Merge all segments
 belt app run infsh/media-merger --input '{
-  "media": ["segment1.mp4", "segment2.mp4", "segment3.mp4"]
+  "media_files": [
+    {"file": "segment1.mp4"},
+    {"file": "segment2.mp4"},
+    {"file": "segment3.mp4"}
+  ]
 }'
 ```
 
@@ -223,7 +227,7 @@ belt app run infsh/fast-whisper-large-v3 --input '{"audio": "https://video.mp4"}
 # 2. Translate text (manually or with LLM)
 
 # 3. Generate speech in new language
-belt app run infsh/kokoro-tts --input '{"text": "<translated-text>"}'
+belt app run falai/kokoro-tts --input '{"prompt": "<translated-text>"}'
 
 # 4. Lipsync original video with new audio
 belt app run infsh/latentsync-1-6 --input '{

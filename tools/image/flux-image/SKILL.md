@@ -31,7 +31,7 @@ belt app run falai/flux-dev-lora --input '{"prompt": "a futuristic city at night
 | FLUX.2 Klein LoRA | `falai/flux-2-klein-lora` | Fastest | Good | Fast iteration, 4B/9B sizes |
 | **FLUX Dev (Pruna)** | `pruna/flux-dev` | Fast | High | Optimized, speed modes |
 | **FLUX Dev LoRA (Pruna)** | `pruna/flux-dev-lora` | Fast | High | LoRA with optimization |
-| **FLUX Klein 4B (Pruna)** | `pruna/flux-klein-4b` | Fastest | Good | Ultra-cheap ($0.0001/img) |
+| **FLUX Klein 4B (Pruna)** | `pruna/flux-2-klein-4b` | Fastest | Good | Ultra-cheap ($0.0001/img) |
 
 ## Examples
 

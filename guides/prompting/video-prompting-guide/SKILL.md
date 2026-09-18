@@ -138,7 +138,7 @@ belt app run google/veo-3-1 --input '{
 ### Urban Lifestyle
 
 ```bash
-belt app run google/veo-3 --input '{
+belt app run google/veo-3-1 --input '{
   "prompt": "Tracking shot following a cyclist through busy city streets, morning rush hour, natural lighting, handheld camera feel, documentary style, authentic and candid"
 }'
 ```

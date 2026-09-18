@@ -52,7 +52,7 @@ belt app run openrouter/claude-sonnet-45 --input '{"prompt": "Explain quantum co
 belt app run tavily/search-assistant --input '{"query": "latest AI news"}'
 
 # Post to Twitter
-belt app run x/post-tweet --input '{"text": "Hello from AI!"}'
+belt app run x/post-create --input '{"text": "Hello from AI!"}'
 
 # Generate 3D model
 belt app run infsh/rodin-3d-generator --input '{"prompt": "a wooden chair"}'
@@ -73,7 +73,7 @@ belt app run falai/wan-2-5-i2v --input '{"image": "./my-image.png", "prompt": "m
 belt app run bytedance/omnihuman-1-5 --input '{"audio": "/path/to/speech.mp3", "image": "/path/to/face.jpg"}'
 
 # Post tweet with local media
-belt app run x/post-create --input '{"text": "Check this out!", "media": "./screenshot.png"}'
+belt app run x/post-create --input '{"text": "Check this out!", "media": ["./screenshot.png"]}'
 ```
 
 ## Commands
@@ -99,7 +99,7 @@ belt app run x/post-create --input '{"text": "Check this out!", "media": "./scre
 | **LLMs** | Claude Opus/Sonnet/Haiku, Gemini 3 Pro, Kimi K2, GLM-4, any OpenRouter model |
 | **Search** | Tavily Search, Tavily Extract, Exa Search, Exa Answer, Exa Extract |
 | **3D** | Rodin 3D Generator |
-| **Twitter/X** | post-tweet, post-create, dm-send, user-follow, post-like, post-retweet |
+| **Twitter/X** | post-create, dm-send, user-follow, post-like, post-retweet |
 | **Utilities** | Media merger, caption videos, image stitching, audio extraction |
 
 ## Related Skills

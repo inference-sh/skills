@@ -58,7 +58,7 @@ belt app run openrouter/claude-sonnet-45 --input '{
 }' > script.json
 
 # 2. Generate voiceover with Kokoro
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "<script-text>",
   "voice": "af_sarah"
 }' > voice.json
@@ -94,7 +94,7 @@ belt app run openrouter/claude-sonnet-45 --input '{
 }' > script.json
 
 # 2. Generate speech
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "<script>",
   "voice": "am_michael"
 }' > speech.json
@@ -165,9 +165,10 @@ for i in 1 2 3 4 5; do
 done
 
 # 4. Generate voiceover
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "<full-script>",
-  "voice": "bf_emma"
+  "voice": "bf_emma",
+  "language": "british-english"
 }' > narration.json
 
 # 5. Merge all clips
@@ -217,7 +218,7 @@ belt app run infsh/video-audio-merger --input '{
 
 | Step | App | Purpose |
 |------|-----|---------|
-| TTS | `infsh/kokoro-tts` | Voice narration |
+| TTS | `falai/kokoro-tts` | Voice narration |
 | Music | `infsh/ai-music` | Background music |
 | Foley | `infsh/mmaudio` | Sound effects |
 
@@ -227,7 +228,7 @@ belt app run infsh/video-audio-merger --input '{
 |------|-----|---------|
 | Upscale | `falai/topaz-video-upscaler` | Enhance video |
 | Merge | `infsh/media-merger` | Combine media |
-| Caption | `infsh/caption-video` | Add subtitles |
+| Caption | `infsh/caption-videos` | Add subtitles |
 
 ## Best Practices
 

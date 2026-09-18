@@ -20,7 +20,7 @@ Convert text to natural speech via [inference.sh](https://inference.sh) CLI.
 belt login
 
 # Generate speech
-belt app run infsh/kokoro-tts --input '{"text": "Hello, welcome to our product demo."}'
+belt app run falai/kokoro-tts --input '{"prompt": "Hello, welcome to our product demo."}'
 ```
 
 
@@ -33,7 +33,7 @@ belt app run infsh/kokoro-tts --input '{"text": "Hello, welcome to our product d
 | Inworld TTS 1.5 Mini | `inworld/text-to-speech-1-5-mini` | Ultra-low latency (~120ms), 15 languages |
 | ElevenLabs TTS | `elevenlabs/tts` | Premium quality, 22+ voices, 32 languages |
 | DIA TTS | `infsh/dia-tts` | Conversational, expressive |
-| Kokoro TTS | `infsh/kokoro-tts` | Fast, natural |
+| Kokoro TTS | `falai/kokoro-tts` | Fast, natural |
 | Chatterbox | `infsh/chatterbox` | General purpose |
 | Higgs Audio | `infsh/higgs-audio` | Emotional control |
 | VibeVoice | `infsh/vibevoice` | Podcasts, long-form |
@@ -49,7 +49,7 @@ belt app list --category audio
 ### Basic Text-to-Speech
 
 ```bash
-belt app run infsh/kokoro-tts --input '{"text": "Welcome to our tutorial."}'
+belt app run falai/kokoro-tts --input '{"prompt": "Welcome to our tutorial."}'
 ```
 
 ### Inworld TTS-2 — Emotion Steering

@@ -34,7 +34,7 @@ belt app run falai/flux-dev --input '{
 | FLUX Schnell | `falai/flux-schnell` | Fast iterations |
 | Imagen 3 | `google/imagen-3` | Photorealistic |
 | Grok | `xai/grok-imagine-image` | Creative variations |
-| Seedream | `bytedance/seedream-3-0` | Commercial quality |
+| Seedream | `bytedance/seedream-3-0-t2i` | Commercial quality |
 
 ## Product Photography Styles
 
@@ -217,8 +217,8 @@ belt app run falai/topaz-image-upscaler --input '{
 }' > upscaled.json
 
 # 3. Remove background if needed
-belt app run falai/birefnet --input '{
-  "image_url": "<upscaled-url>"
+belt app run infsh/birefnet --input '{
+  "image": "<upscaled-url>"
 }' > cutout.json
 ```
 

@@ -20,7 +20,7 @@ Generate natural AI voices via [inference.sh](https://inference.sh) CLI.
 belt login
 
 # Generate speech
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "Hello! This is an AI-generated voice that sounds natural and engaging.",
   "voice": "af_sarah"
 }'
@@ -36,10 +36,10 @@ belt app run infsh/kokoro-tts --input '{
 | Inworld TTS 1.5 Mini | `inworld/text-to-speech-1-5-mini` | Ultra-low latency (~120ms), 15 languages, real-time |
 | ElevenLabs TTS | `elevenlabs/tts` | Premium quality, 22+ voices, 32 languages |
 | ElevenLabs Voice Changer | `elevenlabs/voice-changer` | Transform existing voice recordings |
-| Kokoro TTS | `infsh/kokoro-tts` | Natural, multiple voices |
+| Kokoro TTS | `falai/kokoro-tts` | Natural, multiple voices |
 | DIA | `infsh/dia-tts` | Conversational, expressive |
 | Chatterbox | `infsh/chatterbox` | Casual, entertainment |
-| Higgs | `infsh/higgs-tts` | Professional narration |
+| Higgs | `infsh/higgs-audio` | Professional narration |
 | VibeVoice | `infsh/vibevoice` | Emotional range |
 
 ## Kokoro Voice Library
@@ -106,7 +106,7 @@ belt app run inworld/text-to-speech-1-5-mini --input '{
 ### Professional Narration
 
 ```bash
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "Welcome to our quarterly earnings call. Today we will discuss the financial performance and strategic initiatives for the past quarter.",
   "voice": "am_michael",
   "speed": 1.0
@@ -125,9 +125,10 @@ belt app run infsh/dia-tts --input '{
 ### Audiobook Narration
 
 ```bash
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "Chapter One. The morning mist hung low over the valley as Sarah made her way down the winding path. She had been walking for hours.",
   "voice": "bf_emma",
+  "language": "british-english",
   "speed": 0.9
 }'
 ```
@@ -135,7 +136,7 @@ belt app run infsh/kokoro-tts --input '{
 ### Video Voiceover
 
 ```bash
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "Introducing the next generation of productivity. Work smarter, not harder.",
   "voice": "af_nicole",
   "speed": 1.1
@@ -145,7 +146,7 @@ belt app run infsh/kokoro-tts --input '{
 ### Podcast Host
 
 ```bash
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "Welcome back to Tech Talk! Im your host, and today we are diving deep into the world of artificial intelligence.",
   "voice": "am_adam"
 }'
@@ -156,22 +157,21 @@ belt app run infsh/kokoro-tts --input '{
 ```bash
 # Generate dialogue between two speakers
 # Speaker 1
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "Have you seen the latest AI developments? Its incredible how fast things are moving.",
   "voice": "am_michael"
 }' > speaker1.json
 
 # Speaker 2
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "I know, right? Just last week I tried that new image generator and was blown away.",
   "voice": "af_sarah"
 }' > speaker2.json
 
-# Merge conversation
-belt app run infsh/media-merger --input '{
-  "audio_files": ["<speaker1-url>", "<speaker2-url>"],
-  "crossfade_ms": 300
-}'
+# Merge conversation (no inference.sh app concatenates audio; use ffmpeg locally)
+curl -L -o speaker1.mp3 "<speaker1-url>"
+curl -L -o speaker2.mp3 "<speaker2-url>"
+ffmpeg -i speaker1.mp3 -i speaker2.mp3 -filter_complex "acrossfade=d=0.3" conversation.mp3
 ```
 
 ## Long-Form Content
@@ -186,22 +186,23 @@ TEXT="Your very long text here..."
 
 # Split and generate
 # Chunk 1
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "<chunk-1>",
-  "voice": "bf_emma"
+  "voice": "bf_emma",
+  "language": "british-english"
 }' > chunk1.json
 
 # Chunk 2
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "<chunk-2>",
-  "voice": "bf_emma"
+  "voice": "bf_emma",
+  "language": "british-english"
 }' > chunk2.json
 
-# Merge chunks
-belt app run infsh/media-merger --input '{
-  "audio_files": ["<chunk1-url>", "<chunk2-url>"],
-  "crossfade_ms": 100
-}'
+# Merge chunks (no inference.sh app concatenates audio; use ffmpeg locally)
+curl -L -o chunk1.mp3 "<chunk1-url>"
+curl -L -o chunk2.mp3 "<chunk2-url>"
+ffmpeg -i chunk1.mp3 -i chunk2.mp3 -filter_complex "acrossfade=d=0.1" narration.mp3
 ```
 
 ## Voice + Video Workflow
@@ -210,7 +211,7 @@ belt app run infsh/media-merger --input '{
 
 ```bash
 # 1. Generate voiceover
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "This stunning footage shows the beauty of nature in its purest form.",
   "voice": "am_michael"
 }' > voiceover.json
@@ -226,7 +227,7 @@ belt app run infsh/video-audio-merger --input '{
 
 ```bash
 # 1. Generate speech
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "Hi, Im excited to share some updates with you today.",
   "voice": "af_sarah"
 }' > speech.json
@@ -250,9 +251,10 @@ belt app run bytedance/omnihuman-1-5 --input '{
 
 ```bash
 # Slow narration
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "Take a deep breath. Let yourself relax.",
   "voice": "bf_emma",
+  "language": "british-english",
   "speed": 0.8
 }'
 ```
@@ -271,7 +273,7 @@ Use punctuation to control speech rhythm:
 | `-` | Quick break |
 
 ```bash
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "Wait... Did you hear that? Something is coming. Something big!",
   "voice": "am_adam"
 }'

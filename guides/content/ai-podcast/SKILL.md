@@ -26,8 +26,8 @@ Choose the right tool per character type:
 |---------------|------|-------|
 | **Real human (new)** | `pruna/p-image` | 16:9, `prompt_upsampling: true`. Quick, no training needed, but identity won't be consistent across multiple generations. |
 | **Real human (consistent ID)** | `phota/generate` with `[[profile_id]]` | Consistent identity across all shots. Requires a trained Phota profile first (see below). |
-| **Brand mascot / logo character** | `google/gemini-3-pro-image-preview` | Pass logo + character sheet as reference images |
-| **Illustrated / stylized** | `google/gemini-3-pro-image-preview` | Pass style reference as input image |
+| **Brand mascot / logo character** | `google/gemini-3-pro-image` | Pass logo + character sheet as reference images |
+| **Illustrated / stylized** | `google/gemini-3-pro-image` | Pass style reference as input image |
 
 **Training a Phota identity (optional but recommended for humans):**
 
@@ -201,7 +201,7 @@ Merger is free and takes 2-6 minutes depending on total duration.
 | `phota/train` | Train identity profile from 30-50 face images |
 | `phota/generate` | Generate images with trained identity via `[[profile_id]]` |
 | `phota/edit` | Edit images preserving identity of known subjects |
-| `google/gemini-3-pro-image-preview` | Image gen/edit, mascots, style transfer |
+| `google/gemini-3-pro-image` | Image gen/edit, mascots, style transfer |
 | `inworld/text-to-speech-2` | Text to speech, 100+ languages, voice steering |
 | `pruna/p-video-avatar` | Portrait + audio → talking head video |
 | `infsh/media-merger` | Concatenate video clips into one video |

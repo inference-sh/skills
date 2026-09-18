@@ -96,7 +96,7 @@ Pruna offers optimized versions of popular models:
 belt app run pruna/flux-dev --input '{"prompt": "..."}'
 
 # FLUX Klein 4B (extremely fast, $0.0001/image)
-belt app run pruna/flux-klein-4b --input '{"prompt": "..."}'
+belt app run pruna/flux-2-klein-4b --input '{"prompt": "..."}'
 
 # Qwen Image
 belt app run pruna/qwen-image --input '{"prompt": "..."}'

@@ -77,9 +77,9 @@ belt app run falai/flux-dev --input '{
 }'
 
 # Post with Twitter automation
-belt app run twitter/post-tweet --input '{
+belt app run x/post-create --input '{
   "text": "The future of AI is here. Here are the top 5 trends reshaping tech in 2024 🧵",
-  "media_url": "<image-url>"
+  "media": ["<image-url>"]
 }'
 ```
 
@@ -92,7 +92,7 @@ belt app run openrouter/claude-sonnet-45 --input '{
 }' > script.json
 
 # 2. Generate voiceover
-belt app run infsh/kokoro-tts --input '{
+belt app run falai/kokoro-tts --input '{
   "prompt": "<script>",
   "voice": "af_sarah"
 }' > voice.json
@@ -109,7 +109,7 @@ belt app run bytedance/omnihuman-1-5 --input '{
 ### Trending/Viral Style
 
 ```bash
-belt app run google/veo-3 --input '{
+belt app run google/veo-3-1 --input '{
   "prompt": "Satisfying compilation style video, oddly satisfying content, smooth transitions, ASMR quality, vertical 9:16"
 }'
 ```

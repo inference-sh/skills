@@ -19,7 +19,7 @@ Generate images with Google Gemini native image models via [inference.sh](https:
 ```bash
 belt login
 
-belt app run google/gemini-3-pro-image-preview --input '{"prompt": "a banana in space, photorealistic"}'
+belt app run google/gemini-3-pro-image --input '{"prompt": "a banana in space, photorealistic"}'
 ```
 
 
@@ -27,7 +27,7 @@ belt app run google/gemini-3-pro-image-preview --input '{"prompt": "a banana in 
 
 | Model | App ID | Speed | Quality |
 |-------|--------|-------|---------|
-| Gemini 3 Pro Image | `google/gemini-3-pro-image-preview` | Slower | Best |
+| Gemini 3 Pro Image | `google/gemini-3-pro-image` | Slower | Best |
 | Gemini 2.5 Flash Image | `google/gemini-2-5-flash-image` | Fast | Excellent |
 
 ## Search Gemini Image Apps
@@ -41,7 +41,7 @@ belt app search "gemini image"
 ### Basic Text-to-Image
 
 ```bash
-belt app run google/gemini-3-pro-image-preview --input '{
+belt app run google/gemini-3-pro-image --input '{
   "prompt": "A futuristic cityscape at sunset with flying cars"
 }'
 ```
@@ -58,7 +58,7 @@ belt app run google/gemini-2-5-flash-image --input '{
 ### Custom Aspect Ratio
 
 ```bash
-belt app run google/gemini-3-pro-image-preview --input '{
+belt app run google/gemini-3-pro-image --input '{
   "prompt": "Panoramic mountain landscape with northern lights",
   "aspect_ratio": "16:9"
 }'
@@ -76,7 +76,7 @@ belt app run google/gemini-2-5-flash-image --input '{
 ### High Resolution (4K)
 
 ```bash
-belt app run google/gemini-3-pro-image-preview --input '{
+belt app run google/gemini-3-pro-image --input '{
   "prompt": "Detailed illustration of a medieval castle",
   "resolution": "4K"
 }'
@@ -85,7 +85,7 @@ belt app run google/gemini-3-pro-image-preview --input '{
 ### With Google Search Grounding
 
 ```bash
-belt app run google/gemini-3-pro-image-preview --input '{
+belt app run google/gemini-3-pro-image --input '{
   "prompt": "Current weather in Tokyo visualized as an artistic scene",
   "enable_google_search": true
 }'
@@ -117,11 +117,11 @@ belt app run google/gemini-3-pro-image-preview --input '{
 
 ```bash
 # 1. Generate sample input to see all options
-belt app sample google/gemini-3-pro-image-preview --save input.json
+belt app sample google/gemini-3-pro-image --save input.json
 
 # 2. Edit the prompt
 # 3. Run
-belt app run google/gemini-3-pro-image-preview --input input.json
+belt app run google/gemini-3-pro-image --input input.json
 ```
 
 ## Related Skills

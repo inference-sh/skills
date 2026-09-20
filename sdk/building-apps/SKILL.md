@@ -262,7 +262,8 @@ my-app/
 ### inf.yml
 
 ```yaml
-name: my-app
+name: my-app               # the slug that addresses the app: namespace/name
+title: My App              # optional — how it reads on the app's page
 description: What my app does
 category: image
 kernel: python-3.11     # or node-22

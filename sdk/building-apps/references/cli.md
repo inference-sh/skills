@@ -93,10 +93,10 @@ belt app pull --all               # Pull all apps
 belt app pull --all --force       # Overwrite existing
 ```
 
-## Integration Commands
+## Credential Commands
 
 ```bash
-belt app integrations list        # List available integrations
+belt app credentials list         # List credential keys valid in inf.yml
 ```
 
 ## General Commands

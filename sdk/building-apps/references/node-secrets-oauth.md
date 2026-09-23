@@ -1,4 +1,4 @@
-# Node.js: Secrets & OAuth Integrations
+# Node.js: Secrets & OAuth Credentials
 
 ## Declaring Secrets
 
@@ -75,16 +75,16 @@ export class App {
 
 ---
 
-## OAuth Integrations
+## OAuth Credentials
 
 Access external services (Google Sheets, Drive) on behalf of users through OAuth.
 
-### Declaring Integrations
+### Declaring Credentials
 
 In `inf.yml`:
 
 ```yaml
-integrations:
+credentials:
   - key: google.sheets
     description: Read/write Google Sheets
     optional: false
@@ -96,14 +96,14 @@ integrations:
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `key` | string | Integration identifier |
+| `key` | string | Credential identifier |
 | `description` | string | Shown to users |
 | `optional` | boolean | If false, app won't run without it |
 
-### Available Integrations
+### Available Credentials
 
 ```bash
-belt integrations list
+belt app credentials list
 ```
 
 | Key | Description |
@@ -115,7 +115,7 @@ belt integrations list
 
 ### Accessing Credentials
 
-#### OAuth Integrations
+#### OAuth Credentials
 
 ```javascript
 export class App {
@@ -141,9 +141,9 @@ export class App {
 }
 ```
 
-### Secrets vs Integrations
+### Secrets vs Credentials
 
-| Feature | Secrets | Integrations |
+| Feature | Secrets | Credentials |
 |---------|---------|--------------|
 | User provides | Raw value (API key) | OAuth authorization |
 | Refresh | Manual | Automatic |
@@ -154,4 +154,4 @@ export class App {
 
 1. **Request minimal scopes** — use `readonly` if you only read
 2. **Clear descriptions** — explain why access is needed
-3. **Handle missing gracefully** — check if optional integrations exist
+3. **Handle missing gracefully** — check if optional credentials exist

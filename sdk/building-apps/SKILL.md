@@ -1,6 +1,6 @@
 ---
 name: building-inferencesh-apps
-description: "Build and deploy applications on inference.sh. Use when getting started, understanding the platform, creating apps, configuring resources, or needing an overview of inference.sh app development. Supports both Python and Node.js. Triggers: inference.sh app, belt app, inf.yml, inference.py, inference.js, deploy app, app development, build app, create app, GPU app, VRAM, app resources, app secrets, app integrations, multi-function app"
+description: "Build and deploy applications on inference.sh. Use when getting started, understanding the platform, creating apps, configuring resources, or needing an overview of inference.sh app development. Supports both Python and Node.js. Triggers: inference.sh app, belt app, inf.yml, inference.py, inference.js, deploy app, app development, build app, create app, GPU app, VRAM, app resources, app secrets, app credentials, multi-function app"
 ---
 
 > **Install the belt CLI skill:** `npx skills add belt-sh/cli`
@@ -286,7 +286,7 @@ secrets:
     description: HuggingFace token for gated models
     optional: false
 
-integrations:
+credentials:
   - key: google.sheets
     description: Access to Google Sheets
     optional: true

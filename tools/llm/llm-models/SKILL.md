@@ -1,6 +1,6 @@
 ---
 name: llm-models
-description: "Access Claude, Gemini, Kimi, GLM and 100+ LLMs via inference.sh CLI using OpenRouter. Models: Claude Opus 4.5, Claude Sonnet 4.5, Claude Haiku 4.5, Gemini 3 Pro, Kimi K2, GLM-4.6, Intellect 3. One API for all models with automatic fallback and cost optimization. Use for: AI assistants, code generation, reasoning, agents, chat, content generation. Triggers: claude api, openrouter, llm api, claude sonnet, claude opus, gemini api, kimi, language model, gpt alternative, anthropic api, ai model api, llm access, chat api, claude alternative, openai alternative"
+description: "Access Claude, Gemini, Kimi, GLM and 100+ LLMs via inference.sh CLI using OpenRouter. Models: Claude Opus 4.6, Claude Sonnet 4.5, Claude Haiku 4.5, Gemini 3 Pro, Kimi K2, GLM-4.6, Intellect 3. One API for all models with automatic fallback and cost optimization. Use for: AI assistants, code generation, reasoning, agents, chat, content generation. Triggers: claude api, openrouter, llm api, claude sonnet, claude opus, gemini api, kimi, language model, gpt alternative, anthropic api, ai model api, llm access, chat api, claude alternative, openai alternative"
 allowed-tools: Bash(belt *)
 ---
 
@@ -28,7 +28,7 @@ belt app run openrouter/claude-sonnet-45 --input '{"prompt": "Explain quantum co
 
 | Model | App ID | Best For |
 |-------|--------|----------|
-| Claude Opus 4.5 | `openrouter/claude-opus-45` | Complex reasoning, coding |
+| Claude Opus 4.6 | `openrouter/claude-opus-46` | Complex reasoning, coding |
 | Claude Sonnet 4.5 | `openrouter/claude-sonnet-45` | Balanced performance |
 | Claude Haiku 4.5 | `openrouter/claude-haiku-45` | Fast, economical |
 | Gemini 3 Pro | `openrouter/gemini-3-pro-preview` | Google's latest |
@@ -49,7 +49,7 @@ belt app search "claude"
 ### Claude Opus (Best Quality)
 
 ```bash
-belt app run openrouter/claude-opus-45 --input '{
+belt app run openrouter/claude-opus-46 --input '{
   "prompt": "Write a Python function to detect palindromes with comprehensive tests"
 }'
 ```

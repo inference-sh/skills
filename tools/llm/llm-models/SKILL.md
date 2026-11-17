@@ -28,7 +28,7 @@ belt app run openrouter/claude-sonnet-45 --input '{"prompt": "Explain quantum co
 
 | Model | App ID | Best For |
 |-------|--------|----------|
-| Claude Opus 4.6 | `openrouter/claude-opus-46` | Complex reasoning, coding |
+| Claude Opus 4.6 | `anthropic/claude-opus-4-6` | Complex reasoning, coding |
 | Claude Sonnet 4.5 | `openrouter/claude-sonnet-45` | Balanced performance |
 | Claude Haiku 4.5 | `openrouter/claude-haiku-45` | Fast, economical |
 | Gemini 3 Pro | `openrouter/gemini-3-pro-preview` | Google's latest |
@@ -49,7 +49,7 @@ belt app search "claude"
 ### Claude Opus (Best Quality)
 
 ```bash
-belt app run openrouter/claude-opus-46 --input '{
+belt app run anthropic/claude-opus-4-6 --input '{
   "prompt": "Write a Python function to detect palindromes with comprehensive tests"
 }'
 ```

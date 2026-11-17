@@ -15,7 +15,8 @@
         "nano-banana",
         "nano-banana-2",
         "image-upscaling",
-        "background-removal"
+        "background-removal",
+        "image-editing"
       ]
     },
     {
@@ -30,7 +31,12 @@
         "ai-avatar-video",
         "p-video-avatar",
         "happyhorse",
-        "remotion-render"
+        "remotion-render",
+        "kling",
+        "runway",
+        "pixverse",
+        "heygen",
+        "video-enhancement"
       ]
     },
     {
@@ -53,12 +59,23 @@
       ]
     },
     {
+      "title": "3D",
+      "description": "generate, rig and texture 3D models with AI.",
+      "skills": [
+        "ai-3d-generation"
+      ]
+    },
+    {
       "title": "LLM & Search",
       "description": "language models, RAG pipelines, and web search.",
       "skills": [
         "llm-models",
         "ai-rag-pipeline",
-        "web-search"
+        "web-search",
+        "claude",
+        "gpt",
+        "gemini",
+        "academic-research"
       ]
     },
     {

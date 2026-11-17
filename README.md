@@ -83,6 +83,15 @@ Browse apps: `belt app list`
 | [llm-models](tools/llm/) | Claude, Gemini, Kimi, GLM |
 | [web-search](tools/llm/) | Tavily, Exa search |
 | [twitter-automation](tools/social/) | X/Twitter API |
+| [image-editing](tools/image/image-editing/) | Erase, expand, replace backgrounds, product shots (Bria, Reve, Phota) |
+| [kling](tools/video/kling/) | Kling V4 video, avatar, lip-sync, try-on |
+| [runway](tools/video/runway/) | Runway Gen-4.5, Aleph, Act-Two |
+| [pixverse](tools/video/pixverse/) | PixVerse V6, extend, fusion, modify, lip-sync |
+| [heygen](tools/video/heygen/) | Avatar video, video translation, voice clone |
+| [video-enhancement](tools/video/video-enhancement/) | Topaz upscaling, denoise, frame interpolation, video background removal |
+| [ai-3d-generation](tools/3d/ai-3d-generation/) | Tripo, Meshy, Hunyuan 3D, Rodin, rigging, PBR materials |
+| [claude](tools/llm/claude/) / [gpt](tools/llm/gpt/) / [gemini](tools/llm/gemini/) | Single-model LLM guides |
+| [academic-research](tools/llm/academic-research/) | arXiv, bioRxiv, chemRxiv, Internet Archive, You.com research |
 
 ### SDKs
 

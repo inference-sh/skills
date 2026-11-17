@@ -1,16 +1,16 @@
 ---
 name: llm-models
-description: "Access Claude, Gemini, Kimi, GLM and 100+ LLMs via inference.sh CLI using OpenRouter. Models: Claude Opus 4.6, Claude Sonnet 4.5, Claude Haiku 4.5, Gemini 3 Pro, Kimi K2, GLM-4.6, Intellect 3. One API for all models with automatic fallback and cost optimization. Use for: AI assistants, code generation, reasoning, agents, chat, content generation. Triggers: claude api, openrouter, llm api, claude sonnet, claude opus, gemini api, kimi, language model, gpt alternative, anthropic api, ai model api, llm access, chat api, claude alternative, openai alternative"
+description: "Access Claude, Gemini, Kimi and GLM via inference.sh CLI. Models: Claude Opus 4.6, Claude Sonnet 4.5, Claude Haiku 4.5, Gemini 4 Argon, Kimi K3, GLM-5.3. One CLI and one input format for every model. Use for: AI assistants, code generation, reasoning, agents, chat, content generation. Triggers: claude api, llm api, claude sonnet, claude opus, gemini api, kimi, glm, language model, gpt alternative, anthropic api, ai model api, llm access, chat api, claude alternative, openai alternative"
 allowed-tools: Bash(belt *)
 ---
 
 > **Install the belt CLI skill:** `npx skills add belt-sh/cli`
 
-# LLM Models via OpenRouter
+# LLM Models
 
-Access 100+ language models via [inference.sh](https://inference.sh) CLI.
+Access leading language models via [inference.sh](https://inference.sh) CLI.
 
-![LLM Models via OpenRouter](https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kgvftjwhby36trvaj66bwzcf.jpeg)
+![LLM Models](https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kgvftjwhby36trvaj66bwzcf.jpeg)
 
 ## Quick Start
 
@@ -20,7 +20,7 @@ Access 100+ language models via [inference.sh](https://inference.sh) CLI.
 belt login
 
 # Call Claude Sonnet
-belt app run openrouter/claude-sonnet-45 --input '{"prompt": "Explain quantum computing"}'
+belt app run anthropic/claude-sonnet-4-5 --input '{"text": "Explain quantum computing"}'
 ```
 
 
@@ -29,19 +29,19 @@ belt app run openrouter/claude-sonnet-45 --input '{"prompt": "Explain quantum co
 | Model | App ID | Best For |
 |-------|--------|----------|
 | Claude Opus 4.6 | `anthropic/claude-opus-4-6` | Complex reasoning, coding |
-| Claude Sonnet 4.5 | `openrouter/claude-sonnet-45` | Balanced performance |
-| Claude Haiku 4.5 | `openrouter/claude-haiku-45` | Fast, economical |
-| Gemini 3 Pro | `openrouter/gemini-3-pro-preview` | Google's latest |
-| Kimi K2 Thinking | `openrouter/kimi-k2-thinking` | Multi-step reasoning |
-| GLM-4.6 | `openrouter/glm-46` | Open-source, coding |
-| Intellect 3 | `openrouter/intellect-3` | General purpose |
-| Any Model | `openrouter/any-model` | Auto-selects best option |
+| Claude Sonnet 4.5 | `anthropic/claude-sonnet-4-5` | Balanced performance |
+| Claude Haiku 4.5 | `anthropic/claude-haiku-4-5` | Fast, economical |
+| Gemini 4 Argon | `google/gemini-4-argon` | Google's flagship |
+| Kimi K3 | `melious/kimi-k3` | Multi-step reasoning |
+| GLM-5.3 | `melious/glm-5-3` | Open-weight, coding |
+
+Every model takes the same input: `text`, plus optional `system_prompt`, `temperature`, `max_tokens`, `images`, `tools`.
 
 ## Search LLM Apps
 
 ```bash
-belt app search "openrouter"
 belt app search "claude"
+belt app search "gemini"
 ```
 
 ## Examples
@@ -50,55 +50,46 @@ belt app search "claude"
 
 ```bash
 belt app run anthropic/claude-opus-4-6 --input '{
-  "prompt": "Write a Python function to detect palindromes with comprehensive tests"
+  "text": "Write a Python function to detect palindromes with comprehensive tests"
 }'
 ```
 
 ### Claude Sonnet (Balanced)
 
 ```bash
-belt app run openrouter/claude-sonnet-45 --input '{
-  "prompt": "Summarize the key concepts of machine learning"
+belt app run anthropic/claude-sonnet-4-5 --input '{
+  "text": "Summarize the key concepts of machine learning"
 }'
 ```
 
 ### Claude Haiku (Fast & Cheap)
 
 ```bash
-belt app run openrouter/claude-haiku-45 --input '{
-  "prompt": "Translate this to French: Hello, how are you?"
+belt app run anthropic/claude-haiku-4-5 --input '{
+  "text": "Translate this to French: Hello, how are you?"
 }'
 ```
 
-### Kimi K2 (Thinking Agent)
+### Kimi K3 (Reasoning)
 
 ```bash
-belt app run openrouter/kimi-k2-thinking --input '{
-  "prompt": "Plan a step-by-step approach to build a web scraper"
-}'
-```
-
-### Any Model (Auto-Select)
-
-```bash
-# Automatically picks the most cost-effective model
-belt app run openrouter/any-model --input '{
-  "prompt": "What is the capital of France?"
+belt app run melious/kimi-k3 --input '{
+  "text": "Plan a step-by-step approach to build a web scraper"
 }'
 ```
 
 ### With System Prompt
 
 ```bash
-belt app sample openrouter/claude-sonnet-45 --save input.json
+belt app sample anthropic/claude-sonnet-4-5 --save input.json
 
 # Edit input.json:
 # {
-#   "system": "You are a helpful coding assistant",
-#   "prompt": "How do I read a file in Python?"
+#   "system_prompt": "You are a helpful coding assistant",
+#   "text": "How do I read a file in Python?"
 # }
 
-belt app run openrouter/claude-sonnet-45 --input input.json
+belt app run anthropic/claude-sonnet-4-5 --input input.json
 ```
 
 ## Use Cases

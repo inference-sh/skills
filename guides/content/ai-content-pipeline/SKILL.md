@@ -20,8 +20,8 @@ Build multi-step content creation pipelines via [inference.sh](https://inference
 belt login
 
 # Simple pipeline: Generate image -> Animate to video
-belt app run falai/flux-dev --input '{"prompt": "portrait of a woman smiling"}' > image.json
-belt app run falai/wan-2-5-i2v --input '{"image": "<url-from-previous>", "prompt": "slow camera push-in"}'
+belt app run pruna/flux-dev --input '{"prompt": "portrait of a woman smiling"}' > image.json
+belt app run alibaba/wan-2-7-i2v --input '{"first_frame": "<url-from-previous>", "prompt": "slow camera push-in"}'
 ```
 
 
@@ -30,7 +30,7 @@ belt app run falai/wan-2-5-i2v --input '{"image": "<url-from-previous>", "prompt
 ### Pattern 1: Image -> Video -> Audio
 
 ```
-[FLUX Image] -> [Wan 2.5 Video] -> [Foley Sound]
+[FLUX Image] -> [Wan 2.7 Video] -> [Foley Sound]
 ```
 
 ### Pattern 2: Script -> Speech -> Avatar
@@ -53,8 +53,8 @@ Create a complete short-form video from a topic.
 
 ```bash
 # 1. Generate script with Claude
-belt app run openrouter/claude-sonnet-45 --input '{
-  "prompt": "Write a 30-second script about the future of AI. Make it engaging and conversational. Just the script, no stage directions."
+belt app run anthropic/claude-sonnet-5-5 --input '{
+  "text": "Write a 30-second script about the future of AI. Make it engaging and conversational. Just the script, no stage directions."
 }' > script.json
 
 # 2. Generate voiceover with Kokoro
@@ -64,13 +64,13 @@ belt app run falai/kokoro-tts --input '{
 }' > voice.json
 
 # 3. Generate background image with FLUX
-belt app run falai/flux-dev --input '{
+belt app run pruna/flux-dev --input '{
   "prompt": "Futuristic city skyline at sunset, cyberpunk aesthetic, 4K wallpaper"
 }' > background.json
 
 # 4. Animate image to video with Wan
-belt app run falai/wan-2-5-i2v --input '{
-  "image": "<background-url>",
+belt app run alibaba/wan-2-7-i2v --input '{
+  "first_frame": "<background-url>",
   "prompt": "slow camera pan across cityscape, subtle movement"
 }' > video.json
 
@@ -89,8 +89,8 @@ Create an AI avatar presenting content.
 
 ```bash
 # 1. Write the script
-belt app run openrouter/claude-sonnet-45 --input '{
-  "prompt": "Write a 1-minute explainer script about quantum computing for beginners."
+belt app run anthropic/claude-sonnet-5-5 --input '{
+  "text": "Write a 1-minute explainer script about quantum computing for beginners."
 }' > script.json
 
 # 2. Generate speech
@@ -100,7 +100,7 @@ belt app run falai/kokoro-tts --input '{
 }' > speech.json
 
 # 3. Generate or use a portrait image
-belt app run falai/flux-dev --input '{
+belt app run pruna/flux-dev --input '{
   "prompt": "Professional headshot of a friendly tech presenter, neutral background, looking at camera"
 }' > portrait.json
 
@@ -117,13 +117,13 @@ Create a product showcase video.
 
 ```bash
 # 1. Generate product image
-belt app run falai/flux-dev --input '{
+belt app run pruna/flux-dev --input '{
   "prompt": "Sleek wireless earbuds on white surface, studio lighting, product photography"
 }' > product.json
 
 # 2. Animate product reveal
-belt app run falai/wan-2-5-i2v --input '{
-  "image": "<product-url>",
+belt app run alibaba/wan-2-7-i2v --input '{
+  "first_frame": "<product-url>",
   "prompt": "slow 360 rotation, smooth motion"
 }' > product_video.json
 
@@ -145,21 +145,21 @@ Convert written content to video format.
 
 ```bash
 # 1. Summarize blog post
-belt app run openrouter/claude-haiku-45 --input '{
-  "prompt": "Summarize this blog post into 5 key points for a video script: <blog-content>"
+belt app run anthropic/claude-haiku-5-5 --input '{
+  "text": "Summarize this blog post into 5 key points for a video script: <blog-content>"
 }' > summary.json
 
 # 2. Generate images for each point
 for i in 1 2 3 4 5; do
-  belt app run falai/flux-dev --input "{
+  belt app run pruna/flux-dev --input "{
     \"prompt\": \"Visual representing point $i: <point-text>\"
   }" > "image_$i.json"
 done
 
 # 3. Animate each image
 for i in 1 2 3 4 5; do
-  belt app run falai/wan-2-5-i2v --input "{
-    \"image\": \"<image-$i-url>\",
+  belt app run alibaba/wan-2-7-i2v --input "{
+    \"first_frame\": \"<image-$i-url>\",
     \"prompt\": \"subtle camera motion\"
   }" > "video_$i.json"
 done
@@ -194,23 +194,23 @@ belt app run infsh/video-audio-merger --input '{
 
 | Step | App | Purpose |
 |------|-----|---------|
-| Script | `openrouter/claude-sonnet-45` | Write content |
+| Script | `anthropic/claude-sonnet-5-5` | Write content |
 | Research | `tavily/search-assistant` | Gather information |
-| Summary | `openrouter/claude-haiku-45` | Condense content |
+| Summary | `anthropic/claude-haiku-5-5` | Condense content |
 
 ### Visual Assets
 
 | Step | App | Purpose |
 |------|-----|---------|
-| Image | `falai/flux-dev` | Generate images |
-| Image | `google/imagen-3` | Alternative image gen |
+| Image | `pruna/flux-dev` | Generate images |
+| Image | `google/gemini-nano-banana-2-1` | Alternative image gen (Nano Banana 2.1) |
 | Upscale | `falai/topaz-image-upscaler` | Enhance quality |
 
 ### Animation
 
 | Step | App | Purpose |
 |------|-----|---------|
-| I2V | `falai/wan-2-5-i2v` | Animate images |
+| I2V | `alibaba/wan-2-7-i2v` | Animate images |
 | T2V | `google/veo-3-1-fast` | Generate from text |
 | Avatar | `bytedance/omnihuman-1-5` | Talking heads |
 
@@ -219,7 +219,7 @@ belt app run infsh/video-audio-merger --input '{
 | Step | App | Purpose |
 |------|-----|---------|
 | TTS | `falai/kokoro-tts` | Voice narration |
-| Music | `infsh/ai-music` | Background music |
+| Music | `elevenlabs/music` | Background music |
 | Foley | `infsh/mmaudio` | Sound effects |
 
 ### Post-Production

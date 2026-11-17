@@ -146,7 +146,7 @@ belt app run google/veo-3-1 --input '{
 ### Food Content
 
 ```bash
-belt app run bytedance/seedance-2-0 --input '{
+belt app run bytedance/seedance-2-5 --input '{
   "prompt": "Close-up of chocolate sauce being drizzled over ice cream, slow motion, steam rising, soft lighting, food photography style, appetizing, commercial quality",
   "generate_audio": true
 }'
@@ -155,7 +155,7 @@ belt app run bytedance/seedance-2-0 --input '{
 ### Tech/Futuristic
 
 ```bash
-belt app run xai/grok-imagine-video --input '{
+belt app run xai/grok-imagine-video-1-5 --input '{
   "prompt": "Futuristic control room with holographic displays, camera slowly pans across the space, blue and cyan lighting, sci-fi atmosphere, Blade Runner aesthetic, 4K",
   "duration": 5
 }'
@@ -183,11 +183,11 @@ belt app run xai/grok-imagine-video --input '{
 ### Seedance
 
 - Strong at dance and human motion
-- First-frame control available
+- First and last frame control, 4-30s durations
 - Good for consistent character motion
 - Works well with reference images
 
-### Wan 2.5
+### Wan 2.7
 
 - Best for image-to-video
 - Animates still images naturally
@@ -197,7 +197,7 @@ belt app run xai/grok-imagine-video --input '{
 ### Grok
 
 - Good general-purpose video
-- Configurable duration (5-10s)
+- Configurable duration (1-15s)
 - Creative interpretations
 - Works well with abstract concepts
 

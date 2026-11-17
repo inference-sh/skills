@@ -78,8 +78,8 @@ belt app run alibaba/qwen-image-2-pro --input '{
 belt app run alibaba/qwen-image-2-pro --input '{
   "prompt": "Make the person from Image 1 wear the outfit from Image 2",
   "reference_images": [
-    {"uri": "https://example.com/person.jpg"},
-    {"uri": "https://example.com/outfit.jpg"}
+    "https://example.com/person.jpg",
+    "https://example.com/outfit.jpg"
   ],
   "num_images": 2
 }'

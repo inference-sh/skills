@@ -60,7 +60,7 @@ belt app run google/veo-3-1 --input '{
 
 ```bash
 # Focus on specific feature
-belt app run bytedance/seedance-2-0 --input '{
+belt app run bytedance/seedance-2-5 --input '{
   "prompt": "Close-up product feature demonstration, hands interacting with device, clean background, informative, tech commercial style",
   "generate_audio": true
 }'
@@ -156,8 +156,8 @@ belt app run infsh/video-audio-merger --input '{
 
 ```bash
 # 1. Write script
-belt app run openrouter/claude-sonnet-45 --input '{
-  "prompt": "Write a 60-second explainer video script for a SaaS product. Include: hook, problem, solution, 3 key features, social proof, CTA. Make it conversational."
+belt app run anthropic/claude-sonnet-5-5 --input '{
+  "text": "Write a 60-second explainer video script for a SaaS product. Include: hook, problem, solution, 3 key features, social proof, CTA. Make it conversational."
 }' > script.json
 
 # 2. Generate visuals for each section
@@ -250,8 +250,9 @@ belt app run google/veo-3-1-fast --input '{
 
 ```bash
 # Add appropriate music
-belt app run infsh/ai-music --input '{
-  "prompt": "Upbeat commercial background music, modern, energetic, 30 seconds"
+belt app run minimax/music-3-0 --input '{
+  "prompt": "Upbeat commercial background music, modern, energetic, 30 seconds",
+  "is_instrumental": true
 }' > music.json
 
 belt app run infsh/video-audio-merger --input '{

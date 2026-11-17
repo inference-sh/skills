@@ -147,7 +147,7 @@ belt app run falai/flux-dev-lora --input '{
 
 ```bash
 # Feature callout style
-belt app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-5-5 --input '{
   "prompt": "app store screenshot style, iPhone showing a messaging app with AI writing suggestions highlighted, clean white background, subtle UI callout arrows, professional marketing asset, modern design",
   "size": "2K"
 }'
@@ -169,8 +169,9 @@ belt app run falai/flux-dev-lora --input '{
 ```bash
 # Split comparison
 belt app run infsh/stitch-images --input '{
-  "images": ["before-screenshot.png", "after-screenshot.png"],
-  "direction": "horizontal"
+  "image1": "before-screenshot.png",
+  "image2": "after-screenshot.png",
+  "orientation": "horizontal"
 }'
 ```
 

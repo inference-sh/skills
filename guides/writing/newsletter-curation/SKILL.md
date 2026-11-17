@@ -24,7 +24,7 @@ belt app run tavily/search-assistant --input '{
 
 # Generate newsletter header
 belt app run infsh/html-to-image --input '{
-  "html": "<div style=\"width:600px;height:200px;background:linear-gradient(135deg,#1e293b,#334155);display:flex;align-items:center;padding:40px;font-family:system-ui;color:white\"><div><h1 style=\"font-size:32px;margin:0;font-weight:800\">The Weekly Signal</h1><p style=\"font-size:16px;opacity:0.7;margin-top:8px\">Issue #47 — January 15, 2025</p></div></div>"
+  "html_content": "<div style=\"width:600px;height:200px;background:linear-gradient(135deg,#1e293b,#334155);display:flex;align-items:center;padding:40px;font-family:system-ui;color:white\"><div><h1 style=\"font-size:32px;margin:0;font-weight:800\">The Weekly Signal</h1><p style=\"font-size:16px;opacity:0.7;margin-top:8px\">Issue #47 — January 15, 2025</p></div></div>"
 }'
 ```
 

@@ -188,7 +188,7 @@ belt app run exa/search --input '{
 
 # Get industry statistics
 belt app run exa/answer --input '{
-  "question": "How much time do engineering teams spend on reporting weekly?"
+  "query": "How much time do engineering teams spend on reporting weekly?"
 }'
 ```
 

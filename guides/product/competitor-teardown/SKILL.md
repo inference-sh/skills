@@ -24,8 +24,7 @@ belt app run tavily/search-assistant --input '{
 
 # Screenshot competitor's website
 belt app run infsh/agent-browser --input '{
-  "url": "https://competitor.com",
-  "action": "screenshot"
+  "url": "https://competitor.com"
 }'
 ```
 
@@ -89,20 +88,17 @@ belt app run tavily/search-assistant --input '{
 ```bash
 # Homepage
 belt app run infsh/agent-browser --input '{
-  "url": "https://competitor.com",
-  "action": "screenshot"
+  "url": "https://competitor.com"
 }'
 
 # Pricing page
 belt app run infsh/agent-browser --input '{
-  "url": "https://competitor.com/pricing",
-  "action": "screenshot"
+  "url": "https://competitor.com/pricing"
 }'
 
 # Signup flow
 belt app run infsh/agent-browser --input '{
-  "url": "https://competitor.com/signup",
-  "action": "screenshot"
+  "url": "https://competitor.com/signup"
 }'
 ```
 
@@ -288,9 +284,11 @@ belt app run exa/search --input '{
 ```bash
 # Stitch competitor screenshots into comparison
 belt app run infsh/stitch-images --input '{
-  "images": ["your-homepage.png", "competitorA-homepage.png", "competitorB-homepage.png"],
-  "direction": "horizontal"
+  "image1": "your-homepage.png",
+  "image2": "competitorA-homepage.png",
+  "orientation": "horizontal"
 }'
+# Stitches two images per run; stitch the result with competitorB-homepage.png to add a third
 ```
 
 ## Common Mistakes

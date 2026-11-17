@@ -145,7 +145,7 @@ belt app run falai/flux-dev-lora --input '{
 }'
 
 # Generate a face-looking-at-subject thumbnail
-belt app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-5-5 --input '{
   "prompt": "person looking amazed at a glowing holographic chart showing upward growth, dramatic blue and green lighting, right side profile view, dark background, tech aesthetic, high energy",
   "size": "2K"
 }'

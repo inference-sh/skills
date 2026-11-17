@@ -84,10 +84,11 @@ belt app run falai/flux-dev-lora --input '{
   "height": 1024
 }' --no-wait
 
-# Stitch into reference sheet
+# Stitch into reference sheet (two images per call; repeat to add views)
 belt app run infsh/stitch-images --input '{
-  "images": ["front.png", "three-quarter.png", "side.png", "back.png"],
-  "direction": "horizontal"
+  "image1": "front.png",
+  "image2": "three-quarter.png",
+  "orientation": "horizontal"
 }'
 ```
 

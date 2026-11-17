@@ -20,7 +20,7 @@ Build automated AI workflows via [inference.sh](https://inference.sh) CLI.
 belt login
 
 # Simple automation: Generate daily image
-belt app run falai/flux-dev --input '{
+belt app run pruna/flux-dev --input '{
   "prompt": "Inspirational quote background, minimalist design, date: '"$(date +%Y-%m-%d)"'"
 }'
 ```
@@ -45,7 +45,7 @@ PROMPTS=(
 
 for prompt in "${PROMPTS[@]}"; do
   echo "Generating: $prompt"
-  belt app run falai/flux-dev --input "{
+  belt app run pruna/flux-dev --input "{
     \"prompt\": \"$prompt, professional photography, 4K\"
   }" > "output_${prompt// /_}.json"
   sleep 2  # Rate limiting
@@ -70,20 +70,20 @@ RESEARCH=$(belt app run tavily/search-assistant --input "{
 
 # Step 2: Write article
 echo "Writing article..."
-ARTICLE=$(belt app run openrouter/claude-sonnet-45 --input "{
-  \"prompt\": \"Write a 500-word blog post about $TOPIC based on: $RESEARCH\"
+ARTICLE=$(belt app run anthropic/claude-sonnet-5-5 --input "{
+  \"text\": \"Write a 500-word blog post about $TOPIC based on: $RESEARCH\"
 }")
 
 # Step 3: Generate image
 echo "Generating image..."
-IMAGE=$(belt app run falai/flux-dev --input "{
+IMAGE=$(belt app run pruna/flux-dev --input "{
   \"prompt\": \"Blog header image for article about $TOPIC, modern, professional\"
 }")
 
 # Step 4: Generate social post
 echo "Creating social post..."
-SOCIAL=$(belt app run openrouter/claude-haiku-45 --input "{
-  \"prompt\": \"Write a Twitter thread (5 tweets) summarizing: $ARTICLE\"
+SOCIAL=$(belt app run anthropic/claude-haiku-5-5 --input "{
+  \"text\": \"Write a Twitter thread (5 tweets) summarizing: $ARTICLE\"
 }")
 
 echo "Pipeline complete!"
@@ -98,13 +98,13 @@ Run multiple operations simultaneously.
 # parallel_generation.sh - Generate multiple assets in parallel
 
 # Start all jobs in background
-belt app run falai/flux-dev --input '{"prompt": "Hero image..."}' > hero.json &
+belt app run pruna/flux-dev --input '{"prompt": "Hero image..."}' > hero.json &
 PID1=$!
 
-belt app run falai/flux-dev --input '{"prompt": "Feature image 1..."}' > feature1.json &
+belt app run pruna/flux-dev --input '{"prompt": "Feature image 1..."}' > feature1.json &
 PID2=$!
 
-belt app run falai/flux-dev --input '{"prompt": "Feature image 2..."}' > feature2.json &
+belt app run pruna/flux-dev --input '{"prompt": "Feature image 2..."}' > feature2.json &
 PID3=$!
 
 # Wait for all to complete
@@ -123,20 +123,20 @@ Branch based on results.
 INPUT_TEXT="$1"
 
 # Analyze content
-ANALYSIS=$(belt app run openrouter/claude-haiku-45 --input "{
-  \"prompt\": \"Classify this text as: positive, negative, or neutral. Return only the classification.\n\n$INPUT_TEXT\"
+ANALYSIS=$(belt app run anthropic/claude-haiku-5-5 --input "{
+  \"text\": \"Classify this text as: positive, negative, or neutral. Return only the classification.\n\n$INPUT_TEXT\"
 }")
 
 # Branch based on result
 case "$ANALYSIS" in
   *positive*)
     echo "Generating celebration image..."
-    belt app run falai/flux-dev --input '{"prompt": "Celebration, success, happy"}'
+    belt app run pruna/flux-dev --input '{"prompt": "Celebration, success, happy"}'
     ;;
   *negative*)
     echo "Generating supportive message..."
-    belt app run openrouter/claude-sonnet-45 --input "{
-      \"prompt\": \"Write a supportive, encouraging response to: $INPUT_TEXT\"
+    belt app run anthropic/claude-sonnet-5-5 --input "{
+      \"text\": \"Write a supportive, encouraging response to: $INPUT_TEXT\"
     }"
     ;;
   *)
@@ -161,7 +161,7 @@ generate_with_retry() {
   while [ $attempt -le $max_attempts ]; do
     echo "Attempt $attempt..."
 
-    result=$(belt app run falai/flux-dev --input "{\"prompt\": \"$prompt\"}" 2>&1)
+    result=$(belt app run pruna/flux-dev --input "{\"prompt\": \"$prompt\"}" 2>&1)
 
     if [ $? -eq 0 ]; then
       echo "$result"
@@ -175,7 +175,7 @@ generate_with_retry() {
 
   # Fallback to different model
   echo "Falling back to alternative model..."
-  belt app run google/imagen-3 --input "{\"prompt\": \"$prompt\"}"
+  belt app run google/gemini-nano-banana-2-1 --input "{\"prompt\": \"$prompt\"}"
 }
 
 generate_with_retry "A beautiful sunset over mountains"
@@ -210,13 +210,13 @@ OUTPUT_DIR="/output/$DATE"
 mkdir -p "$OUTPUT_DIR"
 
 # Generate daily quote image
-belt app run falai/flux-dev --input '{
+belt app run pruna/flux-dev --input '{
   "prompt": "Motivational quote background, minimalist, morning vibes"
 }' > "$OUTPUT_DIR/quote_image.json"
 
 # Generate daily tip
-belt app run openrouter/claude-haiku-45 --input '{
-  "prompt": "Give me one actionable productivity tip for today. Be concise."
+belt app run anthropic/claude-haiku-5-5 --input '{
+  "text": "Give me one actionable productivity tip for today. Be concise."
 }' > "$OUTPUT_DIR/daily_tip.json"
 
 # Post to social (optional)
@@ -246,7 +246,7 @@ START_TIME=$(date +%s)
 
 # Run workflow
 log "Generating image..."
-RESULT=$(belt app run falai/flux-dev --input '{"prompt": "test"}' 2>&1)
+RESULT=$(belt app run pruna/flux-dev --input '{"prompt": "test"}' 2>&1)
 STATUS=$?
 
 if [ $STATUS -eq 0 ]; then
@@ -282,7 +282,7 @@ run_with_alert() {
   return $status
 }
 
-run_with_alert belt app run falai/flux-dev --input '{"prompt": "test"}'
+run_with_alert belt app run pruna/flux-dev --input '{"prompt": "test"}'
 ```
 
 ## Python SDK Automation
@@ -312,14 +312,14 @@ def daily_content_pipeline():
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # Generate image
-    image = run_infsh("falai/flux-dev", {
+    image = run_infsh("pruna/flux-dev", {
         "prompt": f"Daily inspiration for {date_str}, beautiful, uplifting"
     })
     (output_dir / "image.json").write_text(json.dumps(image))
 
     # Generate caption
-    caption = run_infsh("openrouter/claude-haiku-45", {
-        "prompt": "Write an inspiring caption for a daily motivation post. 2-3 sentences."
+    caption = run_infsh("anthropic/claude-haiku-5-5", {
+        "text": "Write an inspiring caption for a daily motivation post. 2-3 sentences."
     })
     (output_dir / "caption.json").write_text(json.dumps(caption))
 
@@ -347,13 +347,13 @@ for i in "${!DAYS[@]}"; do
   echo "Generating $DAY content about $TOPIC..."
 
   # Image
-  belt app run falai/flux-dev --input "{
+  belt app run pruna/flux-dev --input "{
     \"prompt\": \"$TOPIC theme, $DAY motivation, social media style\"
   }" > "content/${DAY}_image.json"
 
   # Caption
-  belt app run openrouter/claude-haiku-45 --input "{
-    \"prompt\": \"Write a $DAY motivation post about $TOPIC. Include hashtags.\"
+  belt app run anthropic/claude-haiku-5-5 --input "{
+    \"text\": \"Write a $DAY motivation post about $TOPIC. Include hashtags.\"
   }" > "content/${DAY}_caption.json"
 done
 ```
@@ -371,8 +371,8 @@ for file in "$INPUT_DIR"/*.txt; do
   filename=$(basename "$file" .txt)
 
   # Analyze content
-  belt app run openrouter/claude-haiku-45 --input "{
-    \"prompt\": \"Analyze this data and provide key insights in JSON format: $(cat $file)\"
+  belt app run anthropic/claude-haiku-5-5 --input "{
+    \"text\": \"Analyze this data and provide key insights in JSON format: $(cat $file)\"
   }" > "$OUTPUT_DIR/${filename}_analysis.json"
 
 done

@@ -18,7 +18,7 @@ Create professional product images with AI via [inference.sh](https://inference.
 belt login
 
 # Clean studio packshot
-belt app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-5-5 --input '{
   "prompt": "professional product photography, single premium wireless headphone on clean white background, soft studio lighting with subtle shadow, commercial e-commerce style, sharp focus, 4K quality",
   "size": "2K"
 }'
@@ -32,7 +32,7 @@ belt app run bytedance/seedream-4-5 --input '{
 The main image customers see first. Clean, focused, aspirational.
 
 ```bash
-belt app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-5-5 --input '{
   "prompt": "hero product shot, premium smartwatch floating at slight angle, clean gradient background transitioning from white to light grey, dramatic rim lighting, subtle reflection below, commercial photography, magazine quality, sharp details",
   "size": "2K"
 }'
@@ -51,7 +51,7 @@ Amazon, Shopify, and most marketplaces require pure white backgrounds.
 
 ```bash
 # Pure white background packshot
-belt app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-5-5 --input '{
   "prompt": "product packshot, leather wallet standing upright at slight angle on pure white background #FFFFFF, soft even studio lighting, no shadows, e-commerce product photography, Amazon listing style, clean sharp focus",
   "size": "2K"
 }'
@@ -69,7 +69,7 @@ belt app run bytedance/seedream-4-5 --input '{
 Product in context — shows how it's used or where it belongs.
 
 ```bash
-belt app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-5-5 --input '{
   "prompt": "lifestyle product photography, premium coffee mug on rustic wooden table beside an open book and reading glasses, morning sunlight streaming through window, cozy home atmosphere, shallow depth of field, warm tones, editorial style",
   "size": "2K"
 }'
@@ -92,7 +92,7 @@ belt app run falai/flux-dev-lora --input '{
 Highlights texture, material quality, or specific features.
 
 ```bash
-belt app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-5-5 --input '{
   "prompt": "extreme close-up product detail, premium leather bag stitching and grain texture, macro photography, shallow depth of field, soft directional lighting highlighting texture, luxury product photography, editorial quality",
   "size": "2K"
 }'
@@ -103,7 +103,7 @@ belt app run bytedance/seedream-4-5 --input '{
 Multiple products or variants together.
 
 ```bash
-belt app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-5-5 --input '{
   "prompt": "product collection flat lay photography, three skincare bottles arranged in triangular composition on marble surface, minimal props, soft overhead lighting, beauty product photography, editorial style, coordinated brand aesthetic",
   "size": "2K"
 }'
@@ -180,19 +180,19 @@ A complete product listing needs 7-9 images in this order:
 ```bash
 # Generate a complete e-commerce set
 # 1. Hero packshot
-belt app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-5-5 --input '{
   "prompt": "product packshot, premium bluetooth speaker on pure white background, slight angle, soft studio lighting, subtle contact shadow, e-commerce photography, sharp, 4K",
   "size": "2K"
 }' --no-wait
 
 # 2. Lifestyle
-belt app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-5-5 --input '{
   "prompt": "lifestyle product photography, bluetooth speaker on poolside table, summer setting, sunglasses and drink nearby, warm natural light, vacation vibes, editorial style",
   "size": "2K"
 }' --no-wait
 
 # 3. Detail
-belt app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-5-5 --input '{
   "prompt": "extreme close-up of speaker grille texture and premium materials, macro product photography, soft lighting, showing build quality, sharp detail",
   "size": "2K"
 }' --no-wait
@@ -251,15 +251,15 @@ Avoid: pure white background for lifestyle (save for e-commerce only)
 
 ```bash
 # Generate base product image
-belt app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-5-5 --input '{
   "prompt": "premium headphones on white background, studio product photography",
   "size": "2K"
 }'
 
 # Edit: change background to lifestyle
-belt app run bytedance/seededit-3-0-i2i --input '{
+belt app run bytedance/seedream-5-5 --input '{
   "prompt": "change the background to a modern minimalist desk setup with warm afternoon light, keep the headphones exactly the same",
-  "image": "headphones-white.png"
+  "images": ["headphones-white.png"]
 }'
 
 # Upscale for print

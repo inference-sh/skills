@@ -1,6 +1,6 @@
 ---
 name: ai-music-generation
-description: "Generate AI music and songs with ElevenLabs, Diffrythm, Tencent Song Generation via inference.sh CLI. Models: ElevenLabs Music (up to 10 min, commercial license), Diffrythm (fast song generation), Tencent Song Generation (full songs with vocals). Capabilities: text-to-music, song generation, instrumental, lyrics to song, soundtrack creation. Use for: background music, social media content, game soundtracks, podcasts, royalty-free music. Triggers: music generation, ai music, generate song, ai composer, text to music, song generator, create music with ai, suno alternative, udio alternative, ai song, ai soundtrack, generate soundtrack, ai jingle, music ai, beat generator, elevenlabs music, eleven labs music"
+description: "Generate AI music and songs with MiniMax Music, ElevenLabs, Diffrythm, Tencent Song Generation via inference.sh CLI. Models: MiniMax Music 3.0 (up to 5 min, vocals or instrumental), ElevenLabs Music (up to 10 min, commercial license), Diffrythm (fast song generation), Tencent Song Generation (full songs with vocals). Capabilities: text-to-music, song generation, instrumental, lyrics to song, soundtrack creation. Use for: background music, social media content, game soundtracks, podcasts, royalty-free music. Triggers: music generation, ai music, generate song, ai composer, text to music, song generator, create music with ai, suno alternative, udio alternative, ai song, ai soundtrack, generate soundtrack, ai jingle, music ai, beat generator, elevenlabs music, eleven labs music, minimax music"
 allowed-tools: Bash(belt *)
 ---
 
@@ -20,7 +20,7 @@ Generate music and songs via [inference.sh](https://inference.sh) CLI.
 belt login
 
 # Generate a song
-belt app run infsh/diffrythm --input '{"prompt": "upbeat electronic dance track"}'
+belt app run minimax/music-3-0 --input '{"prompt": "upbeat electronic dance track", "is_instrumental": true}'
 ```
 
 
@@ -28,8 +28,9 @@ belt app run infsh/diffrythm --input '{"prompt": "upbeat electronic dance track"
 
 | Model | App ID | Best For |
 |-------|--------|----------|
+| MiniMax Music 3.0 | `minimax/music-3-0` | Up to 5 min, vocals with lyrics or instrumental |
 | ElevenLabs Music | `elevenlabs/music` | Up to 10 min, commercial license |
-| Diffrythm | `infsh/diffrythm` | Fast song generation |
+| Diffrythm | `infsh/diffrythm` | Fast song generation from LRC lyrics |
 | Tencent Song | `infsh/tencent-song-generation` | Full songs with vocals |
 
 ## Browse Audio Apps
@@ -43,8 +44,9 @@ belt app list --category audio
 ### Instrumental Track
 
 ```bash
-belt app run infsh/diffrythm --input '{
-  "prompt": "cinematic orchestral soundtrack, epic and dramatic"
+belt app run minimax/music-3-0 --input '{
+  "prompt": "cinematic orchestral soundtrack, epic and dramatic",
+  "is_instrumental": true
 }'
 ```
 
@@ -55,7 +57,7 @@ belt app sample infsh/tencent-song-generation --save input.json
 
 # Edit input.json:
 # {
-#   "prompt": "pop song about summer love",
+#   "descriptions": "pop song about summer love",
 #   "lyrics": "Walking on the beach with you..."
 # }
 
@@ -65,16 +67,18 @@ belt app run infsh/tencent-song-generation --input input.json
 ### Background Music for Video
 
 ```bash
-belt app run infsh/diffrythm --input '{
-  "prompt": "calm lo-fi hip hop beat, study music, relaxing"
+belt app run elevenlabs/music --input '{
+  "prompt": "calm lo-fi hip hop beat, study music, relaxing",
+  "duration_seconds": 60
 }'
 ```
 
 ### Podcast Intro
 
 ```bash
-belt app run infsh/diffrythm --input '{
-  "prompt": "short podcast intro jingle, professional, tech themed, 10 seconds"
+belt app run elevenlabs/music --input '{
+  "prompt": "short podcast intro jingle, professional, tech themed",
+  "duration_seconds": 10
 }'
 ```
 
@@ -82,7 +86,8 @@ belt app run infsh/diffrythm --input '{
 
 ```bash
 belt app run infsh/diffrythm --input '{
-  "prompt": "retro 8-bit video game music, adventure theme, chiptune"
+  "style_prompt": "retro 8-bit video game music, adventure theme, chiptune",
+  "lyrics": "[00:00.00]Press start, the quest begins\n[00:05.00]Pixel heroes, let the journey in"
 }'
 ```
 

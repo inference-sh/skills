@@ -118,7 +118,7 @@ belt app run falai/flux-dev-lora --input '{
 
 ### Romance
 ```bash
-belt app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-5-5 --input '{
   "prompt": "romantic soft-focus scene, couple silhouetted against golden sunset on a beach, warm pink and gold tones, bokeh lights, dreamy atmosphere, soft pastel sky, intimate mood",
   "size": "2K"
 }'
@@ -135,7 +135,7 @@ belt app run falai/flux-dev-lora --input '{
 
 ### Fantasy
 ```bash
-belt app run xai/grok-imagine-image-pro --input '{
+belt app run xai/grok-imagine-image-2-0 --input '{
   "prompt": "epic fantasy book cover illustration, ancient stone castle on a cliff overlooking a misty valley, magical aurora in the sky, rich emerald and gold colors, detailed environment, sense of wonder and adventure",
   "aspect_ratio": "2:3"
 }'
@@ -171,13 +171,13 @@ belt app run falai/flux-dev-lora --input '{
 ```bash
 # 1. Generate 5+ concepts across different models
 belt app run falai/flux-dev-lora --input '{"prompt": "...", "width": 832, "height": 1248}' --no-wait
-belt app run bytedance/seedream-4-5 --input '{"prompt": "..."}' --no-wait
-belt app run xai/grok-imagine-image-pro --input '{"prompt": "...", "aspect_ratio": "2:3"}' --no-wait
+belt app run bytedance/seedream-5-5 --input '{"prompt": "..."}' --no-wait
+belt app run xai/grok-imagine-image-2-0 --input '{"prompt": "...", "aspect_ratio": "2:3"}' --no-wait
 
 # 2. Refine best concept with image-to-image editing
-belt app run bytedance/seededit-3-0-i2i --input '{
+belt app run bytedance/seedream-5-5 --input '{
   "prompt": "make the sky more dramatic with storm clouds, increase contrast",
-  "image": "path/to/best-concept.png"
+  "images": ["path/to/best-concept.png"]
 }'
 
 # 3. Upscale for print quality

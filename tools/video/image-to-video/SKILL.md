@@ -1,6 +1,6 @@
 ---
 name: image-to-video
-description: "Still-to-video conversion guide: model selection, motion prompting, and camera movement. Covers Wan 2.5 i2v, Seedance, Fabric, Grok Video with when to use each. Use for: animating images, creating video from stills, adding motion, product animations. Triggers: image to video, i2v, animate image, still to video, add motion to image, image animation, photo to video, animate still, wan i2v, image2video, bring image to life, animate photo, motion from image"
+description: "Still-to-video conversion guide: model selection, motion prompting, and camera movement. Covers Wan 2.7 i2v, Seedance 2.5, Kling v4, Grok Imagine Video 1.5 with when to use each. Use for: animating images, creating video from stills, adding motion, product animations. Triggers: image to video, i2v, animate image, still to video, add motion to image, image animation, photo to video, animate still, wan i2v, image2video, bring image to life, animate photo, motion from image"
 allowed-tools: Bash(belt *)
 ---
 
@@ -25,9 +25,9 @@ belt app run falai/flux-dev-lora --input '{
 }'
 
 # Animate it
-belt app run falai/wan-2-5-i2v --input '{
+belt app run alibaba/wan-2-7-i2v --input '{
   "prompt": "gentle ripples on the lake surface, clouds slowly drifting, warm light shifting, birds flying in the distance",
-  "image": "path/to/lake-image.png"
+  "first_frame": "path/to/lake-image.png"
 }'
 ```
 
@@ -36,24 +36,25 @@ belt app run falai/wan-2-5-i2v --input '{
 
 | Model | App ID | Best For | Motion Style |
 |-------|--------|----------|-------------|
-| **Wan 2.5 i2v** | `falai/wan-2-5-i2v` | Realistic motion, natural movement | Photorealistic, subtle |
+| **Wan 2.7 i2v** | `alibaba/wan-2-7-i2v` | Realistic motion, natural movement, first+last frame | Photorealistic, subtle |
 | **WAN-I2V (Pruna)** | `pruna/wan-i2v` | Economical, fast, 480p/720p | Natural, efficient |
-| **Seedance 2.0** | `bytedance/seedance-2-0` | Up to 1080p, sync audio, all input types | Versatile, high quality |
-| **Seedance 2.0 Fast** | `bytedance/seedance-2-0-fast` | Fast variant, same capabilities | Versatile, fast |
-| **Fabric 1.0** | `falai/fabric-1-0` | Cloth, fabric, liquid, flowing materials | Physics-based flow |
-| **Grok Imagine Video** | `xai/grok-imagine-video` | General animation, text-guided | Versatile |
+| **Seedance 2.5** | `bytedance/seedance-2-5` | Up to 1080p, sync audio, all input types, `"draft": true` for fast previews | Versatile, high quality |
+| **Kling v4** | `klingai/video-v4` | Up to 1080p, first+last frame, up to 30s | Cinematic, high quality |
+| **Fabric 1.0** | `falai/fabric-1-0` | Talking image from image + audio | Lipsync animation |
+| **Grok Imagine Video 1.5** | `xai/grok-imagine-video-1-5` | General animation, text-guided, with audio | Versatile |
 
 ### When to Use Each
 
 | Scenario | Best Model | Why |
 |----------|-----------|-----|
-| Landscape with water/clouds | **Wan 2.5 i2v** | Best at natural, realistic motion |
-| Portrait with subtle expression | **Wan 2.5 i2v** | Maintains face fidelity |
-| Product with fabric/cloth | **Fabric 1.0** | Specialized in material physics |
-| Flag waving, curtain flowing | **Fabric 1.0** | Cloth simulation |
-| Illustrated/artistic image | **Seedance 2.0** | Matches stylized content |
-| General "bring to life" | **Seedance 2.0** | Good all-rounder, up to 1080p |
-| Quick test/iteration | **Seedance 2.0 Fast** | Faster generation |
+| Landscape with water/clouds | **Wan 2.7 i2v** | Best at natural, realistic motion |
+| Portrait with subtle expression | **Wan 2.7 i2v** | Maintains face fidelity |
+| Product with fabric/cloth | **Kling v4** | Strong material and cloth motion |
+| Flag waving, curtain flowing | **Kling v4** | Cloth simulation |
+| Portrait speaking to audio | **Fabric 1.0** | Image + audio lipsync |
+| Illustrated/artistic image | **Seedance 2.5** | Matches stylized content |
+| General "bring to life" | **Seedance 2.5** | Good all-rounder, up to 1080p |
+| Quick test/iteration | **Seedance 2.5** (`"draft": true`) | Fast 480p preview |
 
 ## Motion Types
 
@@ -107,34 +108,34 @@ AI video models produce better results with **gentle, subtle motion** than drama
 
 ```bash
 # Landscape animation
-belt app run falai/wan-2-5-i2v --input '{
+belt app run alibaba/wan-2-7-i2v --input '{
   "prompt": "gentle camera pan right, water reflecting moving clouds, trees swaying slightly in breeze, warm golden light, peaceful and slow",
-  "image": "landscape.png"
+  "first_frame": "landscape.png"
 }'
 
 # Portrait animation
-belt app run falai/wan-2-5-i2v --input '{
+belt app run alibaba/wan-2-7-i2v --input '{
   "prompt": "subtle breathing motion, slight head turn, natural eye blink, hair moving gently, soft ambient lighting shifts",
-  "image": "portrait.png"
+  "first_frame": "portrait.png"
 }'
 
 # Product shot animation
-belt app run bytedance/seedance-2-0 --input '{
+belt app run bytedance/seedance-2-5 --input '{
   "prompt": "slow 360 degree orbit around the product, gentle spotlight movement, subtle reflections shifting, premium product showcase, smooth motion",
   "image": "product.png",
   "generate_audio": true
 }'
 
 # Fabric/cloth animation
-belt app run falai/fabric-1-0 --input '{
+belt app run klingai/video-v4 --input '{
   "prompt": "fabric flowing and rippling in gentle wind, natural cloth physics, soft movement",
   "image": "fabric-scene.png"
 }'
 
 # Architectural visualization
-belt app run falai/wan-2-5-i2v --input '{
+belt app run alibaba/wan-2-7-i2v --input '{
   "prompt": "slow dolly forward through the entrance, slight camera tilt upward, ambient light filtering through windows, dust particles in light beams",
-  "image": "building-interior.png"
+  "first_frame": "building-interior.png"
 }'
 ```
 
@@ -153,14 +154,14 @@ For longer videos, generate multiple short clips and stitch:
 
 ```bash
 # Generate 3 clips from the same image with progressive motion
-belt app run falai/wan-2-5-i2v --input '{
+belt app run alibaba/wan-2-7-i2v --input '{
   "prompt": "slow pan left, gentle water motion",
-  "image": "scene.png"
+  "first_frame": "scene.png"
 }' --no-wait
 
-belt app run falai/wan-2-5-i2v --input '{
+belt app run alibaba/wan-2-7-i2v --input '{
   "prompt": "continuing pan, clouds shifting, light changing",
-  "image": "scene.png"
+  "first_frame": "scene.png"
 }' --no-wait
 
 # Stitch together
@@ -178,15 +179,15 @@ belt app run infsh/media-merger --input '{
 
 ```bash
 # 1. Generate source image (best quality)
-belt app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-5-5 --input '{
   "prompt": "cinematic landscape, misty mountains at dawn, lake in foreground, dramatic clouds, golden hour, 4K quality, professional photography",
   "size": "2K"
 }'
 
 # 2. Animate the image
-belt app run falai/wan-2-5-i2v --input '{
+belt app run alibaba/wan-2-7-i2v --input '{
   "prompt": "gentle mist rolling through the valley, lake surface rippling, clouds slowly moving, birds in distance, warm light shifting",
-  "image": "landscape.png"
+  "first_frame": "landscape.png"
 }'
 
 # 3. Upscale video if needed
@@ -216,9 +217,9 @@ A cinemagraph is a still photo where only one element moves (e.g., waterfall mov
 3. Keep to 2-4 seconds for seamless looping
 
 ```bash
-belt app run falai/wan-2-5-i2v --input '{
+belt app run alibaba/wan-2-7-i2v --input '{
   "prompt": "only the waterfall is moving, everything else remains perfectly still, water cascading smoothly, rest of scene frozen",
-  "image": "waterfall-scene.png"
+  "first_frame": "waterfall-scene.png"
 }'
 ```
 

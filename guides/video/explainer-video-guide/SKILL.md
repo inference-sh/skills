@@ -85,7 +85,7 @@ belt app run google/veo-3-1-fast --input '{
 }'
 
 # Abstract concept visualization
-belt app run bytedance/seedance-2-0 --input '{
+belt app run bytedance/seedance-2-5 --input '{
   "prompt": "Abstract motion graphics, colorful data streams connecting floating geometric shapes, smooth fluid animation, dark background with glowing elements, tech aesthetic",
   "generate_audio": true
 }'
@@ -110,9 +110,9 @@ belt app run falai/flux-dev-lora --input '{
 }'
 
 # Animate it
-belt app run falai/wan-2-5-i2v --input '{
+belt app run alibaba/wan-2-7-i2v --input '{
   "prompt": "Gentle camera push in, holographic elements subtly floating and rotating, soft ambient light shifts",
-  "image": "path/to/workspace-still.png"
+  "first_frame": "path/to/workspace-still.png"
 }'
 ```
 
@@ -130,7 +130,7 @@ belt app run falai/wan-2-5-i2v --input '{
 ```bash
 # Professional narration with Dia TTS
 belt app run falai/dia-tts --input '{
-  "prompt": "[S1] Tired of spending hours on reports that nobody reads? There is a better way. Meet DataFlow. It turns your raw data into visual stories... in seconds. Just connect your source, pick a template, and share. Try DataFlow free today."
+  "text": "[S1] Tired of spending hours on reports that nobody reads? There is a better way. Meet DataFlow. It turns your raw data into visual stories... in seconds. Just connect your source, pick a template, and share. Try DataFlow free today."
 }'
 ```
 
@@ -167,7 +167,7 @@ belt app run <music-gen-app> --input '{
 ```bash
 # 1. Generate voiceover
 belt app run falai/dia-tts --input '{
-  "prompt": "[S1] Your script here..."
+  "text": "[S1] Your script here..."
 }'
 
 # 2. Generate scene visuals (in parallel)

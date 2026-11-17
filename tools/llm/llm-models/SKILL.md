@@ -1,6 +1,6 @@
 ---
 name: llm-models
-description: "Access Claude, Gemini, Kimi and GLM via inference.sh CLI. Models: Claude Opus 4.6, Claude Sonnet 4.5, Claude Haiku 4.5, Gemini 4 Argon, Kimi K3, GLM-5.3. One CLI and one input format for every model. Use for: AI assistants, code generation, reasoning, agents, chat, content generation. Triggers: claude api, llm api, claude sonnet, claude opus, gemini api, kimi, glm, language model, gpt alternative, anthropic api, ai model api, llm access, chat api, claude alternative, openai alternative"
+description: "Access Claude, Gemini, Kimi and GLM via inference.sh CLI. Models: Claude Opus 5.5, Claude Sonnet 5.5, Claude Haiku 5.5, Gemini 4 Argon, Kimi K3, GLM-5.3. One CLI and one input format for every model. Use for: AI assistants, code generation, reasoning, agents, chat, content generation. Triggers: claude api, llm api, claude sonnet, claude opus, gemini api, kimi, glm, language model, gpt alternative, anthropic api, ai model api, llm access, chat api, claude alternative, openai alternative"
 allowed-tools: Bash(belt *)
 ---
 
@@ -20,7 +20,7 @@ Access leading language models via [inference.sh](https://inference.sh) CLI.
 belt login
 
 # Call Claude Sonnet
-belt app run anthropic/claude-sonnet-4-5 --input '{"text": "Explain quantum computing"}'
+belt app run anthropic/claude-sonnet-5-5 --input '{"text": "Explain quantum computing"}'
 ```
 
 
@@ -28,9 +28,10 @@ belt app run anthropic/claude-sonnet-4-5 --input '{"text": "Explain quantum comp
 
 | Model | App ID | Best For |
 |-------|--------|----------|
-| Claude Opus 4.6 | `anthropic/claude-opus-4-6` | Complex reasoning, coding |
-| Claude Sonnet 4.5 | `anthropic/claude-sonnet-4-5` | Balanced performance |
-| Claude Haiku 4.5 | `anthropic/claude-haiku-4-5` | Fast, economical |
+| Claude Fable 5.1 | `anthropic/claude-fable-5-1` | Anthropic's most capable |
+| Claude Opus 5.5 | `anthropic/claude-opus-5-5` | Complex reasoning, coding |
+| Claude Sonnet 5.5 | `anthropic/claude-sonnet-5-5` | Balanced performance |
+| Claude Haiku 5.5 | `anthropic/claude-haiku-5-5` | Fast, economical |
 | Gemini 4 Argon | `google/gemini-4-argon` | Google's flagship |
 | Kimi K3 | `melious/kimi-k3` | Multi-step reasoning |
 | GLM-5.3 | `melious/glm-5-3` | Open-weight, coding |
@@ -49,7 +50,7 @@ belt app search "gemini"
 ### Claude Opus (Best Quality)
 
 ```bash
-belt app run anthropic/claude-opus-4-6 --input '{
+belt app run anthropic/claude-opus-5-5 --input '{
   "text": "Write a Python function to detect palindromes with comprehensive tests"
 }'
 ```
@@ -57,7 +58,7 @@ belt app run anthropic/claude-opus-4-6 --input '{
 ### Claude Sonnet (Balanced)
 
 ```bash
-belt app run anthropic/claude-sonnet-4-5 --input '{
+belt app run anthropic/claude-sonnet-5-5 --input '{
   "text": "Summarize the key concepts of machine learning"
 }'
 ```
@@ -65,7 +66,7 @@ belt app run anthropic/claude-sonnet-4-5 --input '{
 ### Claude Haiku (Fast & Cheap)
 
 ```bash
-belt app run anthropic/claude-haiku-4-5 --input '{
+belt app run anthropic/claude-haiku-5-5 --input '{
   "text": "Translate this to French: Hello, how are you?"
 }'
 ```
@@ -81,7 +82,7 @@ belt app run melious/kimi-k3 --input '{
 ### With System Prompt
 
 ```bash
-belt app sample anthropic/claude-sonnet-4-5 --save input.json
+belt app sample anthropic/claude-sonnet-5-5 --save input.json
 
 # Edit input.json:
 # {
@@ -89,7 +90,7 @@ belt app sample anthropic/claude-sonnet-4-5 --save input.json
 #   "text": "How do I read a file in Python?"
 # }
 
-belt app run anthropic/claude-sonnet-4-5 --input input.json
+belt app run anthropic/claude-sonnet-5-5 --input input.json
 ```
 
 ## Use Cases

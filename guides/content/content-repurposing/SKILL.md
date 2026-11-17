@@ -135,7 +135,7 @@ done
 ```bash
 # Generate voiceover
 belt app run falai/dia-tts --input '{
-  "prompt": "[S1] Most landing pages make this mistake. They put the features above the fold instead of the outcome. Top converting pages show what life looks like AFTER using the product. Try it and watch your conversion rate climb."
+  "text": "[S1] Most landing pages make this mistake. They put the features above the fold instead of the outcome. Top converting pages show what life looks like AFTER using the product. Try it and watch your conversion rate climb."
 }'
 
 # Generate video
@@ -151,7 +151,7 @@ belt app run google/veo-3-1-fast --input '{
 ```bash
 # Generate audio of the key quote
 belt app run falai/dia-tts --input '{
-  "prompt": "[S1] The number one mistake I see on landing pages... is putting features above the fold. The best pages show the outcome. Not what your product does, but what life looks like after."
+  "text": "[S1] The number one mistake I see on landing pages... is putting features above the fold. The best pages show the outcome. Not what your product does, but what life looks like after."
 }'
 ```
 
@@ -159,7 +159,7 @@ belt app run falai/dia-tts --input '{
 
 ```bash
 # 1. Transcribe the episode
-belt app run <stt-app> --input '{
+belt app run openai/gpt-transcribe --input '{
   "audio": "episode-42.mp3"
 }'
 

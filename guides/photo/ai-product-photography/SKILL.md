@@ -1,6 +1,6 @@
 ---
 name: ai-product-photography
-description: "Generate professional AI product photography and commercial images. Models: FLUX, Imagen 3, Grok, Seedream for product shots, lifestyle images, mockups. Capabilities: studio lighting, lifestyle scenes, packaging, e-commerce photos. Use for: e-commerce, Amazon listings, Shopify, marketing, advertising, mockups. Triggers: product photography, product shot, commercial photography, e-commerce images, amazon product photo, shopify images, product mockup, studio product shot, lifestyle product image, advertising photo, packshot, product render, product image ai"
+description: "Generate professional AI product photography and commercial images. Models: FLUX, Nano Banana 2.1, Grok Imagine 2.0, Seedream 5.5 for product shots, lifestyle images, mockups. Capabilities: studio lighting, lifestyle scenes, packaging, e-commerce photos. Use for: e-commerce, Amazon listings, Shopify, marketing, advertising, mockups. Triggers: product photography, product shot, commercial photography, e-commerce images, amazon product photo, shopify images, product mockup, studio product shot, lifestyle product image, advertising photo, packshot, product render, product image ai"
 allowed-tools: Bash(belt *)
 ---
 
@@ -20,7 +20,7 @@ Generate professional product photography via [inference.sh](https://inference.s
 belt login
 
 # Generate product shot
-belt app run falai/flux-dev --input '{
+belt app run pruna/flux-dev --input '{
   "prompt": "Professional product photo of wireless earbuds on white surface, soft studio lighting, commercial photography, high detail"
 }'
 ```
@@ -30,18 +30,18 @@ belt app run falai/flux-dev --input '{
 
 | Model | App ID | Best For |
 |-------|--------|----------|
-| FLUX Dev | `falai/flux-dev` | High quality, detailed |
-| FLUX Schnell | `falai/flux-schnell` | Fast iterations |
-| Imagen 3 | `google/imagen-3` | Photorealistic |
-| Grok | `xai/grok-imagine-image` | Creative variations |
-| Seedream | `bytedance/seedream-3-0-t2i` | Commercial quality |
+| FLUX Dev | `pruna/flux-dev` | High quality, detailed |
+| P-Image | `pruna/p-image` | Fast iterations |
+| Nano Banana 2.1 | `google/gemini-nano-banana-2-1` | Photorealistic |
+| Grok Imagine 2.0 | `xai/grok-imagine-image-2-0` | Creative variations |
+| Seedream 5.5 | `bytedance/seedream-5-5` | Commercial quality |
 
 ## Product Photography Styles
 
 ### Studio White Background
 
 ```bash
-belt app run falai/flux-dev --input '{
+belt app run pruna/flux-dev --input '{
   "prompt": "Product photography of a luxury watch on pure white background, professional studio lighting, sharp focus, e-commerce style, high resolution"
 }'
 ```
@@ -49,7 +49,7 @@ belt app run falai/flux-dev --input '{
 ### Lifestyle Context
 
 ```bash
-belt app run falai/flux-dev --input '{
+belt app run pruna/flux-dev --input '{
   "prompt": "Lifestyle product photo of coffee mug on wooden desk, morning sunlight through window, cozy home office setting, Instagram aesthetic"
 }'
 ```
@@ -57,7 +57,7 @@ belt app run falai/flux-dev --input '{
 ### Hero Shot
 
 ```bash
-belt app run falai/flux-dev --input '{
+belt app run pruna/flux-dev --input '{
   "prompt": "Hero product shot of smartphone floating at angle, dramatic lighting, gradient background, tech advertising style, premium feel"
 }'
 ```
@@ -65,7 +65,7 @@ belt app run falai/flux-dev --input '{
 ### Flat Lay
 
 ```bash
-belt app run falai/flux-dev --input '{
+belt app run pruna/flux-dev --input '{
   "prompt": "Flat lay product photography of skincare products arranged aesthetically, marble surface, eucalyptus leaves as props, beauty brand style"
 }'
 ```
@@ -73,7 +73,7 @@ belt app run falai/flux-dev --input '{
 ### In-Use / Action
 
 ```bash
-belt app run falai/flux-dev --input '{
+belt app run pruna/flux-dev --input '{
   "prompt": "Action shot of running shoes mid-stride, motion blur background, athletic lifestyle, Nike advertisement style"
 }'
 ```
@@ -83,7 +83,7 @@ belt app run falai/flux-dev --input '{
 ### Electronics
 
 ```bash
-belt app run falai/flux-dev --input '{
+belt app run pruna/flux-dev --input '{
   "prompt": "Professional product photo of wireless headphones, matte black finish, floating on dark gradient background, rim lighting, tech product photography"
 }'
 ```
@@ -91,7 +91,7 @@ belt app run falai/flux-dev --input '{
 ### Fashion / Apparel
 
 ```bash
-belt app run falai/flux-dev --input '{
+belt app run pruna/flux-dev --input '{
   "prompt": "Fashion product photography of leather handbag, studio setting, soft shadows, luxury brand aesthetic, Vogue style"
 }'
 ```
@@ -99,7 +99,7 @@ belt app run falai/flux-dev --input '{
 ### Beauty / Cosmetics
 
 ```bash
-belt app run falai/flux-dev --input '{
+belt app run pruna/flux-dev --input '{
   "prompt": "Beauty product photography of lipstick with color swatches, clean white background, soft lighting, high-end cosmetics advertising"
 }'
 ```
@@ -107,7 +107,7 @@ belt app run falai/flux-dev --input '{
 ### Food & Beverage
 
 ```bash
-belt app run falai/flux-dev --input '{
+belt app run pruna/flux-dev --input '{
   "prompt": "Food photography of craft beer bottle with condensation, rustic wooden table, warm lighting, artisanal brand aesthetic"
 }'
 ```
@@ -115,7 +115,7 @@ belt app run falai/flux-dev --input '{
 ### Home & Furniture
 
 ```bash
-belt app run falai/flux-dev --input '{
+belt app run pruna/flux-dev --input '{
   "prompt": "Interior product photo of modern armchair in minimalist living room, natural lighting, Scandinavian design style, lifestyle context"
 }'
 ```
@@ -123,7 +123,7 @@ belt app run falai/flux-dev --input '{
 ### Jewelry
 
 ```bash
-belt app run falai/flux-dev --input '{
+belt app run pruna/flux-dev --input '{
   "prompt": "Jewelry product photography of diamond ring, black velvet surface, dramatic spotlight, sparkle and reflection, luxury advertising"
 }'
 ```
@@ -133,7 +133,7 @@ belt app run falai/flux-dev --input '{
 ### Soft Studio Light
 
 ```bash
-belt app run falai/flux-dev --input '{
+belt app run pruna/flux-dev --input '{
   "prompt": "Product photo with soft diffused studio lighting, minimal shadows, clean and professional, commercial photography"
 }'
 ```
@@ -141,7 +141,7 @@ belt app run falai/flux-dev --input '{
 ### Dramatic / Rim Light
 
 ```bash
-belt app run falai/flux-dev --input '{
+belt app run pruna/flux-dev --input '{
   "prompt": "Product photo with dramatic rim lighting, dark background, glowing edges, premium tech aesthetic"
 }'
 ```
@@ -149,7 +149,7 @@ belt app run falai/flux-dev --input '{
 ### Natural Window Light
 
 ```bash
-belt app run falai/flux-dev --input '{
+belt app run pruna/flux-dev --input '{
   "prompt": "Product photo with natural window light, soft shadows, lifestyle setting, warm and inviting"
 }'
 ```
@@ -157,7 +157,7 @@ belt app run falai/flux-dev --input '{
 ### Hard Light / High Contrast
 
 ```bash
-belt app run falai/flux-dev --input '{
+belt app run pruna/flux-dev --input '{
   "prompt": "Product photo with hard directional lighting, strong shadows, bold contrast, editorial style"
 }'
 ```
@@ -167,7 +167,7 @@ belt app run falai/flux-dev --input '{
 ### Amazon Main Image
 
 ```bash
-belt app run falai/flux-dev --input '{
+belt app run pruna/flux-dev --input '{
   "prompt": "Amazon product listing main image, pure white background RGB 255 255 255, product fills 85% of frame, professional studio lighting, no text or graphics"
 }'
 ```
@@ -175,7 +175,7 @@ belt app run falai/flux-dev --input '{
 ### Amazon Lifestyle Image
 
 ```bash
-belt app run falai/flux-dev --input '{
+belt app run pruna/flux-dev --input '{
   "prompt": "Amazon lifestyle product image, product in natural use context, relatable setting, shows scale and use case"
 }'
 ```
@@ -183,7 +183,7 @@ belt app run falai/flux-dev --input '{
 ### Shopify Hero
 
 ```bash
-belt app run falai/flux-dev --input '{
+belt app run pruna/flux-dev --input '{
   "prompt": "Shopify hero banner product image, lifestyle context, space for text overlay on left, premium brand aesthetic"
 }'
 ```
@@ -196,7 +196,7 @@ PRODUCT="luxury watch"
 ANGLES=("front view" "45 degree angle" "side profile" "detail shot of face")
 
 for angle in "${ANGLES[@]}"; do
-  belt app run falai/flux-dev --input "{
+  belt app run pruna/flux-dev --input "{
     \"prompt\": \"Professional product photography of $PRODUCT, $angle, white background, studio lighting\"
   }" > "product_${angle// /_}.json"
 done
@@ -206,7 +206,7 @@ done
 
 ```bash
 # 1. Generate base product image
-belt app run falai/flux-dev --input '{
+belt app run pruna/flux-dev --input '{
   "prompt": "Product photo of headphones..."
 }' > product.json
 

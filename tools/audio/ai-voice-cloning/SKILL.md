@@ -1,6 +1,6 @@
 ---
 name: ai-voice-cloning
-description: "AI voice generation, text-to-speech, and voice synthesis via inference.sh CLI. Models: Inworld TTS-2 (100+ languages, emotion/non-verbal steering), Inworld TTS 1.5 (ultra-low latency), ElevenLabs (22+ premium voices, 32 languages), Kokoro TTS, DIA, Chatterbox, Higgs, VibeVoice for natural speech. Capabilities: multiple voices, emotions, accents, long-form narration, conversation, voice transformation, delivery mode control, character voices. Use for: voiceovers, audiobooks, podcasts, video narration, accessibility, gaming NPCs, avatar audio, UGC. Triggers: voice cloning, tts, text to speech, ai voice, voice generation, voice synthesis, voice over, narration, speech synthesis, ai narrator, elevenlabs, eleven labs, natural voice, realistic speech, voice ai, voice changer, inworld, inworld tts, character voice, npc voice"
+description: "AI voice generation, text-to-speech, and voice synthesis via inference.sh CLI. Models: Inworld TTS-2 (100+ languages, emotion/non-verbal steering), Inworld TTS 1.5 (ultra-low latency), ElevenLabs Eleven v4 (22+ premium voices, 90+ languages, audio tags), Kokoro TTS, DIA, Chatterbox, Higgs, VibeVoice for natural speech. Capabilities: multiple voices, emotions, accents, long-form narration, conversation, voice transformation, delivery mode control, character voices. Use for: voiceovers, audiobooks, podcasts, video narration, accessibility, gaming NPCs, avatar audio, UGC. Triggers: voice cloning, tts, text to speech, ai voice, voice generation, voice synthesis, voice over, narration, speech synthesis, ai narrator, elevenlabs, eleven labs, eleven v4, natural voice, realistic speech, voice ai, voice changer, inworld, inworld tts, character voice, npc voice"
 allowed-tools: Bash(belt *)
 ---
 
@@ -34,7 +34,7 @@ belt app run falai/kokoro-tts --input '{
 | **Inworld TTS-2** | `inworld/text-to-speech-2` | **100+ languages, emotion/non-verbal steering, delivery modes** |
 | Inworld TTS 1.5 Max | `inworld/text-to-speech-1-5-max` | Low latency (<200ms), 15 languages |
 | Inworld TTS 1.5 Mini | `inworld/text-to-speech-1-5-mini` | Ultra-low latency (~120ms), 15 languages, real-time |
-| ElevenLabs TTS | `elevenlabs/tts` | Premium quality, 22+ voices, 32 languages |
+| ElevenLabs Eleven v4 | `elevenlabs/eleven-v4` | Premium quality, 22+ voices, 90+ languages, audio tags |
 | ElevenLabs Voice Changer | `elevenlabs/voice-changer` | Transform existing voice recordings |
 | Kokoro TTS | `falai/kokoro-tts` | Natural, multiple voices |
 | DIA | `infsh/dia-tts` | Conversational, expressive |
@@ -117,8 +117,7 @@ belt app run falai/kokoro-tts --input '{
 
 ```bash
 belt app run infsh/dia-tts --input '{
-  "text": "Hey, so I was thinking about that project we discussed. What if we tried a different approach?",
-  "voice": "conversational"
+  "text": "[S1] Hey, so I was thinking about that project we discussed. What if we tried a different approach?"
 }'
 ```
 

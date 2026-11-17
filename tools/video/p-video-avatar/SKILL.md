@@ -152,10 +152,6 @@ English (US), English (UK), Spanish, French, German, Italian, Portuguese (Brazil
 
 Example: 30-second 720p video = $0.75
 
-### Free Launch Weekend
-
-**P-Video-Avatar is completely free from Thursday May 1, 2026 4:00 PM CET through Sunday May 4, 2026 11:59 PM CET.** All costs are on us during this window — no billing, no limits on resolution.
-
 ## Competitive Advantage
 
 | Feature | P-Video-Avatar | Fabric 1.0 | OmniHuman 1.5 | HeyGen Avatar 4 |
@@ -192,10 +188,10 @@ Example: 30-second 720p video = $0.75
 belt app run pruna/p-image --input '{"prompt": "professional headshot portrait"}'
 
 # General video generation
-belt app run pruna/p-video --input '{"prompt": "cinematic scene"}'
+belt app run pruna/p-video-2 --input '{"prompt": "cinematic scene"}'
 
 # Image editing
-belt app run pruna/p-image-edit --input '{"prompt": "change background", "image": "https://photo.jpg"}'
+belt app run pruna/p-image-edit --input '{"prompt": "change background", "images": ["https://photo.jpg"]}'
 ```
 
 ## Related Skills

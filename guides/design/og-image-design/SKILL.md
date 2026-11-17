@@ -19,7 +19,7 @@ belt login
 
 # Generate an OG image with HTML-to-image
 belt app run infsh/html-to-image --input '{
-  "html": "<div style=\"width:1200px;height:630px;background:linear-gradient(135deg,#1a1a2e,#16213e);display:flex;align-items:center;padding:60px;font-family:system-ui;color:white\"><div><h1 style=\"font-size:56px;margin:0;line-height:1.2\">How We Reduced Build Times by 80%</h1><p style=\"font-size:24px;opacity:0.8;margin-top:20px\">engineering.yourcompany.com</p></div></div>"
+  "html_content": "<div style=\"width:1200px;height:630px;background:linear-gradient(135deg,#1a1a2e,#16213e);display:flex;align-items:center;padding:60px;font-family:system-ui;color:white\"><div><h1 style=\"font-size:56px;margin:0;line-height:1.2\">How We Reduced Build Times by 80%</h1><p style=\"font-size:24px;opacity:0.8;margin-top:20px\">engineering.yourcompany.com</p></div></div>"
 }'
 ```
 
@@ -105,7 +105,7 @@ belt app run infsh/html-to-image --input '{
 
 ```bash
 belt app run infsh/html-to-image --input '{
-  "html": "<div style=\"width:1200px;height:630px;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;padding:60px;font-family:system-ui,sans-serif;color:white\"><div style=\"flex:1\"><p style=\"font-size:18px;text-transform:uppercase;letter-spacing:2px;opacity:0.8;margin:0\">Engineering Blog</p><h1 style=\"font-size:52px;margin:16px 0 0;line-height:1.2;font-weight:800\">How We Reduced Build Times by 80%</h1><p style=\"font-size:22px;opacity:0.9;margin-top:16px\">A deep dive into our CI/CD optimization</p></div></div>"
+  "html_content": "<div style=\"width:1200px;height:630px;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;padding:60px;font-family:system-ui,sans-serif;color:white\"><div style=\"flex:1\"><p style=\"font-size:18px;text-transform:uppercase;letter-spacing:2px;opacity:0.8;margin:0\">Engineering Blog</p><h1 style=\"font-size:52px;margin:16px 0 0;line-height:1.2;font-weight:800\">How We Reduced Build Times by 80%</h1><p style=\"font-size:22px;opacity:0.9;margin-top:16px\">A deep dive into our CI/CD optimization</p></div></div>"
 }'
 ```
 
@@ -113,7 +113,7 @@ belt app run infsh/html-to-image --input '{
 
 ```bash
 belt app run infsh/html-to-image --input '{
-  "html": "<div style=\"width:1200px;height:630px;background:#0f0f0f;display:flex;align-items:center;justify-content:center;font-family:system-ui;color:white;text-align:center\"><div><p style=\"font-size:20px;color:#22c55e;text-transform:uppercase;letter-spacing:3px\">Now Available</p><h1 style=\"font-size:64px;margin:12px 0;font-weight:900\">DataFlow 2.0</h1><p style=\"font-size:24px;opacity:0.7\">Automated reports. Zero configuration.</p></div></div>"
+  "html_content": "<div style=\"width:1200px;height:630px;background:#0f0f0f;display:flex;align-items:center;justify-content:center;font-family:system-ui;color:white;text-align:center\"><div><p style=\"font-size:20px;color:#22c55e;text-transform:uppercase;letter-spacing:3px\">Now Available</p><h1 style=\"font-size:64px;margin:12px 0;font-weight:900\">DataFlow 2.0</h1><p style=\"font-size:24px;opacity:0.7\">Automated reports. Zero configuration.</p></div></div>"
 }'
 ```
 
@@ -121,7 +121,7 @@ belt app run infsh/html-to-image --input '{
 
 ```bash
 belt app run infsh/html-to-image --input '{
-  "html": "<div style=\"width:1200px;height:630px;background:linear-gradient(to right,#1a1a2e,#16213e);display:flex;align-items:center;padding:60px;font-family:system-ui;color:white\"><div><div style=\"display:inline-block;background:#e74c3c;color:white;padding:8px 16px;border-radius:4px;font-size:16px;font-weight:bold;margin-bottom:16px\">TUTORIAL</div><h1 style=\"font-size:48px;margin:0;line-height:1.2\">Build a REST API in 10 Minutes with Node.js</h1><p style=\"font-size:20px;opacity:0.7;margin-top:16px\">Step-by-step guide with code examples</p></div></div>"
+  "html_content": "<div style=\"width:1200px;height:630px;background:linear-gradient(to right,#1a1a2e,#16213e);display:flex;align-items:center;padding:60px;font-family:system-ui;color:white\"><div><div style=\"display:inline-block;background:#e74c3c;color:white;padding:8px 16px;border-radius:4px;font-size:16px;font-weight:bold;margin-bottom:16px\">TUTORIAL</div><h1 style=\"font-size:48px;margin:0;line-height:1.2\">Build a REST API in 10 Minutes with Node.js</h1><p style=\"font-size:20px;opacity:0.7;margin-top:16px\">Step-by-step guide with code examples</p></div></div>"
 }'
 ```
 

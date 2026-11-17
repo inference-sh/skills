@@ -1,14 +1,14 @@
 ---
 name: seedance
-description: "Generate videos with ByteDance Seedance 2.0 via inference.sh CLI. Unified model for text-to-video, image-to-video, and reference-to-video with synchronized audio, up to 1080p, 4-15s duration. Pro and Fast variants. Studio variants with private asset library for portrait consistency. Use for: social media videos, music videos, product demos, animated content, AI video with sound. Triggers: seedance, seedance 2, bytedance video, seedance t2v, seedance i2v, seedance r2v, video with audio, seedance 2.0, bytedance seedance, seedance studio"
+description: "Generate videos with ByteDance Seedance 2.5 via inference.sh CLI. Unified model for text-to-video, image-to-video, and reference-to-video with synchronized audio, up to 1080p, 4-30s duration. Draft mode for fast previews. Studio variant with private asset library for portrait consistency. Use for: social media videos, music videos, product demos, animated content, AI video with sound. Triggers: seedance, seedance 2, seedance 2.5, bytedance video, seedance t2v, seedance i2v, seedance r2v, video with audio, bytedance seedance, seedance studio"
 allowed-tools: Bash(belt *)
 ---
 
 > **Install the belt CLI skill:** `npx skills add belt-sh/cli`
 
-# Seedance 2.0 Video Generation
+# Seedance 2.5 Video Generation
 
-Generate videos with synchronized audio using ByteDance's Seedance 2.0 via [inference.sh](https://inference.sh) CLI.
+Generate videos with synchronized audio using ByteDance's Seedance 2.5 via [inference.sh](https://inference.sh) CLI.
 
 ## Quick Start
 
@@ -17,7 +17,7 @@ Generate videos with synchronized audio using ByteDance's Seedance 2.0 via [infe
 ```bash
 belt login
 
-belt app run bytedance/seedance-2-0 --input '{
+belt app run bytedance/seedance-2-5 --input '{
   "prompt": "a jazz band performing in a dimly lit club",
   "generate_audio": true
 }'
@@ -28,12 +28,10 @@ belt app run bytedance/seedance-2-0 --input '{
 
 | Model | App ID | Best For |
 |-------|--------|----------|
-| Seedance 2.0 | `bytedance/seedance-2-0` | Best quality, up to 1080p |
-| Seedance 2.0 Fast | `bytedance/seedance-2-0-fast` | Faster generation, up to 720p |
-| Seedance 2.0 Studio | `bytedance/seedance-2-0-studio` | Quality + private asset library for portrait consistency |
-| Seedance 2.0 Studio Fast | `bytedance/seedance-2-0-studio-fast` | Fast + private asset library for portrait consistency |
+| Seedance 2.5 | `bytedance/seedance-2-5` | Best quality, up to 1080p, 4-30s |
+| Seedance 2.5 Studio | `bytedance/seedance-2-5-studio` | Quality + private asset library for portrait consistency |
 
-All models support text-to-video, image-to-video, multimodal reference-to-video, and synchronized audio generation. Studio variants automatically upload reference images to the BytePlus private virtual portrait library for enhanced character consistency - particularly useful for faces and branded characters.
+Both models support text-to-video, image-to-video, multimodal reference-to-video, and synchronized audio generation. Set `"draft": true` for a fast, low-cost 480p preview; pass its `draft_task_id` later to render the chosen take at 1080p. The Studio variant automatically upload reference images to the BytePlus private virtual portrait library for enhanced character consistency - particularly useful for faces and branded characters.
 
 ## Modes
 
@@ -51,7 +49,7 @@ The model determines the generation mode from your inputs. These modes are **mut
 ### Text-to-Video with Audio
 
 ```bash
-belt app run bytedance/seedance-2-0 --input '{
+belt app run bytedance/seedance-2-5 --input '{
   "prompt": "ocean waves crashing on rocks during a storm, dramatic cinematic shot",
   "generate_audio": true,
   "duration": 10,
@@ -59,12 +57,13 @@ belt app run bytedance/seedance-2-0 --input '{
 }'
 ```
 
-### Fast Mode (Cheaper)
+### Draft Mode (Cheaper)
 
 ```bash
-belt app run bytedance/seedance-2-0-fast --input '{
+belt app run bytedance/seedance-2-5 --input '{
   "prompt": "a butterfly landing on a flower in slow motion",
-  "generate_audio": true
+  "generate_audio": true,
+  "draft": true
 }'
 ```
 
@@ -73,7 +72,7 @@ belt app run bytedance/seedance-2-0-fast --input '{
 Animate a still image into a video:
 
 ```bash
-belt app run bytedance/seedance-2-0 --input '{
+belt app run bytedance/seedance-2-5 --input '{
   "image": "https://your-image.jpg",
   "prompt": "gentle camera movement, leaves rustling in the wind",
   "generate_audio": true
@@ -83,7 +82,7 @@ belt app run bytedance/seedance-2-0 --input '{
 ### Image-to-Video with Start and End Frames
 
 ```bash
-belt app run bytedance/seedance-2-0 --input '{
+belt app run bytedance/seedance-2-5 --input '{
   "image": "https://start-frame.jpg",
   "end_image": "https://end-frame.jpg",
   "prompt": "smooth transition between scenes",
@@ -96,7 +95,7 @@ belt app run bytedance/seedance-2-0 --input '{
 Use multiple reference images to guide character appearance, outfits, and scene elements:
 
 ```bash
-belt app run bytedance/seedance-2-0 --input '{
+belt app run bytedance/seedance-2-5 --input '{
   "prompt": "The girl from Image 1 wearing the outfit from Image 2 walks through the cafe from Image 3",
   "reference_images": [
     "https://character-portrait.jpg",
@@ -111,7 +110,7 @@ belt app run bytedance/seedance-2-0 --input '{
 ### Video Editing (Replace Elements)
 
 ```bash
-belt app run bytedance/seedance-2-0 --input '{
+belt app run bytedance/seedance-2-5 --input '{
   "prompt": "Replace the perfume in Video 1 with the face cream from Image 1, preserving all original motions and camera work",
   "reference_images": ["https://face-cream.jpg"],
   "reference_videos": ["https://original-video.mp4"],
@@ -122,7 +121,7 @@ belt app run bytedance/seedance-2-0 --input '{
 ### Video Extension (Stitch Clips)
 
 ```bash
-belt app run bytedance/seedance-2-0 --input '{
+belt app run bytedance/seedance-2-5 --input '{
   "prompt": "Video 1 transitions smoothly into Video 2, then the camera enters the painting from Video 3",
   "reference_videos": [
     "https://clip1.mp4",
@@ -137,7 +136,7 @@ belt app run bytedance/seedance-2-0 --input '{
 ### Reference with Audio
 
 ```bash
-belt app run bytedance/seedance-2-0 --input '{
+belt app run bytedance/seedance-2-5 --input '{
   "prompt": "The musician from Image 1 performs the song from Audio 1, voice style referenced from Audio 1",
   "reference_images": ["https://musician.jpg"],
   "reference_audios": ["https://music.mp3"],
@@ -147,10 +146,10 @@ belt app run bytedance/seedance-2-0 --input '{
 
 ### Studio Mode (Portrait Consistency)
 
-Studio variants upload images to BytePlus's private asset library for enhanced face/character consistency:
+The Studio variant uploads images to BytePlus's private asset library for enhanced face/character consistency:
 
 ```bash
-belt app run bytedance/seedance-2-0-studio --input '{
+belt app run bytedance/seedance-2-5-studio --input '{
   "prompt": "The person in Image 1 smiles at the camera, golden hour lighting, cinematic",
   "reference_images": ["https://portrait.jpg"],
   "safety_identifier": "user-abc123",
@@ -161,7 +160,7 @@ belt app run bytedance/seedance-2-0-studio --input '{
 ### Product Ad with Multiple References
 
 ```bash
-belt app run bytedance/seedance-2-0 --input '{
+belt app run bytedance/seedance-2-5 --input '{
   "prompt": "First-person POV product ad. Opening frame is Image 1, hand picks up the product. Camera pushes into close-up showing details. Use the camera movement style from Video 1. Background music from Audio 1.",
   "reference_images": ["https://product-hero.jpg", "https://product-detail.jpg"],
   "reference_videos": ["https://camera-style.mp4"],
@@ -197,24 +196,25 @@ Reference assets in your prompt using **type + index**: `Image 1`, `Image 2`, `V
 |-----------|------|---------|-------------|
 | `prompt` | string | required | Text description of the video |
 | `generate_audio` | boolean | true | Generate synchronized audio |
-| `duration` | integer | 5 | Duration in seconds (4-15), or -1 for auto |
+| `duration` | integer | -1 | Duration in seconds (4-30), or -1 for auto |
 | `ratio` | enum | adaptive | 21:9, 16:9, 4:3, 1:1, 3:4, 9:16, or adaptive |
-| `resolution` | enum | 720p | 480p, 720p, 1080p (Fast: 480p, 720p only) |
+| `resolution` | enum | 720p | 480p, 720p, 1080p |
 | `seed` | integer | -1 | Seed for reproducibility (-1 for random) |
 | `watermark` | boolean | false | Add watermark to output |
+| `draft` | boolean | false | Fast 480p preview; returns a `draft_task_id` to render the final 1080p take |
 | `safety_identifier` | string | - | Unique end-user identifier for safety policy (max 64 chars, hash of user ID recommended) |
 | `image` | file | - | First-frame image (mutually exclusive with reference inputs) |
 | `end_image` | file | - | Last-frame image (requires `image`) |
-| `reference_images` | file[] | - | Reference images, up to 9 (mutually exclusive with image/end_image) |
-| `reference_videos` | file[] | - | Reference videos, up to 3. Max 15s each, total max 15s. mp4/mov |
-| `reference_audios` | file[] | - | Reference audios, up to 3. Max 15s each, total max 15s. wav/mp3. Requires at least one image or video |
+| `reference_images` | file[] | - | Reference images, up to 30 (mutually exclusive with image/end_image) |
+| `reference_videos` | file[] | - | Reference videos, up to 10. 2-30s each, total max 30s. mp4/mov |
+| `reference_audios` | file[] | - | Reference audios, up to 10. 2-30s each, total max 30s. wav/mp3. Audio-only input is supported |
 
 ## Pricing
 
 | Model | Pricing |
 |-------|---------|
-| Seedance 2.0 | $4.30-$7.70/M tokens (varies by resolution and input type) |
-| Seedance 2.0 Fast | $3.30-$5.60/M tokens |
+| Seedance 2.5 | $6.40-$11.70/M tokens (varies by resolution and input type) |
+| Seedance 2.5 Studio | $6.40-$11.70/M tokens |
 
 Token formula: `(width x height x fps x duration) / 1024`
 

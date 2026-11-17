@@ -153,7 +153,7 @@ belt app run elevenlabs/music --input '{
 }' > music.json
 
 # 2. Generate voiceover
-belt app run elevenlabs/tts --input '{
+belt app run elevenlabs/eleven-v4 --input '{
   "text": "Welcome to our product tour. Let me show you what we have built.",
   "voice": "george"
 }' > voice.json
@@ -184,7 +184,7 @@ npx skills add inference-sh/skills@elevenlabs-sound-effects
 # ElevenLabs TTS (add voice over music)
 npx skills add inference-sh/skills@elevenlabs-tts
 
-# Other music models (Diffrythm, Tencent)
+# Other music models (MiniMax, Diffrythm, Tencent)
 npx skills add inference-sh/skills@ai-music-generation
 
 # Full platform skill (all apps)

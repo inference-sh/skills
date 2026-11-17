@@ -94,7 +94,7 @@ belt app run tavily/search-assistant --input '{
 
 # Content consumption habits
 belt app run exa/answer --input '{
-  "question": "Where do product managers get their industry news and professional development?"
+  "query": "Where do product managers get their industry news and professional development?"
 }'
 ```
 

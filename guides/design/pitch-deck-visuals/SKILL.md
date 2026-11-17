@@ -19,7 +19,7 @@ belt login
 
 # Generate a slide background
 belt app run infsh/html-to-image --input '{
-  "html": "<div style=\"width:1920px;height:1080px;background:linear-gradient(135deg,#0f0f23,#1a1a3e);display:flex;align-items:center;padding:100px;font-family:system-ui;color:white\"><div><p style=\"font-size:24px;color:#818cf8;text-transform:uppercase;letter-spacing:3px\">The Problem</p><h1 style=\"font-size:72px;margin:16px 0;font-weight:800;line-height:1.1\">Teams waste 12 hours/week on manual reporting</h1><p style=\"font-size:28px;opacity:0.7\">Source: Forrester Research, 2024</p></div></div>"
+  "html_content": "<div style=\"width:1920px;height:1080px;background:linear-gradient(135deg,#0f0f23,#1a1a3e);display:flex;align-items:center;padding:100px;font-family:system-ui;color:white\"><div><p style=\"font-size:24px;color:#818cf8;text-transform:uppercase;letter-spacing:3px\">The Problem</p><h1 style=\"font-size:72px;margin:16px 0;font-weight:800;line-height:1.1\">Teams waste 12 hours/week on manual reporting</h1><p style=\"font-size:28px;opacity:0.7\">Source: Forrester Research, 2024</p></div></div>"
 }'
 ```
 
@@ -89,7 +89,7 @@ If you need more text, you need more slides.
 
 ```bash
 belt app run infsh/html-to-image --input '{
-  "html": "<div style=\"width:1920px;height:1080px;background:#0f0f23;display:flex;align-items:center;justify-content:center;font-family:system-ui;color:white;text-align:center\"><div><h1 style=\"font-size:80px;font-weight:900;margin:0\">DataFlow</h1><p style=\"font-size:32px;opacity:0.7;margin-top:16px\">Automated reporting for data teams</p><p style=\"font-size:22px;opacity:0.5;margin-top:40px\">Seed Round — Q1 2025</p></div></div>"
+  "html_content": "<div style=\"width:1920px;height:1080px;background:#0f0f23;display:flex;align-items:center;justify-content:center;font-family:system-ui;color:white;text-align:center\"><div><h1 style=\"font-size:80px;font-weight:900;margin:0\">DataFlow</h1><p style=\"font-size:32px;opacity:0.7;margin-top:16px\">Automated reporting for data teams</p><p style=\"font-size:22px;opacity:0.5;margin-top:40px\">Seed Round — Q1 2025</p></div></div>"
 }'
 ```
 
@@ -99,7 +99,7 @@ belt app run infsh/html-to-image --input '{
 
 ```bash
 belt app run infsh/html-to-image --input '{
-  "html": "<div style=\"width:1920px;height:1080px;background:#0f0f23;display:flex;align-items:center;padding:100px;font-family:system-ui;color:white\"><div><p style=\"font-size:24px;color:#f59e0b;text-transform:uppercase;letter-spacing:3px;margin:0\">The Problem</p><h1 style=\"font-size:144px;margin:20px 0;font-weight:900;color:#f59e0b\">12 hrs/week</h1><p style=\"font-size:36px;opacity:0.8;line-height:1.4\">The average data analyst spends 12 hours per week<br>building reports manually</p><p style=\"font-size:20px;opacity:0.4;margin-top:30px\">Source: Forrester Research, 2024</p></div></div>"
+  "html_content": "<div style=\"width:1920px;height:1080px;background:#0f0f23;display:flex;align-items:center;padding:100px;font-family:system-ui;color:white\"><div><p style=\"font-size:24px;color:#f59e0b;text-transform:uppercase;letter-spacing:3px;margin:0\">The Problem</p><h1 style=\"font-size:144px;margin:20px 0;font-weight:900;color:#f59e0b\">12 hrs/week</h1><p style=\"font-size:36px;opacity:0.8;line-height:1.4\">The average data analyst spends 12 hours per week<br>building reports manually</p><p style=\"font-size:20px;opacity:0.4;margin-top:30px\">Source: Forrester Research, 2024</p></div></div>"
 }'
 ```
 

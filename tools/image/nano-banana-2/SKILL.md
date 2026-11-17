@@ -1,14 +1,14 @@
 ---
 name: nano-banana-2
-description: "Generate images with Google Gemini 3.1 Flash Image Preview (Nano Banana 2) via inference.sh CLI. Capabilities: text-to-image, image editing, multi-image input (up to 14 images), Google Search grounding. Triggers: nano banana 2, nanobanana 2, gemini 3.1 flash image, gemini 3 1 flash image preview, google image generation"
+description: "Generate images with Google Gemini Nano Banana 2.1, Google's newest image model, via inference.sh CLI. Capabilities: text-to-image, image editing, multi-image input (up to 14 images), Google Search grounding, up to 4K. Triggers: nano banana 2.1, nano banana 2, nanobanana 2, gemini nano banana 2.1, gemini 3.1 flash image, google image generation"
 allowed-tools: Bash(belt *)
 ---
 
 > **Install the belt CLI skill:** `npx skills add belt-sh/cli`
 
-# Nano Banana 2 - Gemini 3.1 Flash Image Preview
+# Nano Banana 2.1 - Gemini Nano Banana 2.1
 
-Generate images with Google Gemini 3.1 Flash Image Preview via [inference.sh](https://inference.sh) CLI.
+Generate images with Google Gemini Nano Banana 2.1, Google's newest image model, via [inference.sh](https://inference.sh) CLI.
 
 ## Quick Start
 
@@ -17,7 +17,7 @@ Generate images with Google Gemini 3.1 Flash Image Preview via [inference.sh](ht
 ```bash
 belt login
 
-belt app run google/gemini-3-1-flash-image --input '{"prompt": "a banana in space, photorealistic"}'
+belt app run google/gemini-nano-banana-2-1 --input '{"prompt": "a banana in space, photorealistic"}'
 ```
 
 
@@ -26,7 +26,7 @@ belt app run google/gemini-3-1-flash-image --input '{"prompt": "a banana in spac
 ### Basic Text-to-Image
 
 ```bash
-belt app run google/gemini-3-1-flash-image --input '{
+belt app run google/gemini-nano-banana-2-1 --input '{
   "prompt": "A futuristic cityscape at sunset with flying cars"
 }'
 ```
@@ -34,7 +34,7 @@ belt app run google/gemini-3-1-flash-image --input '{
 ### Multiple Images
 
 ```bash
-belt app run google/gemini-3-1-flash-image --input '{
+belt app run google/gemini-nano-banana-2-1 --input '{
   "prompt": "Minimalist logo design for a coffee shop",
   "num_images": 4
 }'
@@ -43,7 +43,7 @@ belt app run google/gemini-3-1-flash-image --input '{
 ### Custom Aspect Ratio
 
 ```bash
-belt app run google/gemini-3-1-flash-image --input '{
+belt app run google/gemini-nano-banana-2-1 --input '{
   "prompt": "Panoramic mountain landscape with northern lights",
   "aspect_ratio": "16:9"
 }'
@@ -52,7 +52,7 @@ belt app run google/gemini-3-1-flash-image --input '{
 ### Image Editing (with input images)
 
 ```bash
-belt app run google/gemini-3-1-flash-image --input '{
+belt app run google/gemini-nano-banana-2-1 --input '{
   "prompt": "Add a rainbow in the sky",
   "images": ["https://example.com/landscape.jpg"]
 }'
@@ -61,7 +61,7 @@ belt app run google/gemini-3-1-flash-image --input '{
 ### High Resolution (4K)
 
 ```bash
-belt app run google/gemini-3-1-flash-image --input '{
+belt app run google/gemini-nano-banana-2-1 --input '{
   "prompt": "Detailed illustration of a medieval castle",
   "resolution": "4K"
 }'
@@ -70,7 +70,7 @@ belt app run google/gemini-3-1-flash-image --input '{
 ### With Google Search Grounding
 
 ```bash
-belt app run google/gemini-3-1-flash-image --input '{
+belt app run google/gemini-nano-banana-2-1 --input '{
   "prompt": "Current weather in Tokyo visualized as an artistic scene",
   "enable_google_search": true
 }'
@@ -81,9 +81,9 @@ belt app run google/gemini-3-1-flash-image --input '{
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `prompt` | string | **Required.** What to generate or change |
-| `images` | array | Input images for editing (up to 14). Supported: JPEG, PNG, WebP |
+| `images` | array | Input images for editing (up to 14). Supported: JPEG, PNG, WebP, HEIC, HEIF |
 | `num_images` | integer | Number of images to generate |
-| `aspect_ratio` | string | Output ratio: "1:1", "16:9", "9:16", "4:3", "3:4", "auto" |
+| `aspect_ratio` | string | Output ratio: "1:1", "16:9", "9:16", "4:3", "3:4", "21:9", "4:1", "1:4", "8:1", "1:8", "auto" |
 | `resolution` | string | "1K", "2K", "4K" (default: 1K) |
 | `output_format` | string | Output format for images |
 | `enable_google_search` | boolean | Enable real-time info grounding (weather, news, etc.) |
@@ -94,7 +94,6 @@ belt app run google/gemini-3-1-flash-image --input '{
 |-------|------|-------------|
 | `images` | array | The generated or edited images |
 | `description` | string | Text description or response from the model |
-| `output_meta` | object | Metadata about inputs/outputs for pricing |
 
 ## Prompt Tips
 
@@ -110,11 +109,11 @@ belt app run google/gemini-3-1-flash-image --input '{
 
 ```bash
 # 1. Generate sample input to see all options
-belt app sample google/gemini-3-1-flash-image --save input.json
+belt app sample google/gemini-nano-banana-2-1 --save input.json
 
 # 2. Edit the prompt
 # 3. Run
-belt app run google/gemini-3-1-flash-image --input input.json
+belt app run google/gemini-nano-banana-2-1 --input input.json
 ```
 
 ## Python SDK
@@ -126,7 +125,7 @@ client = inference()
 
 # Basic generation
 result = client.run({
-    "app": "google/gemini-3-1-flash-image@0c7ma1ex",
+    "app": "google/gemini-nano-banana-2-1@55q9sjpt",
     "input": {
         "prompt": "A banana in space, photorealistic"
     }
@@ -135,7 +134,7 @@ print(result["output"])
 
 # Stream live updates
 for update in client.run({
-    "app": "google/gemini-3-1-flash-image@0c7ma1ex",
+    "app": "google/gemini-nano-banana-2-1@55q9sjpt",
     "input": {
         "prompt": "A futuristic cityscape at sunset"
     }
@@ -149,7 +148,7 @@ for update in client.run({
 ## Related Skills
 
 ```bash
-# Original Nano Banana (Gemini 3 Pro Image, Gemini 2.5 Flash Image)
+# Original Nano Banana (Gemini 3 Pro Image)
 npx skills add inference-sh/skills@nano-banana
 
 # Full platform skill (all apps)

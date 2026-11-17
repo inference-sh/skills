@@ -19,7 +19,7 @@ belt login
 
 # Two-speaker conversation
 belt app run falai/dia-tts --input '{
-  "prompt": "[S1] Have you tried the new feature yet? [S2] Not yet, but I heard it saves a ton of time. [S1] It really does. I cut my workflow in half. [S2] Okay, I am definitely trying it today."
+  "text": "[S1] Have you tried the new feature yet? [S2] Not yet, but I heard it saves a ton of time. [S1] It really does. I cut my workflow in half. [S2] Okay, I am definitely trying it today."
 }'
 ```
 
@@ -71,17 +71,17 @@ Dia TTS supports parenthetical sound descriptions:
 ```bash
 # Excited conversation
 belt app run falai/dia-tts --input '{
-  "prompt": "[S1] Guess what happened today! [S2] What? Tell me! [S1] We hit ten thousand users! [S2] (gasps) No way! That is incredible! [S1] I know... I still cannot believe it."
+  "text": "[S1] Guess what happened today! [S2] What? Tell me! [S1] We hit ten thousand users! [S2] (gasps) No way! That is incredible! [S1] I know... I still cannot believe it."
 }'
 
 # Serious/thoughtful dialogue
 belt app run falai/dia-tts --input '{
-  "prompt": "[S1] We need to talk about the timeline. [S2] (sighs) I know. It is tight. [S1] Can we cut anything from the scope? [S2] Maybe... but it would mean dropping the analytics dashboard. [S1] That is a tough trade-off."
+  "text": "[S1] We need to talk about the timeline. [S2] (sighs) I know. It is tight. [S1] Can we cut anything from the scope? [S2] Maybe... but it would mean dropping the analytics dashboard. [S1] That is a tough trade-off."
 }'
 
 # Teaching/explaining
 belt app run falai/dia-tts --input '{
-  "prompt": "[S1] So how does it actually work? [S2] Great question. Think of it like a pipeline. Data comes in on one end, gets processed in the middle, and comes out transformed on the other side. [S1] Like an assembly line? [S2] Exactly! Each step adds something."
+  "text": "[S1] So how does it actually work? [S2] Great question. Think of it like a pipeline. Data comes in on one end, gets processed in the middle, and comes out transformed on the other side. [S1] Like an assembly line? [S2] Exactly! Each step adds something."
 }'
 ```
 
@@ -105,12 +105,12 @@ belt app run falai/dia-tts --input '{
 ```bash
 # Fast-paced, energetic
 belt app run falai/dia-tts --input '{
-  "prompt": "[S1] Ready? [S2] Ready. [S1] Let us go! Three features. Five minutes. [S2] Hit it! [S1] Feature one: real-time sync."
+  "text": "[S1] Ready? [S2] Ready. [S1] Let us go! Three features. Five minutes. [S2] Hit it! [S1] Feature one: real-time sync."
 }'
 
 # Slow, contemplative
 belt app run falai/dia-tts --input '{
-  "prompt": "[S1] I have been thinking about this for a while... and I think we need to change direction. [S2] What do you mean? [S1] The market has shifted. What worked last year... is not working now."
+  "text": "[S1] I have been thinking about this for a while... and I think we need to change direction. [S2] What do you mean? [S1] The market has shifted. What worked last year... is not working now."
 }'
 ```
 
@@ -120,7 +120,7 @@ belt app run falai/dia-tts --input '{
 
 ```bash
 belt app run falai/dia-tts --input '{
-  "prompt": "[S1] Welcome to the show. Today we have a special guest. Tell us about yourself. [S2] Thanks for having me! I am a product designer, and I have been building tools for creators for about ten years. [S1] What got you started in design? [S2] Honestly? I was terrible at coding but loved making things look good. (laughs) So design was the natural path."
+  "text": "[S1] Welcome to the show. Today we have a special guest. Tell us about yourself. [S2] Thanks for having me! I am a product designer, and I have been building tools for creators for about ten years. [S1] What got you started in design? [S2] Honestly? I was terrible at coding but loved making things look good. (laughs) So design was the natural path."
 }'
 ```
 
@@ -128,7 +128,7 @@ belt app run falai/dia-tts --input '{
 
 ```bash
 belt app run falai/dia-tts --input '{
-  "prompt": "[S1] Can you walk me through the setup process? [S2] Sure. Step one, install the CLI. It takes about thirty seconds. [S1] And then? [S2] Step two, run the login command. It will open your browser for authentication. [S1] That sounds simple. [S2] It is! Step three, you are ready to run your first app."
+  "text": "[S1] Can you walk me through the setup process? [S2] Sure. Step one, install the CLI. It takes about thirty seconds. [S1] And then? [S2] Step two, run the login command. It will open your browser for authentication. [S1] That sounds simple. [S2] It is! Step three, you are ready to run your first app."
 }'
 ```
 
@@ -136,7 +136,7 @@ belt app run falai/dia-tts --input '{
 
 ```bash
 belt app run falai/dia-tts --input '{
-  "prompt": "[S1] I think we should go with option A. It is faster to implement. [S2] But option B scales better long-term. [S1] Sure, but we need something shipping this quarter. [S2] Fair point... what if we do A now with a migration path to B? [S1] That could work. Let us prototype it."
+  "text": "[S1] I think we should go with option A. It is faster to implement. [S2] But option B scales better long-term. [S1] Sure, but we need something shipping this quarter. [S2] Fair point... what if we do A now with a migration path to B? [S1] That could work. Let us prototype it."
 }'
 ```
 
@@ -169,17 +169,17 @@ For conversations longer than ~30 seconds, generate in segments:
 ```bash
 # Segment 1: Introduction
 belt app run falai/dia-tts --input '{
-  "prompt": "[S1] Welcome back to another episode..."
+  "text": "[S1] Welcome back to another episode..."
 }'
 
 # Segment 2: Main content
 belt app run falai/dia-tts --input '{
-  "prompt": "[S1] So let us dive into today s topic..."
+  "text": "[S1] So let us dive into today s topic..."
 }'
 
 # Segment 3: Wrap-up
 belt app run falai/dia-tts --input '{
-  "prompt": "[S1] Great conversation today..."
+  "text": "[S1] Great conversation today..."
 }'
 
 # Merge all segments (no inference.sh app concatenates audio; use ffmpeg locally)

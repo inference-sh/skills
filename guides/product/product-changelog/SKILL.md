@@ -152,20 +152,20 @@ Best for SaaS products with continuous deployment.
 ```bash
 # Feature screenshot (if you have the app running, use agent browser)
 belt app run infsh/agent-browser --input '{
-  "url": "https://your-app.com/new-feature",
-  "action": "screenshot"
+  "url": "https://your-app.com/new-feature"
 }'
 
 # Before/after comparison
 belt app run infsh/stitch-images --input '{
-  "images": ["before-screenshot.png", "after-screenshot.png"],
-  "direction": "horizontal"
+  "image1": "before-screenshot.png",
+  "image2": "after-screenshot.png",
+  "orientation": "horizontal"
 }'
 
 # Annotated screenshot with callout
-belt app run bytedance/seededit-3-0-i2i --input '{
+belt app run bytedance/seedream-5-5 --input '{
   "prompt": "add a red circle highlight around the export button in the top right area",
-  "image": "screenshot.png"
+  "images": ["screenshot.png"]
 }'
 
 # Feature announcement banner

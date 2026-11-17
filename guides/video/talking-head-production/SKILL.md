@@ -149,7 +149,7 @@ belt app run pruna/p-video-avatar --input '{
 ```bash
 # 1. Generate speech
 belt app run falai/dia-tts --input '{
-  "prompt": "[S1] Your narration script here."
+  "text": "[S1] Your narration script here."
 }'
 
 # 2. Create talking head
@@ -166,7 +166,7 @@ OmniHuman 1.5 supports up to 2 characters:
 ```bash
 # 1. Generate dialogue with two speakers
 belt app run falai/dia-tts --input '{
-  "prompt": "[S1] So tell me about the new feature. [S2] Sure! We built a dashboard that shows real-time analytics. [S1] That sounds great. How long did it take? [S2] About two weeks from concept to launch."
+  "text": "[S1] So tell me about the new feature. [S2] Sure! We built a dashboard that shows real-time analytics. [S1] That sounds great. How long did it take? [S2] About two weeks from concept to launch."
 }'
 
 # 2. Create video with two characters
@@ -222,7 +222,7 @@ belt app run pruna/p-video-avatar --input '{
 
 ```bash
 # 1. Transcribe original video
-belt app run infsh/fast-whisper-large-v3 --input '{"audio": "https://video.mp4"}'
+belt app run openai/gpt-transcribe --input '{"audio": "https://video.mp4"}'
 
 # 2. Translate text (manually or with LLM)
 

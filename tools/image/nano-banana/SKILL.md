@@ -1,6 +1,6 @@
 ---
 name: nano-banana
-description: "Generate images with Google Gemini native image models via inference.sh CLI. Models: Gemini 3 Pro Image, Gemini 2.5 Flash Image. Capabilities: text-to-image, image editing, multi-image input. Triggers: nano banana, gemini image, gemini 3 pro image, gemini 2.5 flash image, google image generation, native image generation, gemini native image"
+description: "Generate images with Google Gemini native image models via inference.sh CLI. Models: Gemini 3 Pro Image (Nano Banana Pro), Nano Banana 2.1. Capabilities: text-to-image, image editing, multi-image input. Triggers: nano banana, gemini image, gemini 3 pro image, nano banana pro, nano banana 2.1, google image generation, native image generation, gemini native image"
 allowed-tools: Bash(belt *)
 ---
 
@@ -28,7 +28,7 @@ belt app run google/gemini-3-pro-image --input '{"prompt": "a banana in space, p
 | Model | App ID | Speed | Quality |
 |-------|--------|-------|---------|
 | Gemini 3 Pro Image | `google/gemini-3-pro-image` | Slower | Best |
-| Gemini 2.5 Flash Image | `google/gemini-2-5-flash-image` | Fast | Excellent |
+| Nano Banana 2.1 | `google/gemini-nano-banana-2-1` | Fast | Excellent |
 
 ## Search Gemini Image Apps
 
@@ -49,7 +49,7 @@ belt app run google/gemini-3-pro-image --input '{
 ### Multiple Images
 
 ```bash
-belt app run google/gemini-2-5-flash-image --input '{
+belt app run google/gemini-nano-banana-2-1 --input '{
   "prompt": "Minimalist logo design for a coffee shop",
   "num_images": 4
 }'
@@ -67,7 +67,7 @@ belt app run google/gemini-3-pro-image --input '{
 ### Image Editing (with input image)
 
 ```bash
-belt app run google/gemini-2-5-flash-image --input '{
+belt app run google/gemini-nano-banana-2-1 --input '{
   "prompt": "Add a rainbow in the sky",
   "images": ["https://example.com/landscape.jpg"]
 }'
@@ -99,7 +99,7 @@ belt app run google/gemini-3-pro-image --input '{
 | `images` | array | Input images for editing (up to 14) |
 | `num_images` | integer | Number of images to generate |
 | `aspect_ratio` | string | Output ratio: "1:1", "16:9", "9:16", "4:3", "3:4", "auto" |
-| `resolution` | string | "1K", "2K", "4K" (Gemini 3 Pro only) |
+| `resolution` | string | "1K", "2K", "4K" |
 | `output_format` | string | Output format for images |
 | `enable_google_search` | boolean | Enable real-time info grounding |
 

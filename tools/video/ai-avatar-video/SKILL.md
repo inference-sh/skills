@@ -159,7 +159,7 @@ belt app run bytedance/omnihuman-1-5 --input '{
 
 ```bash
 # 1. Transcribe original video
-belt app run infsh/fast-whisper-large-v3 --input '{"audio": "https://video.mp4"}' > transcript.json
+belt app run openai/gpt-transcribe --input '{"audio": "https://video.mp4"}' > transcript.json
 
 # 2. Translate text (manually or with an LLM)
 

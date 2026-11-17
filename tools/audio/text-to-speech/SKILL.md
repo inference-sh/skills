@@ -1,6 +1,6 @@
 ---
 name: text-to-speech
-description: "Convert text to natural speech with Inworld TTS, ElevenLabs, DIA TTS, Kokoro, Chatterbox, and more via inference.sh CLI. Models: Inworld TTS-2 (100+ languages, emotion steering), Inworld TTS 1.5 (ultra-low latency), ElevenLabs (premium, 22+ voices, 32 languages), DIA TTS (conversational), Kokoro TTS, Chatterbox, Higgs Audio, VibeVoice (podcasts). Capabilities: text-to-speech, voice cloning, multi-speaker dialogue, podcast generation, expressive speech, emotion/delivery steering, character voices. Use for: voiceovers, audiobooks, podcasts, accessibility, video narration, IVR, voice assistants, gaming characters, avatar audio. Triggers: text to speech, tts, voice generation, ai voice, speech synthesis, voice over, generate speech, ai narrator, voice cloning, text to audio, elevenlabs, eleven labs, voice ai, ai voiceover, speech generator, natural voice, inworld, inworld tts, character voice, game voice, npc voice"
+description: "Convert text to natural speech with Inworld TTS, ElevenLabs, DIA TTS, Kokoro, Chatterbox, and more via inference.sh CLI. Models: Inworld TTS-2 (100+ languages, emotion steering), Inworld TTS 1.5 (ultra-low latency), ElevenLabs Eleven v4 (premium, 22+ voices, 90+ languages, audio tags), DIA TTS (conversational), Kokoro TTS, Chatterbox, Higgs Audio, VibeVoice (podcasts). Capabilities: text-to-speech, voice cloning, multi-speaker dialogue, podcast generation, expressive speech, emotion/delivery steering, character voices. Use for: voiceovers, audiobooks, podcasts, accessibility, video narration, IVR, voice assistants, gaming characters, avatar audio. Triggers: text to speech, tts, voice generation, ai voice, speech synthesis, voice over, generate speech, ai narrator, voice cloning, text to audio, elevenlabs, eleven labs, eleven v4, voice ai, ai voiceover, speech generator, natural voice, inworld, inworld tts, character voice, game voice, npc voice"
 allowed-tools: Bash(belt *)
 ---
 
@@ -31,7 +31,7 @@ belt app run falai/kokoro-tts --input '{"prompt": "Hello, welcome to our product
 | **Inworld TTS-2** | `inworld/text-to-speech-2` | **100+ languages, emotion steering with [brackets], delivery modes** |
 | Inworld TTS 1.5 Max | `inworld/text-to-speech-1-5-max` | Low latency (<200ms), 15 languages |
 | Inworld TTS 1.5 Mini | `inworld/text-to-speech-1-5-mini` | Ultra-low latency (~120ms), 15 languages |
-| ElevenLabs TTS | `elevenlabs/tts` | Premium quality, 22+ voices, 32 languages |
+| ElevenLabs Eleven v4 | `elevenlabs/eleven-v4` | Premium quality, 22+ voices, 90+ languages, audio tags |
 | DIA TTS | `infsh/dia-tts` | Conversational, expressive |
 | Kokoro TTS | `falai/kokoro-tts` | Fast, natural |
 | Chatterbox | `infsh/chatterbox` | General purpose |
@@ -93,8 +93,7 @@ belt app sample infsh/dia-tts --save input.json
 
 # Edit input.json:
 # {
-#   "text": "Hey! How are you doing today? I'm really excited to share this with you.",
-#   "voice": "conversational"
+#   "text": "[S1] Hey! How are you doing today? [S2] Great, thanks. (laughs) I'm really excited to share this with you."
 # }
 
 belt app run infsh/dia-tts --input input.json
@@ -115,8 +114,8 @@ belt app run infsh/vibevoice --input input.json
 belt app sample infsh/higgs-audio --save input.json
 
 # {
-#   "text": "This is absolutely incredible!",
-#   "emotion": "excited"
+#   "transcript": "This is absolutely incredible!",
+#   "scene_prompt": "An excited presenter on a lively stage"
 # }
 
 belt app run infsh/higgs-audio --input input.json

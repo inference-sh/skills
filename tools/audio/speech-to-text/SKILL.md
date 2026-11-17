@@ -1,6 +1,6 @@
 ---
 name: speech-to-text
-description: "Transcribe audio to text with ElevenLabs Scribe and Whisper models via inference.sh CLI. Models: ElevenLabs Scribe v2 (98%+ accuracy, diarization), Fast Whisper Large V3, Whisper V3 Large. Capabilities: transcription, translation, multi-language, timestamps, speaker diarization, audio event tagging. Use for: meeting transcription, subtitles, podcast transcripts, voice notes. Triggers: speech to text, transcription, whisper, audio to text, transcribe audio, voice to text, stt, automatic transcription, subtitles generation, transcribe meeting, audio transcription, whisper ai, elevenlabs stt, scribe, eleven labs transcribe"
+description: "Transcribe audio to text with ElevenLabs Scribe and OpenAI GPT Transcribe via inference.sh CLI. Models: ElevenLabs Scribe v2 (98%+ accuracy, diarization, word timestamps), GPT Transcribe (fast, low cost, key-term hints). Capabilities: transcription, multi-language, timestamps, speaker diarization, audio event tagging, realtime microphone transcription. Use for: meeting transcription, subtitles, podcast transcripts, voice notes. Triggers: speech to text, transcription, gpt transcribe, openai transcribe, audio to text, transcribe audio, voice to text, stt, automatic transcription, subtitles generation, transcribe meeting, audio transcription, whisper, elevenlabs stt, scribe, eleven labs transcribe"
 allowed-tools: Bash(belt *)
 ---
 
@@ -19,7 +19,7 @@ Transcribe audio to text via [inference.sh](https://inference.sh) CLI.
 ```bash
 belt login
 
-belt app run infsh/fast-whisper-large-v3 --input '{"audio": "https://audio.mp3"}'
+belt app run openai/gpt-transcribe --input '{"audio": "https://audio.mp3"}'
 ```
 
 
@@ -28,36 +28,38 @@ belt app run infsh/fast-whisper-large-v3 --input '{"audio": "https://audio.mp3"}
 | Model | App ID | Best For |
 |-------|--------|----------|
 | ElevenLabs Scribe v2 | `elevenlabs/stt` | 98%+ accuracy, diarization, 90+ languages |
-| Fast Whisper V3 | `infsh/fast-whisper-large-v3` | Fast transcription |
-| Whisper V3 Large | `infsh/whisper-v3-large` | Highest accuracy |
+| GPT Transcribe | `openai/gpt-transcribe` | Fast, low-cost transcription; key-term hints |
 
 ## Examples
 
 ### Basic Transcription
 
 ```bash
-belt app run infsh/fast-whisper-large-v3 --input '{"audio": "https://meeting.mp3"}'
+belt app run openai/gpt-transcribe --input '{"audio": "https://meeting.mp3"}'
 ```
 
 ### With Timestamps
 
 ```bash
-belt app sample infsh/fast-whisper-large-v3 --save input.json
+belt app sample elevenlabs/stt --save input.json
 
 # {
 #   "audio": "https://podcast.mp3",
-#   "return_timestamps": "sentence"
+#   "diarize": true
 # }
 
-belt app run infsh/fast-whisper-large-v3 --input input.json
+belt app run elevenlabs/stt --input input.json
 ```
 
-### Translation (to English)
+The result's `words` array carries word-level timestamps and speaker labels.
+
+### Language Hints and Key Terms
 
 ```bash
-belt app run infsh/whisper-v3-large --input '{
+belt app run openai/gpt-transcribe --input '{
   "audio": "https://french-audio.mp3",
-  "task": "translate"
+  "languages": ["fr"],
+  "keyterms": ["inference.sh", "Seedance"]
 }'
 ```
 
@@ -68,28 +70,32 @@ belt app run infsh/whisper-v3-large --input '{
 belt app run infsh/video-audio-extractor --input '{"video_file": "https://video.mp4"}' > audio.json
 
 # Transcribe the extracted audio
-belt app run infsh/fast-whisper-large-v3 --input '{"audio": "<audio-url>"}'
+belt app run openai/gpt-transcribe --input '{"audio": "<audio-url>"}'
 ```
 
 ## Workflow: Video Subtitles
 
 ```bash
-# 1. Transcribe video audio
-belt app run infsh/fast-whisper-large-v3 --input '{
-  "audio": "https://video.mp4",
-  "return_timestamps": "sentence"
+# 1. Extract the audio track (Scribe takes audio files, not video)
+belt app run infsh/video-audio-extractor --input '{
+  "video_file": "https://video.mp4"
+}' > audio.json
+
+# 2. Transcribe it
+belt app run elevenlabs/stt --input '{
+  "audio": "<audio_file-from-step-1>"
 }' > transcript.json
 
-# 2. Pass the transcript segments as captions
+# 3. Group the word timestamps into caption segments
 belt app run infsh/caption-videos --input '{
   "video_file": "https://video.mp4",
-  "segments": [{"start": 0.0, "end": 2.5, "text": "<segments-from-step-1>"}]
+  "segments": [{"start": 0.0, "end": 2.5, "text": "<segments-from-step-2>"}]
 }'
 ```
 
 ## Supported Languages
 
-Whisper supports 99+ languages including:
+Both models support 90+ languages including:
 English, Spanish, French, German, Italian, Portuguese, Chinese, Japanese, Korean, Arabic, Hindi, Russian, and many more.
 
 ## Use Cases
@@ -105,8 +111,8 @@ English, Spanish, French, German, Italian, Portuguese, Chinese, Japanese, Korean
 
 Returns JSON with:
 - `text`: Full transcription
-- `segments`: Timestamped segments (if requested)
-- `language`: Detected language
+- `words`: Word-level timestamps and speakers (`elevenlabs/stt`)
+- `language_code` / `languages`: Detected language
 
 ## Related Skills
 

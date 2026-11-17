@@ -184,7 +184,7 @@ Every LinkedIn creator should have 3-5 pillars they rotate through:
 ```bash
 # Generate a visual for a LinkedIn post
 belt app run infsh/html-to-image --input '{
-  "html": "<div style=\"width:1080px;height:1080px;background:#0f172a;display:flex;align-items:center;justify-content:center;padding:80px;font-family:system-ui;color:white;text-align:center\"><div><h1 style=\"font-size:56px;font-weight:900;line-height:1.2;margin:0\">The best code is the code you don&apos;t write</h1><p style=\"font-size:22px;opacity:0.5;margin-top:24px\">— Every senior engineer</p></div></div>"
+  "html_content": "<div style=\"width:1080px;height:1080px;background:#0f172a;display:flex;align-items:center;justify-content:center;padding:80px;font-family:system-ui;color:white;text-align:center\"><div><h1 style=\"font-size:56px;font-weight:900;line-height:1.2;margin:0\">The best code is the code you don&apos;t write</h1><p style=\"font-size:22px;opacity:0.5;margin-top:24px\">— Every senior engineer</p></div></div>"
 }'
 
 # Generate a professional photo for a personal post

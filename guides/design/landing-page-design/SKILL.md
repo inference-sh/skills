@@ -109,7 +109,7 @@ belt app run falai/flux-dev-lora --input '{
 }'
 
 # Product-in-context hero
-belt app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-5-5 --input '{
   "prompt": "clean modern laptop on a minimalist desk showing a beautiful analytics dashboard, floating UI elements emerging from the screen, soft gradient background, product marketing style, professional",
   "size": "2K"
 }'
@@ -169,7 +169,7 @@ The proven sequence for landing pages:
 ```bash
 # Research for social proof stats
 belt app run exa/answer --input '{
-  "question": "What is the average conversion rate for SaaS landing pages with social proof vs without?"
+  "query": "What is the average conversion rate for SaaS landing pages with social proof vs without?"
 }'
 ```
 
@@ -208,7 +208,7 @@ belt app run falai/flux-dev-lora --input '{
 
 # Or use html-to-image for a template-based approach
 belt app run infsh/html-to-image --input '{
-  "html": "<div style=\"width:1200px;height:630px;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;font-family:sans-serif;color:white\"><div style=\"text-align:center\"><h1 style=\"font-size:48px;margin:0\">DataFlow</h1><p style=\"font-size:24px;opacity:0.9\">Ship docs in minutes, not days</p></div></div>"
+  "html_content": "<div style=\"width:1200px;height:630px;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;font-family:sans-serif;color:white\"><div style=\"text-align:center\"><h1 style=\"font-size:48px;margin:0\">DataFlow</h1><p style=\"font-size:24px;opacity:0.9\">Ship docs in minutes, not days</p></div></div>"
 }'
 ```
 

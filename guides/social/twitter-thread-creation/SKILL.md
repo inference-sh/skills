@@ -150,13 +150,12 @@ Line breaks create **pacing**. Use them to control reading speed and emphasis.
 ```bash
 # Generate thread header image
 belt app run infsh/html-to-image --input '{
-  "html": "<div style=\"width:1200px;height:675px;background:linear-gradient(135deg,#0f172a,#1e293b);display:flex;align-items:center;justify-content:center;padding:60px;font-family:system-ui;color:white;text-align:center\"><div><h1 style=\"font-size:48px;font-weight:900;line-height:1.2;margin:0\">10 SaaS Pricing Mistakes<br>That Cost You Revenue</h1><p style=\"font-size:22px;opacity:0.5;margin-top:20px\">A thread 🧵</p></div></div>"
+  "html_content": "<div style=\"width:1200px;height:675px;background:linear-gradient(135deg,#0f172a,#1e293b);display:flex;align-items:center;justify-content:center;padding:60px;font-family:system-ui;color:white;text-align:center\"><div><h1 style=\"font-size:48px;font-weight:900;line-height:1.2;margin:0\">10 SaaS Pricing Mistakes<br>That Cost You Revenue</h1><p style=\"font-size:22px;opacity:0.5;margin-top:20px\">A thread 🧵</p></div></div>"
 }'
 
 # Generate screenshots for evidence
 belt app run infsh/agent-browser --input '{
-  "url": "https://example.com/pricing",
-  "action": "screenshot"
+  "url": "https://example.com/pricing"
 }'
 ```
 
@@ -235,7 +234,7 @@ belt app run tavily/search-assistant --input '{
 
 # Generate visual for the thread
 belt app run infsh/html-to-image --input '{
-  "html": "<div style=\"width:1200px;height:675px;background:#0f172a;display:flex;align-items:center;padding:60px;font-family:system-ui;color:white\"><div><p style=\"font-size:20px;color:#38bdf8;text-transform:uppercase;letter-spacing:2px\">Data Deep Dive</p><h1 style=\"font-size:52px;font-weight:900;margin:12px 0;line-height:1.2\">Remote Work in 2024:<br>What the Data Actually Says</h1></div></div>"
+  "html_content": "<div style=\"width:1200px;height:675px;background:#0f172a;display:flex;align-items:center;padding:60px;font-family:system-ui;color:white\"><div><p style=\"font-size:20px;color:#38bdf8;text-transform:uppercase;letter-spacing:2px\">Data Deep Dive</p><h1 style=\"font-size:52px;font-weight:900;margin:12px 0;line-height:1.2\">Remote Work in 2024:<br>What the Data Actually Says</h1></div></div>"
 }'
 ```
 

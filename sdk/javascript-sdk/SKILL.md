@@ -25,7 +25,7 @@ const client = inference({ apiKey: 'inf_your_key' });
 
 // Run an AI app
 const result = await client.run({
-  app: 'infsh/flux-schnell',
+  app: 'pruna/p-image',
   input: { prompt: 'A sunset over mountains' }
 });
 console.log(result.output);
@@ -66,7 +66,7 @@ Get your API key: Settings → API Keys → Create API Key
 
 ```typescript
 const result = await client.run({
-  app: 'infsh/flux-schnell',
+  app: 'pruna/p-image',
   input: { prompt: 'A cat astronaut' }
 });
 
@@ -210,14 +210,14 @@ const calculator = tool('calculate')
   .param('expression', string('Math expression'))
   .build();
 
-const imageGen = appTool('generate_image', 'infsh/flux-schnell@latest')
+const imageGen = appTool('generate_image', 'pruna/p-image@latest')
   .describe('Generate an image')
   .param('prompt', string('Image description'))
   .build();
 
 // Create agent
 const agent = client.agent({
-  core_app: { ref: 'infsh/claude-sonnet-4@latest' },
+  core_app: { ref: 'anthropic/claude-sonnet-5-5@latest' },
   system_prompt: 'You are a helpful assistant.',
   tools: [calculator, imageGen],
   temperature: 0.7,
@@ -231,10 +231,10 @@ const response = await agent.sendMessage('What is 25 * 4?');
 
 | Model | App Reference |
 |-------|---------------|
-| Claude Sonnet 4 | `infsh/claude-sonnet-4@latest` |
-| Claude 3.5 Haiku | `infsh/claude-haiku-35@latest` |
-| GPT-4o | `infsh/gpt-4o@latest` |
-| GPT-4o Mini | `infsh/gpt-4o-mini@latest` |
+| Claude Sonnet 5.5 | `anthropic/claude-sonnet-5-5@latest` |
+| Claude Haiku 5.5 | `anthropic/claude-haiku-5-5@latest` |
+| GPT-6.1 Sol | `openai/gpt-6-1-sol@latest` |
+| GPT-6 Luna | `openai/gpt-6-luna@latest` |
 
 ## Tool Builder API
 
@@ -273,11 +273,10 @@ const greet = tool('greet')
 ### App Tools (Call AI Apps)
 
 ```typescript
-const generate = appTool('generate_image', 'infsh/flux-schnell@latest')
+const generate = appTool('generate_image', 'pruna/flux-dev@latest')
   .describe('Generate an image from text')
   .param('prompt', string('Image description'))
-  .setup({ model: 'schnell' })
-  .input({ steps: 20 })
+  .input({ num_inference_steps: 20 })
   .requireApproval()
   .build();
 ```
@@ -318,12 +317,12 @@ const config = internalTools()
   .codeExecution(true)
   .imageGeneration({
     enabled: true,
-    appRef: 'infsh/flux@latest'
+    appRef: 'pruna/flux-dev@latest'
   })
   .build();
 
 const agent = client.agent({
-  core_app: { ref: 'infsh/claude-sonnet-4@latest' },
+  core_app: { ref: 'anthropic/claude-sonnet-5-5@latest' },
   internal_tools: config
 });
 ```
@@ -370,7 +369,7 @@ const response = await agent.sendMessage('Describe this', {
 
 ```typescript
 const agent = client.agent({
-  core_app: { ref: 'infsh/claude-sonnet-4@latest' },
+  core_app: { ref: 'anthropic/claude-sonnet-5-5@latest' },
   skills: [
     {
       name: 'code-review',

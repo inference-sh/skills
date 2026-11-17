@@ -108,7 +108,7 @@ belt app run alibaba/happyhorse-1-0-video-edit --input '{
 belt app run alibaba/happyhorse-1-0-video-edit --input '{
   "video": "https://your-video.mp4",
   "prompt": "make the scene look like a rainy day",
-  "audio_setting": "generate"
+  "audio_setting": "origin"
 }'
 ```
 
@@ -127,8 +127,8 @@ Video Edit is billed on input + output duration.
 |-----------|------|---------|-------------|
 | `prompt` | string | required | Text description of the video |
 | `duration` | integer | 5 | Duration in seconds (3–15) |
-| `resolution` | enum | 720P | 720P or 1080P |
-| `ratio` | enum | 16:9 | 16:9, 9:16, 1:1, 4:3, 3:4, 21:9 |
+| `resolution` | enum | 1080P | 720P or 1080P |
+| `ratio` | enum | 16:9 | 16:9, 9:16, 1:1, 4:3, 3:4 |
 | `seed` | integer | random | Reproducible generation |
 | `watermark` | boolean | false | Add HappyHorse watermark |
 
@@ -139,7 +139,7 @@ Video Edit is billed on input + output duration.
 | `first_frame` | file | required | First frame image (JPEG, PNG, WebP) |
 | `prompt` | string | - | Optional text description |
 | `duration` | integer | 5 | Duration in seconds (3–15) |
-| `resolution` | enum | 720P | 720P or 1080P |
+| `resolution` | enum | 1080P | 720P or 1080P |
 | `seed` | integer | random | Reproducible generation |
 
 ## Parameters (R2V)
@@ -149,8 +149,8 @@ Video Edit is billed on input + output duration.
 | `prompt` | string | required | Text description of the scene |
 | `reference_images` | array | required | Up to 9 character reference images |
 | `duration` | integer | 5 | Duration in seconds (3–15) |
-| `resolution` | enum | 720P | 720P or 1080P |
-| `ratio` | enum | 16:9 | 16:9, 9:16, 1:1, 4:3, 3:4, 21:9 |
+| `resolution` | enum | 1080P | 720P or 1080P |
+| `ratio` | enum | 16:9 | 16:9, 9:16, 1:1, 4:3, 3:4 |
 | `seed` | integer | random | Reproducible generation |
 
 ## Parameters (Video Edit)
@@ -160,8 +160,8 @@ Video Edit is billed on input + output duration.
 | `video` | file | required | Video to edit (MP4/MOV, H.264) |
 | `prompt` | string | required | Editing instruction |
 | `reference_images` | array | - | Up to 5 reference images |
-| `audio_setting` | enum | auto | auto, generate, or keep_original |
-| `resolution` | enum | 720P | 720P or 1080P |
+| `audio_setting` | enum | auto | auto (model decides) or origin (keep original audio) |
+| `resolution` | enum | 1080P | 720P or 1080P |
 | `seed` | integer | random | Reproducible generation |
 
 ## Search HappyHorse Apps
@@ -179,7 +179,7 @@ npx skills add inference-sh/skills@infsh-cli
 # All video generation models
 npx skills add inference-sh/skills@ai-video-generation
 
-# Seedance 2.0
+# Seedance 2.5
 npx skills add inference-sh/skills@seedance
 
 # Google Veo

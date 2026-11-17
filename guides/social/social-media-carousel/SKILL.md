@@ -19,7 +19,7 @@ belt login
 
 # Generate a carousel slide
 belt app run infsh/html-to-image --input '{
-  "html": "<div style=\"width:1080px;height:1080px;background:#0f172a;display:flex;align-items:center;justify-content:center;padding:80px;font-family:system-ui;color:white;text-align:center\"><div><p style=\"font-size:24px;color:#818cf8;text-transform:uppercase;letter-spacing:3px\">5 Rules for</p><h1 style=\"font-size:64px;margin:16px 0;font-weight:900;line-height:1.1\">Writing Headlines That Convert</h1><p style=\"font-size:22px;opacity:0.5;margin-top:24px\">Swipe →</p></div></div>"
+  "html_content": "<div style=\"width:1080px;height:1080px;background:#0f172a;display:flex;align-items:center;justify-content:center;padding:80px;font-family:system-ui;color:white;text-align:center\"><div><p style=\"font-size:24px;color:#818cf8;text-transform:uppercase;letter-spacing:3px\">5 Rules for</p><h1 style=\"font-size:64px;margin:16px 0;font-weight:900;line-height:1.1\">Writing Headlines That Convert</h1><p style=\"font-size:22px;opacity:0.5;margin-top:24px\">Swipe →</p></div></div>"
 }'
 ```
 
@@ -61,7 +61,7 @@ The most important slide. If this fails, nobody swipes.
 ```bash
 # Hook slide
 belt app run infsh/html-to-image --input '{
-  "html": "<div style=\"width:1080px;height:1350px;background:linear-gradient(180deg,#1e1b4b,#312e81);display:flex;align-items:center;justify-content:center;padding:80px;font-family:system-ui;color:white;text-align:center\"><div><h1 style=\"font-size:72px;font-weight:900;line-height:1.15;margin:0\">90% of Landing Pages Make This Mistake</h1><p style=\"font-size:28px;opacity:0.6;margin-top:32px\">Swipe to find out →</p></div></div>"
+  "html_content": "<div style=\"width:1080px;height:1350px;background:linear-gradient(180deg,#1e1b4b,#312e81);display:flex;align-items:center;justify-content:center;padding:80px;font-family:system-ui;color:white;text-align:center\"><div><h1 style=\"font-size:72px;font-weight:900;line-height:1.15;margin:0\">90% of Landing Pages Make This Mistake</h1><p style=\"font-size:28px;opacity:0.6;margin-top:32px\">Swipe to find out →</p></div></div>"
 }'
 ```
 
@@ -72,7 +72,7 @@ One point per slide. Never cram multiple ideas.
 ```bash
 # Content slide template
 belt app run infsh/html-to-image --input '{
-  "html": "<div style=\"width:1080px;height:1350px;background:#1e1b4b;padding:80px;font-family:system-ui;color:white;display:flex;flex-direction:column;justify-content:center\"><div><p style=\"font-size:120px;font-weight:900;color:#818cf8;margin:0;line-height:1\">01</p><h2 style=\"font-size:48px;margin:24px 0 16px;font-weight:800;line-height:1.2\">Your headline is too vague</h2><p style=\"font-size:26px;opacity:0.8;line-height:1.6\">\"Welcome to our platform\" tells the visitor nothing. Lead with the outcome: \"Ship docs in minutes, not days.\"</p></div></div>"
+  "html_content": "<div style=\"width:1080px;height:1350px;background:#1e1b4b;padding:80px;font-family:system-ui;color:white;display:flex;flex-direction:column;justify-content:center\"><div><p style=\"font-size:120px;font-weight:900;color:#818cf8;margin:0;line-height:1\">01</p><h2 style=\"font-size:48px;margin:24px 0 16px;font-weight:800;line-height:1.2\">Your headline is too vague</h2><p style=\"font-size:26px;opacity:0.8;line-height:1.6\">\"Welcome to our platform\" tells the visitor nothing. Lead with the outcome: \"Ship docs in minutes, not days.\"</p></div></div>"
 }'
 ```
 
@@ -81,7 +81,7 @@ belt app run infsh/html-to-image --input '{
 ```bash
 # CTA slide
 belt app run infsh/html-to-image --input '{
-  "html": "<div style=\"width:1080px;height:1350px;background:linear-gradient(180deg,#312e81,#1e1b4b);display:flex;align-items:center;justify-content:center;padding:80px;font-family:system-ui;color:white;text-align:center\"><div><h2 style=\"font-size:56px;font-weight:900;margin:0;line-height:1.2\">Found this useful?</h2><p style=\"font-size:32px;opacity:0.8;margin-top:24px;line-height:1.5\">Save this post for later 🔖<br>Follow for more tips</p><p style=\"font-size:24px;opacity:0.4;margin-top:40px\">@yourusername</p></div></div>"
+  "html_content": "<div style=\"width:1080px;height:1350px;background:linear-gradient(180deg,#312e81,#1e1b4b);display:flex;align-items:center;justify-content:center;padding:80px;font-family:system-ui;color:white;text-align:center\"><div><h2 style=\"font-size:56px;font-weight:900;margin:0;line-height:1.2\">Found this useful?</h2><p style=\"font-size:32px;opacity:0.8;margin-top:24px;line-height:1.5\">Save this post for later 🔖<br>Follow for more tips</p><p style=\"font-size:24px;opacity:0.4;margin-top:40px\">@yourusername</p></div></div>"
 }'
 ```
 
@@ -178,7 +178,7 @@ Slide 7: "Save this for later 🔖"
 # Generate all slides for a carousel
 for i in 1 2 3 4 5 6 7; do
   belt app run infsh/html-to-image --input "{
-    \"html\": \"<div style='width:1080px;height:1350px;background:#1e1b4b;display:flex;align-items:center;justify-content:center;padding:80px;font-family:system-ui;color:white'><div style='text-align:center'><p style='font-size:28px;opacity:0.5'>Slide $i of 7</p></div></div>\"
+    \"html_content\": \"<div style='width:1080px;height:1350px;background:#1e1b4b;display:flex;align-items:center;justify-content:center;padding:80px;font-family:system-ui;color:white'><div style='text-align:center'><p style='font-size:28px;opacity:0.5'>Slide $i of 7</p></div></div>\"
   }" --no-wait
 done
 ```

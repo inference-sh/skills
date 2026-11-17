@@ -77,7 +77,7 @@ Returns highly relevant links with context.
 
 ```bash
 belt app run exa/answer --input '{
-  "question": "What is the population of Tokyo?"
+  "query": "What is the population of Tokyo?"
 }'
 ```
 
@@ -102,8 +102,8 @@ belt app run tavily/search-assistant --input '{
 }' > search_results.json
 
 # 2. Analyze with Claude
-belt app run openrouter/claude-sonnet-45 --input '{
-  "prompt": "Based on this research, summarize the key trends: <search-results>"
+belt app run anthropic/claude-sonnet-5-5 --input '{
+  "text": "Based on this research, summarize the key trends: <search-results>"
 }'
 ```
 
@@ -116,8 +116,8 @@ belt app run tavily/extract --input '{
 }' > content.json
 
 # 2. Summarize with LLM
-belt app run openrouter/claude-haiku-45 --input '{
-  "prompt": "Summarize this article in 3 bullet points: <content>"
+belt app run anthropic/claude-haiku-5-5 --input '{
+  "text": "Summarize this article in 3 bullet points: <content>"
 }'
 ```
 

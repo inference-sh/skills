@@ -1,6 +1,6 @@
 ---
 name: ai-image-generation
-description: "Generate AI images with GPT-Image-2.5, FLUX, Gemini, Grok, Seedream, Reve and 50+ models via inference.sh CLI. Models: GPT-Image-2.5 Flare, GPT-Image-2.5 Sunburst, GPT-Image-2, FLUX Dev LoRA, FLUX.2 Klein LoRA, Gemini 3 Pro Image, Grok Imagine, Seedream 4.5, Reve, ImagineArt. Capabilities: text-to-image, image-to-image, inpainting, LoRA, image editing, upscaling, text rendering. Use for: AI art, product mockups, concept art, social media graphics, marketing visuals, illustrations. Triggers: flux, image generation, ai image, text to image, stable diffusion, generate image, ai art, midjourney alternative, dall-e alternative, text2img, t2i, image generator, ai picture, create image with ai, generative ai, ai illustration, grok image, gemini image, gpt image, openai image, chatgpt image"
+description: "Generate AI images with GPT-Image-2.6, FLUX, Gemini, Grok, Seedream, Reve and 50+ models via inference.sh CLI. Models: GPT-Image-2.6 Flare, GPT-Image-2.6 Sunburst, FLUX Dev LoRA, FLUX.2 Klein LoRA, Nano Banana 2.1, Gemini 3 Pro Image, Grok Imagine 2.0, Seedream 5.5, Reve, ImagineArt. Capabilities: text-to-image, image-to-image, inpainting, LoRA, image editing, upscaling, text rendering. Use for: AI art, product mockups, concept art, social media graphics, marketing visuals, illustrations. Triggers: flux, image generation, ai image, text to image, stable diffusion, generate image, ai art, midjourney alternative, dall-e alternative, text2img, t2i, image generator, ai picture, create image with ai, generative ai, ai illustration, grok image, gemini image, gpt image, openai image, chatgpt image"
 allowed-tools: Bash(belt *)
 ---
 
@@ -28,20 +28,17 @@ belt app run falai/flux-dev-lora --input '{"prompt": "a cat astronaut in space"}
 
 | Model | App ID | Best For |
 |-------|--------|----------|
-| **GPT-Image-2.5 Flare** | `openai/gpt-image-2-5-flare` | Best default: text-to-image, editing, inpainting, transparent PNG |
-| **GPT-Image-2.5 Sunburst** | `openai/gpt-image-2-5-sunburst` | Precise edits that preserve subject and composition |
-| GPT-Image-2 | `openai/gpt-image-2` | Previous generation |
+| **GPT-Image-2.6 Flare** | `openai/gpt-image-2-6-flare` | Best default: text-to-image, editing, inpainting, transparent PNG |
+| **GPT-Image-2.6 Sunburst** | `openai/gpt-image-2-6-sunburst` | Precise edits that preserve subject and composition |
 | FLUX Dev LoRA | `falai/flux-dev-lora` | High quality with custom styles |
 | FLUX.2 Klein LoRA | `falai/flux-2-klein-lora` | Fast with LoRA support (4B/9B) |
 | **P-Image** | `pruna/p-image` | Fast, economical, multiple aspects |
 | **P-Image-LoRA** | `pruna/p-image-lora` | Fast with preset LoRA styles |
 | **P-Image-Edit** | `pruna/p-image-edit` | Fast image editing |
-| Gemini 3 Pro | `google/gemini-3-pro-image` | Google's latest |
-| Gemini 2.5 Flash | `google/gemini-2-5-flash-image` | Fast Google model |
-| Grok Imagine | `xai/grok-imagine-image` | xAI's model, multiple aspects |
-| Seedream 4.5 | `bytedance/seedream-4-5` | 2K-4K cinematic quality |
-| Seedream 4.0 | `bytedance/seedream-4-0` | High quality 2K-4K |
-| Seedream 3.0 | `bytedance/seedream-3-0-t2i` | Accurate text rendering |
+| Nano Banana 2.1 | `google/gemini-nano-banana-2-1` | Google's latest, fast, up to 4K |
+| Gemini 3 Pro | `google/gemini-3-pro-image` | Nano Banana Pro |
+| Grok Imagine 2.0 | `xai/grok-imagine-image-2-0` | xAI's model, multiple aspects |
+| Seedream 5.5 | `bytedance/seedream-5-5` | Cinematic quality, generation and editing |
 | Reve | `falai/reve` | Natural language editing, text rendering |
 | ImagineArt 1.5 Pro | `falai/imagine-art-1-5-pro-preview` | Ultra-high-fidelity 4K |
 | FLUX Klein 4B | `pruna/flux-2-klein-4b` | Ultra-cheap ($0.0001/image) |
@@ -55,19 +52,19 @@ belt app list --category image
 
 ## Examples
 
-### GPT-Image-2.5 Flare
+### GPT-Image-2.6 Flare
 
 ```bash
-belt app run openai/gpt-image-2-5-flare --input '{
+belt app run openai/gpt-image-2-6-flare --input '{
   "prompt": "professional product photo of sneakers, studio lighting",
   "quality": "high"
 }'
 ```
 
-### GPT-Image-2.5 Sunburst Editing
+### GPT-Image-2.6 Sunburst Editing
 
 ```bash
-belt app run openai/gpt-image-2-5-sunburst --input '{
+belt app run openai/gpt-image-2-6-sunburst --input '{
   "prompt": "change the background to a beach at sunset",
   "images": ["https://your-image.jpg"]
 }'
@@ -95,10 +92,10 @@ belt app run google/gemini-3-pro-image --input '{
 }'
 ```
 
-### Grok Imagine
+### Grok Imagine 2.0
 
 ```bash
-belt app run xai/grok-imagine-image --input '{
+belt app run xai/grok-imagine-image-2-0 --input '{
   "prompt": "cyberpunk city at night",
   "aspect_ratio": "16:9"
 }'
@@ -112,10 +109,10 @@ belt app run falai/reve --input '{
 }'
 ```
 
-### Seedream 4.5 (4K Quality)
+### Seedream 5.5
 
 ```bash
-belt app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-5-5 --input '{
   "prompt": "cinematic portrait of a woman, golden hour lighting"
 }'
 ```
@@ -130,8 +127,9 @@ belt app run falai/topaz-image-upscaler --input '{"image": "https://..."}'
 
 ```bash
 belt app run infsh/stitch-images --input '{
-  "images": ["https://img1.jpg", "https://img2.jpg"],
-  "direction": "horizontal"
+  "image1": "https://img1.jpg",
+  "image2": "https://img2.jpg",
+  "orientation": "horizontal"
 }'
 ```
 
@@ -144,7 +142,7 @@ npx skills add inference-sh/skills@infsh-cli
 # Pruna P-Image (fast & economical)
 npx skills add inference-sh/skills@p-image
 
-# GPT-Image-2.5 / GPT-Image-2 (OpenAI)
+# GPT-Image-2.6 (OpenAI)
 npx skills add inference-sh/skills@gpt-image
 
 # FLUX-specific skill

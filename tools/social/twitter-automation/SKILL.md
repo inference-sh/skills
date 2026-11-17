@@ -83,7 +83,7 @@ belt app run x/dm-send --input '{
 ### Follow a User
 
 ```bash
-belt app run x/user-follow --input '{"username": "elonmusk"}'
+belt app run x/user-follow --input '{"user_id": "1234567890"}'
 ```
 
 ### Get User Profile

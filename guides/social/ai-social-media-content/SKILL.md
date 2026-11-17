@@ -1,6 +1,6 @@
 ---
 name: ai-social-media-content
-description: "Create AI-powered social media content for TikTok, Instagram, YouTube, Twitter/X. Generate: images, videos, reels, shorts, thumbnails, captions, hashtags. Tools: FLUX, Veo, Seedance, Wan, Kokoro TTS, Claude for copywriting. Use for: content creators, social media managers, influencers, brands. Triggers: social media content, tiktok, instagram reels, youtube shorts, twitter post, content creator, ai influencer, social content, reels, shorts, viral content, thumbnail generator, caption generator, hashtag generator, ugc content"
+description: "Create AI-powered social media content for TikTok, Instagram, YouTube, Twitter/X. Generate: images, videos, reels, shorts, thumbnails, captions, hashtags. Tools: FLUX, Veo, Seedance, Wan, Kokoro TTS, Claude Sonnet 5.5 and Haiku 5.5 for copywriting. Use for: content creators, social media managers, influencers, brands. Triggers: social media content, tiktok, instagram reels, youtube shorts, twitter post, content creator, ai influencer, social content, reels, shorts, viral content, thumbnail generator, caption generator, hashtag generator, ugc content"
 allowed-tools: Bash(belt *)
 ---
 
@@ -53,7 +53,7 @@ belt app run google/veo-3-1-fast --input '{
 ```bash
 # Generate cohesive carousel images
 for i in 1 2 3 4 5; do
-  belt app run falai/flux-dev --input "{
+  belt app run pruna/flux-dev --input "{
     \"prompt\": \"Minimalist lifestyle flat lay photo $i/5, morning coffee routine, neutral tones, Instagram aesthetic, consistent style\"
   }" > "carousel_$i.json"
 done
@@ -63,7 +63,7 @@ done
 
 ```bash
 # Eye-catching thumbnail
-belt app run falai/flux-dev --input '{
+belt app run pruna/flux-dev --input '{
   "prompt": "YouTube thumbnail, shocked face emoji, bright yellow background, bold text area on right, attention-grabbing, high contrast, professional"
 }'
 ```
@@ -72,7 +72,7 @@ belt app run falai/flux-dev --input '{
 
 ```bash
 # Generate image for tweet
-belt app run falai/flux-dev --input '{
+belt app run pruna/flux-dev --input '{
   "prompt": "Tech infographic style image showing AI trends, modern design, data visualization aesthetic, shareable"
 }'
 
@@ -86,9 +86,9 @@ belt app run x/post-create --input '{
 ### Talking Head Content
 
 ```bash
-# 1. Write script with Claude
-belt app run openrouter/claude-sonnet-45 --input '{
-  "prompt": "Write a 30-second engaging script about productivity tips for a TikTok. Conversational, hook in first 3 seconds."
+# 1. Write script with Claude Sonnet 5.5
+belt app run anthropic/claude-sonnet-5-5 --input '{
+  "text": "Write a 30-second engaging script about productivity tips for a TikTok. Conversational, hook in first 3 seconds."
 }' > script.json
 
 # 2. Generate voiceover
@@ -125,7 +125,7 @@ belt app run google/veo-3-1 --input '{
 ### Product Showcase
 
 ```bash
-belt app run bytedance/seedance-2-0 --input '{
+belt app run bytedance/seedance-2-5 --input '{
   "prompt": "Product unboxing aesthetic, sleek packaging reveal, soft lighting, premium feel, satisfying unwrap",
   "ratio": "9:16",
   "generate_audio": true
@@ -152,16 +152,16 @@ belt app run google/veo-3-1-fast --input '{
 
 ```bash
 # Generate engaging caption
-belt app run openrouter/claude-haiku-45 --input '{
-  "prompt": "Write an engaging Instagram caption for a sunset beach photo. Include a hook, value, and call to action. Add 10 relevant hashtags."
+belt app run anthropic/claude-haiku-5-5 --input '{
+  "text": "Write an engaging Instagram caption for a sunset beach photo. Include a hook, value, and call to action. Add 10 relevant hashtags."
 }'
 ```
 
 ### Hook Formulas
 
 ```bash
-belt app run openrouter/claude-haiku-45 --input '{
-  "prompt": "Generate 5 viral TikTok hooks for a video about morning routines. Use proven patterns like: curiosity gap, bold claim, relatable struggle, before/after, or tutorial format."
+belt app run anthropic/claude-haiku-5-5 --input '{
+  "text": "Generate 5 viral TikTok hooks for a video about morning routines. Use proven patterns like: curiosity gap, bold claim, relatable struggle, before/after, or tutorial format."
 }'
 ```
 
@@ -179,12 +179,12 @@ belt app run google/veo-3-1-fast --input "{
 }"
 
 # Twitter square
-belt app run falai/flux-dev --input "{
+belt app run pruna/flux-dev --input "{
   \"prompt\": \"$CONCEPT infographic, square format, minimal design, shareable\"
 }"
 
 # YouTube thumbnail
-belt app run falai/flux-dev --input "{
+belt app run pruna/flux-dev --input "{
   \"prompt\": \"$CONCEPT thumbnail, surprised person, bold text space, 16:9\"
 }"
 ```

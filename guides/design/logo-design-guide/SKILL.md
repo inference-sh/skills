@@ -85,12 +85,12 @@ belt app run falai/flux-dev-lora --input '{
 }'
 
 # Mascot style
-belt app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-5-5 --input '{
   "prompt": "friendly cartoon owl mascot logo, simple flat illustration, wearing graduation cap, purple and gold colors, white background, clean vector style"
 }'
 
 # Tech abstract
-belt app run xai/grok-imagine-image-pro --input '{
+belt app run xai/grok-imagine-image-2-0 --input '{
   "prompt": "minimal abstract logo mark, interconnected nodes forming a brain shape, line art style, single teal color, white background, tech startup aesthetic"
 }'
 ```
@@ -145,7 +145,7 @@ belt app run falai/flux-dev-lora --input '{
 }'
 
 # Step 3: Generate at high resolution for final
-belt app run bytedance/seedream-4-5 --input '{
+belt app run bytedance/seedream-5-5 --input '{
   "prompt": "flat vector logo of a geometric lighthouse with radiating light beams, minimal clean design, navy blue single color, pure white background",
   "size": "2K"
 }'

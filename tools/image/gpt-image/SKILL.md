@@ -1,6 +1,6 @@
 ---
 name: gpt-image
-description: "Generate and edit images with OpenAI GPT-Image-2.5 and GPT-Image-2 via inference.sh CLI. Models: GPT-Image-2.5 Flare, GPT-Image-2.5 Sunburst, GPT-Image-2. Capabilities: text-to-image, image editing, inpainting, mask-based editing, multi-image reference, batch generation, transparent backgrounds. Use for: product mockups, marketing visuals, image editing, concept art, inpainting, photo manipulation. Triggers: gpt image, gpt-image-2.5, gpt image 2.5, flare, sunburst, gpt-image-2, openai image, chatgpt image, dall-e, dalle, openai image generation, gpt image edit, gpt inpainting, openai dall-e, gpt 4o image, transparent background, transparent png, remove background"
+description: "Generate and edit images with OpenAI GPT-Image-2.6 via inference.sh CLI. Models: GPT-Image-2.6 Flare, GPT-Image-2.6 Sunburst. Capabilities: text-to-image, image editing, inpainting, mask-based editing, multi-image reference, batch generation, transparent backgrounds. Use for: product mockups, marketing visuals, image editing, concept art, inpainting, photo manipulation. Triggers: gpt image, gpt-image-2.6, gpt image 2.6, flare, sunburst, gpt-image-2, openai image, chatgpt image, dall-e, dalle, openai image generation, gpt image edit, gpt inpainting, openai dall-e, gpt 4o image, transparent background, transparent png, remove background"
 allowed-tools: Bash(belt *)
 ---
 
@@ -8,17 +8,16 @@ allowed-tools: Bash(belt *)
 
 # GPT-Image
 
-Generate and edit images with OpenAI's GPT-Image-2.5 and GPT-Image-2 via [inference.sh](https://inference.sh) CLI.
+Generate and edit images with OpenAI's GPT-Image-2.6 via [inference.sh](https://inference.sh) CLI.
 
 ## Models
 
 | Model | App ID | Pick it for |
 |-------|--------|-------------|
-| **GPT-Image-2.5 Flare** | `openai/gpt-image-2-5-flare` | Default. Higher quality than GPT-Image-2 at 50% lower latency |
-| **GPT-Image-2.5 Sunburst** | `openai/gpt-image-2-5-sunburst` | Premium edits: keeps subject and composition, tighter control across multi-turn edits |
-| GPT-Image-2 | `openai/gpt-image-2` | Previous generation |
+| **GPT-Image-2.6 Flare** | `openai/gpt-image-2-6-flare` | Default. Fast iteration, text-to-image, edits, transparent PNG |
+| **GPT-Image-2.6 Sunburst** | `openai/gpt-image-2-6-sunburst` | Premium edits: keeps subject and composition, tighter control across multi-turn edits |
 
-All three share the same input schema. The 2.5 models add `xhigh` and `max` quality tiers.
+Both share the same input schema, including `xhigh` and `max` quality tiers.
 
 ## Quick Start
 
@@ -27,7 +26,7 @@ All three share the same input schema. The 2.5 models add `xhigh` and `max` qual
 ```bash
 belt login
 
-belt app run openai/gpt-image-2-5-flare --input '{"prompt": "a cat astronaut floating in space"}'
+belt app run openai/gpt-image-2-6-flare --input '{"prompt": "a cat astronaut floating in space"}'
 ```
 
 
@@ -50,7 +49,7 @@ Every GPT-Image app supports text-to-image generation, image editing with refere
 ### Text-to-Image
 
 ```bash
-belt app run openai/gpt-image-2-5-flare --input '{
+belt app run openai/gpt-image-2-6-flare --input '{
   "prompt": "professional product photo of sneakers on a white background, studio lighting",
   "quality": "high"
 }'
@@ -59,7 +58,7 @@ belt app run openai/gpt-image-2-5-flare --input '{
 ### Multiple Images
 
 ```bash
-belt app run openai/gpt-image-2-5-flare --input '{
+belt app run openai/gpt-image-2-6-flare --input '{
   "prompt": "minimalist logo design for a coffee shop",
   "n": 4,
   "quality": "medium"
@@ -69,7 +68,7 @@ belt app run openai/gpt-image-2-5-flare --input '{
 ### Image Editing with Reference
 
 ```bash
-belt app run openai/gpt-image-2-5-flare --input '{
+belt app run openai/gpt-image-2-6-flare --input '{
   "prompt": "change the background to a beach at sunset",
   "images": ["https://your-image.jpg"]
 }'
@@ -80,7 +79,7 @@ belt app run openai/gpt-image-2-5-flare --input '{
 Sunburst is built to change only what you ask for and preserve the rest.
 
 ```bash
-belt app run openai/gpt-image-2-5-sunburst --input '{
+belt app run openai/gpt-image-2-6-sunburst --input '{
   "prompt": "change the jacket to red leather, keep the person, pose and background unchanged",
   "images": ["https://your-photo.jpg"],
   "quality": "high"
@@ -90,7 +89,7 @@ belt app run openai/gpt-image-2-5-sunburst --input '{
 ### Maximum Detail
 
 ```bash
-belt app run openai/gpt-image-2-5-flare --input '{
+belt app run openai/gpt-image-2-6-flare --input '{
   "prompt": "macro photo of a dragonfly wing, intricate veins, morning dew",
   "quality": "max"
 }'
@@ -99,7 +98,7 @@ belt app run openai/gpt-image-2-5-flare --input '{
 ### Multi-Image Reference
 
 ```bash
-belt app run openai/gpt-image-2-5-flare --input '{
+belt app run openai/gpt-image-2-6-flare --input '{
   "prompt": "combine these two characters into one scene",
   "images": ["https://character1.jpg", "https://character2.jpg"]
 }'
@@ -108,7 +107,7 @@ belt app run openai/gpt-image-2-5-flare --input '{
 ### Inpainting with Mask
 
 ```bash
-belt app run openai/gpt-image-2-5-flare --input '{
+belt app run openai/gpt-image-2-6-flare --input '{
   "prompt": "replace with a red sports car",
   "images": ["https://street-scene.jpg"],
   "mask": "https://car-mask.png"
@@ -120,7 +119,7 @@ belt app run openai/gpt-image-2-5-flare --input '{
 Prompt for an isolated subject — describing a scene or backdrop makes the model draw one. Requires `png` (default) or `webp` output.
 
 ```bash
-belt app run openai/gpt-image-2-5-flare --input '{
+belt app run openai/gpt-image-2-6-flare --input '{
   "prompt": "a single red apple with a green leaf, isolated subject",
   "background": "transparent"
 }'
@@ -129,7 +128,7 @@ belt app run openai/gpt-image-2-5-flare --input '{
 ### Custom Resolution
 
 ```bash
-belt app run openai/gpt-image-2-5-flare --input '{
+belt app run openai/gpt-image-2-6-flare --input '{
   "prompt": "wide cinematic landscape, mountains at golden hour",
   "width": 1920,
   "height": 1080,
@@ -140,7 +139,7 @@ belt app run openai/gpt-image-2-5-flare --input '{
 ### Fast Drafts
 
 ```bash
-belt app run openai/gpt-image-2-5-flare --input '{
+belt app run openai/gpt-image-2-6-flare --input '{
   "prompt": "quick concept sketch of a robot",
   "quality": "low"
 }'
@@ -148,17 +147,15 @@ belt app run openai/gpt-image-2-5-flare --input '{
 
 ## Pricing
 
-Approximate price per 1024x1024 image. Flare and Sunburst cost the same.
+Token-based pricing. Flare and Sunburst cost the same.
 
-| Quality | GPT-Image-2.5 | GPT-Image-2 |
-|---------|---------------|-------------|
-| low | $0.006 | $0.006 |
-| medium | $0.013 | $0.053 |
-| high | $0.053 | $0.21 |
-| xhigh | $0.094 | – |
-| max | $0.21 | – |
+| Token type | Price per 1M tokens |
+|------------|---------------------|
+| Text input | $5.00 |
+| Image input | $8.00 |
+| Image output | $30.00 |
 
-Larger resolutions cost more. Edits add about $0.008 per reference image. See `belt app get openai/gpt-image-2-5-flare` for full pricing details.
+Higher quality and larger resolutions use more output tokens. Edits add image input tokens per reference image. See `belt app pricing openai/gpt-image-2-6-flare` for full pricing details.
 
 ## Parameters
 
@@ -168,7 +165,7 @@ Larger resolutions cost more. Edits add about $0.008 per reference image. See `b
 | `images` | array | - | Reference image(s) for editing |
 | `mask` | string | - | Mask image for inpainting |
 | `n` | integer | 1 | Number of images (1–10) |
-| `quality` | string | auto | low, medium, high, xhigh, max (xhigh/max are 2.5 only) |
+| `quality` | string | auto | low, medium, high, xhigh, max |
 | `width` | integer | 1024 | Output width (256–3840, multiples of 16, ratio ≤ 3:1) |
 | `height` | integer | 1024 | Output height (256–3840, multiples of 16, ratio ≤ 3:1) |
 | `output_format` | string | png | png, jpeg, or webp |

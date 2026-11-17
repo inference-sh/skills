@@ -173,7 +173,7 @@ belt app run exa/search --input '{
 
 # Supporting statistics
 belt app run exa/answer --input '{
-  "question": "What percentage of e-commerce businesses still use manual order processing?"
+  "query": "What percentage of e-commerce businesses still use manual order processing?"
 }'
 ```
 

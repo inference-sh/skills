@@ -213,7 +213,7 @@ image_gen = (
 
 # Create agent
 agent = client.agent({
-    "core_app": {"ref": "infsh/claude-sonnet-4@latest"},
+    "core_app": {"ref": "anthropic/claude-sonnet-5-5@latest"},
     "system_prompt": "You are a helpful assistant.",
     "tools": [calculator, image_gen],
     "temperature": 0.7,
@@ -227,10 +227,10 @@ response = agent.send_message("What is 25 * 4?")
 
 | Model | App Reference |
 |-------|---------------|
-| Claude Sonnet 4 | `infsh/claude-sonnet-4@latest` |
-| Claude 3.5 Haiku | `infsh/claude-haiku-35@latest` |
-| GPT-4o | `infsh/gpt-4o@latest` |
-| GPT-4o Mini | `infsh/gpt-4o-mini@latest` |
+| Claude Sonnet 5.5 | `anthropic/claude-sonnet-5-5@latest` |
+| Claude Haiku 5.5 | `anthropic/claude-haiku-5-5@latest` |
+| GPT-6.1 Sol | `openai/gpt-6-1-sol@latest` |
+| GPT-6 Luna | `openai/gpt-6-luna@latest` |
 
 ## Tool Builder API
 
@@ -275,8 +275,7 @@ generate = (
     app_tool("generate_image", "infsh/flux-1-dev@latest")
     .describe("Generate an image from text")
     .param("prompt", string("Image description"))
-    .setup({"model": "schnell"})
-    .input({"steps": 20})
+    .input({"num_inference_steps": 20})
     .require_approval()
     .build()
 )
@@ -323,13 +322,13 @@ config = (
     .code_execution(True)
     .image_generation({
         "enabled": True,
-        "app_ref": "infsh/flux@latest"
+        "app_ref": "pruna/flux-dev@latest"
     })
     .build()
 )
 
 agent = client.agent({
-    "core_app": {"ref": "infsh/claude-sonnet-4@latest"},
+    "core_app": {"ref": "anthropic/claude-sonnet-5-5@latest"},
     "internal_tools": config
 })
 ```
@@ -374,7 +373,7 @@ response = agent.send_message(
 
 ```python
 agent = client.agent({
-    "core_app": {"ref": "infsh/claude-sonnet-4@latest"},
+    "core_app": {"ref": "anthropic/claude-sonnet-5-5@latest"},
     "skills": [
         {
             "name": "code-review",

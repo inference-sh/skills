@@ -1,6 +1,6 @@
 ---
 name: ai-rag-pipeline
-description: "Build RAG (Retrieval Augmented Generation) pipelines with web search and LLMs. Tools: Tavily Search, Exa Search, Exa Answer, Claude, GPT-4, Gemini via OpenRouter. Capabilities: research, fact-checking, grounded responses, knowledge retrieval. Use for: AI agents, research assistants, fact-checkers, knowledge bases. Triggers: rag, retrieval augmented generation, grounded ai, search and answer, research agent, fact checking, knowledge retrieval, ai research, search + llm, web grounded, perplexity alternative, ai with sources, citation, research pipeline"
+description: "Build RAG (Retrieval Augmented Generation) pipelines with web search and LLMs. Tools: Tavily Search, Exa Search, Exa Answer, Claude, GPT, Gemini. Capabilities: research, fact-checking, grounded responses, knowledge retrieval. Use for: AI agents, research assistants, fact-checkers, knowledge bases. Triggers: rag, retrieval augmented generation, grounded ai, search and answer, research agent, fact checking, knowledge retrieval, ai research, search + llm, web grounded, perplexity alternative, ai with sources, citation, research pipeline"
 allowed-tools: Bash(belt *)
 ---
 
@@ -21,8 +21,8 @@ belt login
 
 # Simple RAG: Search + LLM
 SEARCH=$(belt app run tavily/search-assistant --input '{"query": "latest AI developments 2024"}')
-belt app run openrouter/claude-sonnet-45 --input "{
-  \"prompt\": \"Based on this research, summarize the key trends: $SEARCH\"
+belt app run anthropic/claude-sonnet-5-5 --input "{
+  \"text\": \"Based on this research, summarize the key trends: $SEARCH\"
 }"
 ```
 
@@ -77,10 +77,10 @@ This produces more accurate, up-to-date, and verifiable AI responses.
 
 | Model | App ID | Best For |
 |-------|--------|----------|
-| Claude Sonnet 4.5 | `openrouter/claude-sonnet-45` | Complex analysis |
-| Claude Haiku 4.5 | `openrouter/claude-haiku-45` | Fast processing |
-| GPT-4o | `openrouter/gpt-4o` | General purpose |
-| Gemini 2.5 Pro | `openrouter/gemini-25-pro` | Long context |
+| Claude Sonnet 5.5 | `anthropic/claude-sonnet-5-5` | Complex analysis |
+| Claude Haiku 5.5 | `anthropic/claude-haiku-5-5` | Fast processing |
+| GPT-6.1 Sol | `openai/gpt-6-1-sol` | General purpose |
+| Gemini 4 Argon | `google/gemini-4-argon` | Long context |
 
 ## Pipeline Examples
 
@@ -93,8 +93,8 @@ SEARCH_RESULT=$(belt app run tavily/search-assistant --input '{
 }')
 
 # 2. Generate grounded response
-belt app run openrouter/claude-sonnet-45 --input "{
-  \"prompt\": \"You are a research assistant. Based on the following search results, provide a comprehensive summary with citations.
+belt app run anthropic/claude-sonnet-5-5 --input "{
+  \"text\": \"You are a research assistant. Based on the following search results, provide a comprehensive summary with citations.
 
 Search Results:
 $SEARCH_RESULT
@@ -111,8 +111,8 @@ TAVILY=$(belt app run tavily/search-assistant --input '{"query": "electric vehic
 EXA=$(belt app run exa/search --input '{"query": "EV market analysis latest reports"}')
 
 # Combine and analyze
-belt app run openrouter/claude-sonnet-45 --input "{
-  \"prompt\": \"Analyze these research results and identify common themes and contradictions.
+belt app run anthropic/claude-sonnet-5-5 --input "{
+  \"text\": \"Analyze these research results and identify common themes and contradictions.
 
 Source 1 (Tavily):
 $TAVILY
@@ -136,8 +136,8 @@ CONTENT=$(belt app run tavily/extract --input '{
 }')
 
 # 2. Analyze extracted content
-belt app run openrouter/claude-sonnet-45 --input "{
-  \"prompt\": \"Analyze these documents and extract key insights:
+belt app run anthropic/claude-sonnet-5-5 --input "{
+  \"text\": \"Analyze these documents and extract key insights:
 
 $CONTENT
 
@@ -160,8 +160,8 @@ EVIDENCE=$(belt app run tavily/search-assistant --input "{
 }")
 
 # 2. Verify claim
-belt app run openrouter/claude-sonnet-45 --input "{
-  \"prompt\": \"Fact-check this claim: '$CLAIM'
+belt app run anthropic/claude-sonnet-5-5 --input "{
+  \"text\": \"Fact-check this claim: '$CLAIM'
 
 Based on the following evidence:
 $EVIDENCE
@@ -185,8 +185,8 @@ STATISTICS=$(belt app run exa/search --input "{\"query\": \"$TOPIC statistics da
 OPINIONS=$(belt app run tavily/search-assistant --input "{\"query\": \"$TOPIC expert opinions\"}")
 
 # 2. Generate comprehensive report
-belt app run openrouter/claude-sonnet-45 --input "{
-  \"prompt\": \"Generate a comprehensive research report on: $TOPIC
+belt app run anthropic/claude-sonnet-5-5 --input "{
+  \"text\": \"Generate a comprehensive research report on: $TOPIC
 
 Research Data:
 == Overview ==
@@ -213,7 +213,7 @@ Format as a professional report with:
 ```bash
 # Use Exa Answer for direct factual questions
 belt app run exa/answer --input '{
-  "question": "What is the current market cap of NVIDIA?"
+  "query": "What is the current market cap of NVIDIA?"
 }'
 ```
 
@@ -236,13 +236,13 @@ belt app run exa/answer --input '{
 SEARCH=$(belt app run tavily/search-assistant --input '{"query": "..."}')
 
 # If too long, summarize first
-SUMMARY=$(belt app run openrouter/claude-haiku-45 --input "{
-  \"prompt\": \"Summarize these search results in bullet points: $SEARCH\"
+SUMMARY=$(belt app run anthropic/claude-haiku-5-5 --input "{
+  \"text\": \"Summarize these search results in bullet points: $SEARCH\"
 }")
 
 # Then use summary for analysis
-belt app run openrouter/claude-sonnet-45 --input "{
-  \"prompt\": \"Based on this research summary, provide insights: $SUMMARY\"
+belt app run anthropic/claude-sonnet-5-5 --input "{
+  \"text\": \"Based on this research summary, provide insights: $SUMMARY\"
 }"
 ```
 
@@ -251,8 +251,8 @@ belt app run openrouter/claude-sonnet-45 --input "{
 Always ask the LLM to cite sources:
 
 ```bash
-belt app run openrouter/claude-sonnet-45 --input '{
-  "prompt": "... Always cite sources in [Source Name](URL) format."
+belt app run anthropic/claude-sonnet-5-5 --input '{
+  "text": "... Always cite sources in [Source Name](URL) format."
 }'
 ```
 
@@ -281,8 +281,8 @@ research() {
   local results=$(belt app run tavily/search-assistant --input "{\"query\": \"$query\"}")
 
   # Analyze
-  belt app run openrouter/claude-haiku-45 --input "{
-    \"prompt\": \"Summarize: $results\"
+  belt app run anthropic/claude-haiku-5-5 --input "{
+    \"text\": \"Summarize: $results\"
   }"
 }
 

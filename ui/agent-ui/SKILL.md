@@ -48,7 +48,7 @@ export default function Page() {
     <Agent
       proxyUrl="/api/inference/proxy"
       agentConfig={{
-        core_app: { ref: 'openrouter/claude-haiku-45@0fkg6xwb' },
+        core_app: { ref: 'anthropic/claude-haiku-5-5@latest' },
         description: 'a helpful ai assistant',
         system_prompt: 'you are helpful.',
       }}
@@ -80,7 +80,7 @@ const scopedTools = createScopedTools(formRef)
 <Agent
   proxyUrl="/api/inference/proxy"
   config={{
-    core_app: { ref: 'openrouter/claude-haiku-45@0fkg6xwb' },
+    core_app: { ref: 'anthropic/claude-haiku-5-5@latest' },
     tools: scopedTools,
     system_prompt: 'You can fill forms using scan_ui and fill_field tools.',
   }}

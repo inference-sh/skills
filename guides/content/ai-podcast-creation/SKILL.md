@@ -42,15 +42,11 @@ belt app run falai/kokoro-tts --input '{
 
 ### DIA TTS (Conversational)
 
-| Voice ID | Description | Best For |
-|----------|-------------|----------|
-| `dia-conversational` | Natural conversation | Dialogue, interviews |
+`falai/dia-tts` has no voice presets. Mark speakers with `[S1]` and `[S2]` in `text` and add nonverbals like `(laughs)`; pass `ref_audio` to clone a voice. Best for dialogue and interviews.
 
 ### Chatterbox
 
-| Voice ID | Description | Best For |
-|----------|-------------|----------|
-| `chatterbox-default` | Expressive | Casual, entertainment |
+`infsh/chatterbox` takes `text` and an optional `voice_reference` audio file to clone a voice; `exaggeration` controls expressiveness. Best for casual, entertainment content.
 
 ## Podcast Workflows
 
@@ -89,13 +85,14 @@ ffmpeg -i host.mp3 -i guest.mp3 -filter_complex "acrossfade=d=0.5" conversation.
 
 ```bash
 # 1. Generate script with Claude
-belt app run openrouter/claude-sonnet-45 --input '{
-  "prompt": "Write a 5-minute podcast script about the impact of AI on creative work. Format as a two-person dialogue between HOST and GUEST. Include natural conversation, questions, and insights."
+belt app run anthropic/claude-sonnet-5-5 --input '{
+  "text": "Write a 5-minute podcast script about the impact of AI on creative work. Format as a two-person dialogue between HOST and GUEST. Include natural conversation, questions, and insights."
 }' > script.json
 
 # 2. Generate intro music
-belt app run infsh/ai-music --input '{
-  "prompt": "Podcast intro music, upbeat, modern, tech feel, 15 seconds"
+belt app run elevenlabs/music --input '{
+  "prompt": "Podcast intro music, upbeat, modern, tech feel",
+  "duration_seconds": 15
 }' > intro_music.json
 
 # 3. Generate host segments
@@ -111,8 +108,9 @@ belt app run falai/kokoro-tts --input '{
 }' > guest.json
 
 # 5. Generate outro music
-belt app run infsh/ai-music --input '{
-  "prompt": "Podcast outro music, matching intro style, fade out, 10 seconds"
+belt app run elevenlabs/music --input '{
+  "prompt": "Podcast outro music, matching intro style, fade out",
+  "duration_seconds": 10
 }' > outro_music.json
 
 # 6. Merge everything (no inference.sh app concatenates audio; use ffmpeg locally)
@@ -130,8 +128,8 @@ Generate podcast-style discussions from documents.
 
 ```bash
 # 1. Extract key points
-belt app run openrouter/claude-sonnet-45 --input '{
-  "prompt": "Read this document and create a podcast script where two hosts discuss the key points in an engaging, conversational way. Include questions, insights, and natural dialogue.\n\nDocument:\n<your-document-content>"
+belt app run anthropic/claude-sonnet-5-5 --input '{
+  "text": "Read this document and create a podcast script where two hosts discuss the key points in an engaging, conversational way. Include questions, insights, and natural dialogue.\n\nDocument:\n<your-document-content>"
 }' > discussion_script.json
 
 # 2. Generate Host A
@@ -177,8 +175,9 @@ belt app run falai/kokoro-tts --input '{
 }' > podcast.json
 
 # 2. Generate ambient music
-belt app run infsh/ai-music --input '{
-  "prompt": "Soft ambient background music for podcast, subtle, non-distracting, loopable"
+belt app run elevenlabs/music --input '{
+  "prompt": "Soft ambient background music for podcast, subtle, non-distracting, loopable",
+  "duration_seconds": 60
 }' > background.json
 
 # 3. Mix with lower background volume (no inference.sh app mixes audio; use ffmpeg locally)
@@ -192,8 +191,9 @@ ffmpeg -i podcast.mp3 -stream_loop -1 -i background.mp3 -filter_complex \
 
 ```bash
 # Transition sounds between segments
-belt app run infsh/ai-music --input '{
-  "prompt": "Short podcast transition sound, whoosh, 2 seconds"
+belt app run elevenlabs/sound-effects --input '{
+  "text": "Short podcast transition sound, whoosh",
+  "duration_seconds": 2
 }' > transition.json
 ```
 
@@ -202,8 +202,8 @@ belt app run infsh/ai-music --input '{
 ### Prompt for Claude
 
 ```bash
-belt app run openrouter/claude-sonnet-45 --input '{
-  "prompt": "Write a podcast script with these requirements:
+belt app run anthropic/claude-sonnet-5-5 --input '{
+  "text": "Write a podcast script with these requirements:
   - Topic: [YOUR TOPIC]
   - Duration: 5 minutes (about 750 words)
   - Format: Two hosts (HOST_A and HOST_B)

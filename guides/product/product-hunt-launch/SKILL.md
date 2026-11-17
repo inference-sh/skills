@@ -82,8 +82,9 @@ belt app run falai/flux-dev-lora --input '{
 
 # Image 3: Before/after
 belt app run infsh/stitch-images --input '{
-  "images": ["before-state.png", "after-state.png"],
-  "direction": "horizontal"
+  "image1": "before-state.png",
+  "image2": "after-state.png",
+  "orientation": "horizontal"
 }'
 
 # Image 4: Social proof / metrics

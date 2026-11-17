@@ -117,16 +117,21 @@ belt app run elevenlabs/forced-alignment --input '{
 ## Workflow: Video Subtitles
 
 ```bash
-# 1. Transcribe video audio
+# 1. Extract the audio track (Scribe takes audio files, not video)
+belt app run infsh/video-audio-extractor --input '{
+  "video_file": "https://video.mp4"
+}' > audio.json
+
+# 2. Transcribe it
 belt app run elevenlabs/stt --input '{
-  "audio": "https://video.mp4",
+  "audio": "<audio_file-from-step-1>",
   "diarize": true
 }' > transcript.json
 
-# 2. Build caption segments (start, end, text) from the word timestamps in step 1
+# 3. Build caption segments (start, end, text) from the word timestamps in step 2
 belt app run infsh/caption-videos --input '{
   "video_file": "https://video.mp4",
-  "segments": [{"start": 0.0, "end": 2.5, "text": "<text-from-step-1>"}]
+  "segments": [{"start": 0.0, "end": 2.5, "text": "<text-from-step-2>"}]
 }'
 ```
 
@@ -152,7 +157,7 @@ npx skills add inference-sh/skills@elevenlabs-tts
 # ElevenLabs dubbing (translate audio)
 npx skills add inference-sh/skills@elevenlabs-dubbing
 
-# Other STT models (Whisper)
+# Other STT models (GPT Transcribe)
 npx skills add inference-sh/skills@speech-to-text
 
 # Full platform skill (all apps)

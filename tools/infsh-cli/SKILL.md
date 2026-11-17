@@ -1,6 +1,6 @@
 ---
 name: infsh-cli
-description: "Run AI apps via inference.sh CLI - image generation, video creation, LLMs, search, 3D, Twitter automation. Models: FLUX, Veo, Gemini, Grok, Claude, Seedance, OmniHuman, Tavily, Exa, OpenRouter, and many more. Use when running AI apps, generating images/videos, calling LLMs, web search, or automating Twitter. Triggers: inference.sh, infsh, ai model, run ai, serverless ai, ai api, flux, veo, claude api, image generation, video generation, openrouter, tavily, exa search, twitter api, grok"
+description: "Run AI apps via inference.sh CLI - image generation, video creation, LLMs, search, 3D, Twitter automation. Models: FLUX, Veo, Gemini, Grok, Claude, Seedance, OmniHuman, Tavily, Exa, and many more. Use when running AI apps, generating images/videos, calling LLMs, web search, or automating Twitter. Triggers: inference.sh, infsh, ai model, run ai, serverless ai, ai api, flux, veo, claude api, image generation, video generation, tavily, exa search, twitter api, grok"
 allowed-tools: Bash(belt *)
 ---
 
@@ -46,7 +46,7 @@ belt app run falai/flux-dev-lora --input '{"prompt": "a cat astronaut"}'
 belt app run google/veo-3-1-fast --input '{"prompt": "drone over mountains"}'
 
 # Call Claude
-belt app run openrouter/claude-sonnet-45 --input '{"prompt": "Explain quantum computing"}'
+belt app run anthropic/claude-sonnet-5-5 --input '{"text": "Explain quantum computing"}'
 
 # Web search
 belt app run tavily/search-assistant --input '{"query": "latest AI news"}'
@@ -67,7 +67,7 @@ The CLI automatically uploads local files when you provide a path instead of a U
 belt app run falai/topaz-image-upscaler --input '{"image": "/path/to/photo.jpg", "upscale_factor": 2}'
 
 # Image-to-video from local file
-belt app run falai/wan-2-5-i2v --input '{"image": "./my-image.png", "prompt": "make it move"}'
+belt app run alibaba/wan-2-7-i2v --input '{"first_frame": "./my-image.png", "prompt": "make it move"}'
 
 # Avatar with local audio and image
 belt app run bytedance/omnihuman-1-5 --input '{"audio": "/path/to/speech.mp3", "image": "/path/to/face.jpg"}'
@@ -94,9 +94,9 @@ belt app run x/post-create --input '{"text": "Check this out!", "media": ["./scr
 
 | Category | Examples |
 |----------|----------|
-| **Image** | FLUX, Gemini 3 Pro, Grok Imagine, Seedream 4.5, Reve, Topaz Upscaler |
-| **Video** | Veo 3.1, Seedance 2.0, Wan 2.5, OmniHuman, Fabric, MMAudio |
-| **LLMs** | Claude Opus/Sonnet/Haiku, Gemini 3 Pro, Kimi K2, GLM-4, any OpenRouter model |
+| **Image** | FLUX, Nano Banana 2.1, Grok Imagine, Seedream 5.5, Reve, Topaz Upscaler |
+| **Video** | Veo 3.1, Seedance 2.5, Wan 2.7, OmniHuman, Fabric, MMAudio |
+| **LLMs** | Claude Opus/Sonnet/Haiku 5.5, Gemini 4 Argon, GPT-6.1 Sol, Kimi K3, GLM-5.3 |
 | **Search** | Tavily Search, Tavily Extract, Exa Search, Exa Answer, Exa Extract |
 | **3D** | Rodin 3D Generator |
 | **Twitter/X** | post-create, dm-send, user-follow, post-like, post-retweet |
@@ -111,7 +111,7 @@ npx skills add inference-sh/skills@ai-image-generation
 # Video generation (Veo, Seedance, Wan, OmniHuman)
 npx skills add inference-sh/skills@ai-video-generation
 
-# LLMs (Claude, Gemini, Kimi, GLM via OpenRouter)
+# LLMs (Claude, Gemini, GPT, Kimi, GLM)
 npx skills add inference-sh/skills@llm-models
 
 # Web search (Tavily, Exa)

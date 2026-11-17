@@ -137,7 +137,7 @@ import { Agent } from "@/registry/blocks/agent/agent"
 <Agent
   proxyUrl="/api/inference/proxy"
   config={{
-    core_app: { ref: 'openrouter/claude-sonnet-45@0fkg6xwb' },
+    core_app: { ref: 'anthropic/claude-sonnet-5-5@latest' },
     tools: [
       {
         name: 'search_web',

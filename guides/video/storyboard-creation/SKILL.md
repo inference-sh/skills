@@ -24,10 +24,11 @@ belt app run falai/flux-dev-lora --input '{
   "height": 832
 }'
 
-# Stitch panels into a board
+# Stitch two panels side by side (repeat to add more)
 belt app run infsh/stitch-images --input '{
-  "images": ["panel1.png", "panel2.png", "panel3.png"],
-  "direction": "horizontal"
+  "image1": "panel1.png",
+  "image2": "panel2.png",
+  "orientation": "horizontal"
 }'
 ```
 
@@ -219,21 +220,24 @@ belt app run falai/flux-dev-lora --input "{
 ### Step 3: Assemble Board
 
 ```bash
-# Stitch panels into rows
+# Stitch panels into a row (two images per call, chain for more)
 belt app run infsh/stitch-images --input '{
-  "images": ["panel_1_1.png", "panel_1_2.png", "panel_1_3.png"],
-  "direction": "horizontal"
+  "image1": "panel_1_1.png",
+  "image2": "panel_1_2.png",
+  "orientation": "horizontal"
 }'
 
 belt app run infsh/stitch-images --input '{
-  "images": ["panel_1_4.png", "panel_1_5.png", "panel_1_6.png"],
-  "direction": "horizontal"
+  "image1": "panel_1_1-2.png",
+  "image2": "panel_1_3.png",
+  "orientation": "horizontal"
 }'
 
 # Then stitch rows vertically for full page
 belt app run infsh/stitch-images --input '{
-  "images": ["row1.png", "row2.png"],
-  "direction": "vertical"
+  "image1": "row1.png",
+  "image2": "row2.png",
+  "orientation": "vertical"
 }'
 ```
 

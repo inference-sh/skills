@@ -1,5 +1,7 @@
 # inference.sh skills
 
+[![Skillselion Top 100](https://skillselion.com/badge/skills/halt-catch-fire/skills/remotion-render.svg?award=1)](https://skillselion.com/skills/halt-catch-fire/skills/remotion-render)
+
 AI agent skills for models via [inference.sh](https://inference.sh) CLI. Generate images, videos, call LLMs, search the web, and more.
 
 ![inference.sh](https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kgvqa60jjrqa47j3g5s6ce6v.jpeg)
